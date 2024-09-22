@@ -8,7 +8,7 @@
 
 # How to login?
 
-Visit [https://wpstarter.ddev.site/user](https://wpstarter.ddev.site/wp-login.php)
+Visit [https://kontrapunkt.ddev.site/user](https://kontrapunkt.ddev.site/wp-login.php)
 
 - Default username: maceksimon
 - Default email address: maceksimonlmd@gmail.com
@@ -22,7 +22,7 @@ You can reset password with command `ddev wp user update maceksimon --user_pass=
 - Do not forget to set `define( 'GOOGLE_MAPS_API_KEY', 'xxx' );`
 - Static template is located in `/wp-content/themes/starter_theme/static`
 - We use **yarn** package manager for development `/wp-content/themes/starter_theme/static/package.json`
-- For quick preview without WordPress installed you can visit `https://wpstarter.ddev.site/styleguide`
+- For quick preview without WordPress installed you can visit `https://kontrapunkt.ddev.site/styleguide`
 
 # How to export DB
 
@@ -35,8 +35,8 @@ You can reset password with command `ddev wp user update maceksimon --user_pass=
 
 # How to replace fixed URLs (ACF escape values we need 2 commands)
 
-`wp search-replace 'https://wpstarter.ddev.site' 'https://wpstarter.cz' --skip-columns=guid`
-`wp search-replace 'https:\/\/wpstarter.ddev.site' 'https:\/\/wpstarter.cz' --skip-columns=guid`
+`wp search-replace 'https://kontrapunkt.ddev.site' 'https://wpstarter.cz' --skip-columns=guid`
+`wp search-replace 'https:\/\/kontrapunkt.ddev.site' 'https:\/\/wpstarter.cz' --skip-columns=guid`
 
 # How to update?
 
