@@ -1,0 +1,23 @@
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': content.name|default('content'),
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes
+  ],
+  'container': (content.container is null) ? 'container mb-12 lg:pb-20' : content.container,
+} %}
+{% block content %}
+{% if content.prose %}
+  {% if content.container is not empty %}
+    <div class="prose prose-xl prose-primary prose-narrow">
+  {% else %}
+    <div class="prose prose-xl prose-primary prose-center">
+  {% endif %}
+{% endif %}
+  {{- content.html|typography -}}
+{% if content.prose %}
+  </div>
+{% endif %}
+{% endblock %}
+{# add to purge: my-6 #}

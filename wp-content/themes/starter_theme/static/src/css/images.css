@@ -1,0 +1,8 @@
+@layer components {
+  .img-highlight {
+    @apply rounded-full m-3 ring-8 ring-offset-4 ring-primary-500 ring-opacity-75;
+  }
+  .component-article-comment-list .img-highlight-sm {
+    @apply rounded-full m-1 sm:mt-5 ring-2 ring-offset-2 ring-primary-500 ring-opacity-75;
+  }
+}

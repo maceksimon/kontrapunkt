@@ -1,0 +1,72 @@
+# Don't show directory listings for URLs which map to a directory.
+Options -Indexes
+# Follow symbolic links in this directory.
+Options +FollowSymLinks
+<IfModule mod_mime.c>
+  AddType application/font-sfnt otf ttf
+  AddType application/vnd.ms-fontobject eot
+  AddType application/font-woff woff
+  AddType application/font-woff2 woff2
+  AddType image/webp .webp
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  ExpiresByType image/jpg "access 1 year"
+  ExpiresByType image/jpeg "access 1 year"
+  ExpiresByType image/gif "access 1 year"
+  ExpiresByType image/png "access 1 year"
+  ExpiresByType image/webp "access 1 year"
+  ExpiresByType text/css "access 1 month"
+  ExpiresByType text/html "access 1 month"
+  ExpiresByType application/pdf "access 1 month"
+  ExpiresByType text/x-javascript "access 1 month"
+  ExpiresByType application/x-shockwave-flash "access 1 month"
+  ExpiresByType image/x-icon "access 1 year"
+  ExpiresByType application/font-woff "access 1 year"
+  ExpiresByType application/font-woff2 "access 1 year"
+  ExpiresByType application/font-sfnt "access 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access 1 year"
+  ExpiresDefault "access 1 month"
+  <FilesMatch \.php$>
+  # Do not allow PHP scripts to be cached unless they explicitly send cache
+  # headers themselves. Otherwise all scripts would have to overwrite the
+  # headers set by mod_expires if they want another caching behavior. This may
+  # fail if an error occurs early in the bootstrap process, and it may cause
+  # problems if a non-Drupal PHP file is installed in a subdirectory.
+  ExpiresActive Off
+  </FilesMatch>
+</IfModule>
+<IfModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options nosniff
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+Header set Referrer-Policy: strict-origin-when-cross-origin
+Header set Content-Security-Policy: "upgrade-insecure-requests;"
+Header set Permissions-Policy: interest-cohort=()
+RequestHeader unset Proxy
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript image/svg+xml font/opentype font/truetype font/eot
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule ^.well-known/acme-challenge - [L]
+RewriteRule ^styleguide(.*)$ /wp-content/themes/starter_theme/static/index.php [L]
+</IfModule>
+# BEGIN WordPress
+# Direktivy (řádky) mezi 'BEGIN WordPress' a 'END WordPress' jsou
+# dynamicky generované a měly by být upravovány pouze pomocí filtrů WordPressu.
+# Veškeré změny směrnic mezi těmito značkami budou přepsány.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

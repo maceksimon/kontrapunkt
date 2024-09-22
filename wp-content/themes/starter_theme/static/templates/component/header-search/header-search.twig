@@ -1,0 +1,26 @@
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'header-search',
+  'id': content.wrapper_id,
+  'classes': content.wrapper_classes,
+} %}
+{% block content %}
+<div class="relative h-10 lg:h-8 lg:min-w-[2rem]">
+  <div>
+    <button class="js-search-toggle hidden lg:inline-block">
+      <div class="h-full w-8 p-1 flex items-center text-white">
+        {{ icons.get('search-sm') }}
+      </div>
+    </button>
+    <div class="js-search relative lg:w-0 lg:overflow-hidden transition-all ease-in-out duration-300">
+      <form action="{{ content.search_url }}">
+        <input type="search" name="s" id="search" class="block w-full max-w-full lg:h-8 lg:border-none sm:text-sm rounded shadow lg:shadow-sm focus:ring-orange-400">
+        <button type="submit" class="js-search-button absolute h-full w-10 inset-y-0 right-0 px-2 flex items-center text-black focus:outline-none">
+          {{ icons.get('search-sm') }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{#
+name: "Grid - 2 columns"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'grid-2-columns',
+  'tag': content.tag,
+  'classes': [
+    'grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2',
+    content.wrapper_classes,
+  ],
+} %}
+{% block content %}
+  {% if content.inner_component %}
+    {% if content.items|length %}
+      {% for item in content.items %}
+        {{ component( content.inner_component, item ) }}
+      {% endfor %}
+    {% else %}
+      {{ component_alert({
+        type: 'info',
+        message: 'Momentálně tu nic nemáme. Prosím, přijďte se podívat později.',
+      }) }}
+    {% endif %}
+  {% else %}
+    {{ component_alert({
+      'type': 'error',
+      'container': content.inner ? '' : 'container',
+      'message': 'Proměnná <strong>inner_component</strong> dení definována pro <i>grid-2-cols.twig</i>.',
+    }) }}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{#
+name: "Flexbox"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'flexbox',
+  'tag': content.tag,
+  'classes': [
+    'flex',
+    'gap-4 sm:gap-6 lg:gap-8',
+    content.wrapper_classes,
+  ],
+  'attributes': {
+    'role': 'list',
+  },
+} %}
+{% block content %}
+  {% if content.inner_component %}
+    {% if content.items|length %}
+      {% for item in content.items %}
+        {{ component( content.inner_component, item ) }}
+      {% endfor %}
+    {% else %}
+      {{ component_alert({
+        type: 'info',
+        message: 'Momentálně tu nic nemáme. Prosím, přijďte se podívat později.',
+      }) }}
+    {% endif %}
+  {% else %}
+    {{ component_alert({
+      'type': 'error',
+      'container': content.inner ? '' : 'container',
+      'message': 'Proměnná <strong>inner_component</strong> dení definována pro <i>flexbox.twig</i>.',
+    }) }}
+  {% endif %}
+{% endblock %}

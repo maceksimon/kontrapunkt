@@ -1,0 +1,36 @@
+{#
+name: "List - stacked"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'list-stacked',
+  'tag': content.tag,
+  'classes': [
+    'space-y-6',
+    content.wrapper_classes,
+  ],
+  'attributes': {
+    'role': 'list',
+  },
+} %}
+{% block content %}
+  {% if content.inner_component %}
+    {% if content.items|length %}
+      {% for item in content.items %}
+        {{ component( content.inner_component, item ) }}
+      {% endfor %}
+    {% else %}
+      {{ component_alert({
+        type: 'info',
+        message: 'Momentálně tu nic nemáme. Prosím, přijďte se podívat později.',
+      }) }}
+    {% endif %}
+  {% else %}
+    {{ component_alert({
+      'type': 'error',
+      'container': content.inner ? '' : 'container',
+      'message': 'Variable <strong>inner_component</strong> not defined for template <i>grid-5-cols.twig</i>.',
+    }) }}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{#
+name: "Odkaz"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'link',
+  'tag': 'a',
+  'id': content.wrapper_id,
+  'classes': [
+    'flex items-center gap-2 group',
+    content.wrapper_classes
+  ],
+  'target': content.target|default(null),
+  'attributes': {
+    'href': content.url,
+    'target': content.target,
+  }
+} %}
+{% block content %}
+{% if content.icon_before %}
+  <div class="shrink-0 h-2.5">{{ icons.get(content.icon_before )}}</div>
+{% endif %}
+<span class="underline lg:no-underline group-hover:lg:underline">{{ content.title|typography }}</span>
+{% if content.icon_after %}
+  <div class="shrink-0 h-2.5">{{ icons.get(content.icon_after )}}</div>
+{% endif %}
+{% endblock %}

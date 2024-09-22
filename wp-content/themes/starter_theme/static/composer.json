@@ -1,0 +1,53 @@
+{
+    "name": "porta/static_base",
+    "description": "Static Theme with Styleguide",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Petr Parimucha",
+            "email": "petr.parimucha@portadesign.cz"
+        },
+        {
+            "name": "Veronika Cepcekova",
+            "email": "veronika.cepcekova@portadesign.cz"
+        }
+    ],
+    "require": {
+        "composer-plugin-api": "^2.0",
+        "aptoma/twig-markdown": "^3.4",
+        "composer/installers": "^1.0 || ^2.0",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/core-composer-scaffold": "^9.2",
+        "hellonico/twig-dump-extension": "^1.1",
+        "joachim-n/composer-manifest": "^1.1",
+        "michelf/php-markdown": "^1.9",
+        "parisek/twig-attribute": "^1.0",
+        "parisek/twig-common": "^1.0",
+        "parisek/twig-typography": "^1.0",
+        "symfony/translation": "^4.4 || ^5.4",
+        "symfony/twig-bridge": "^4.4 || ^5.4",
+        "symfony/yaml": "^4.4 || ^5.4",
+        "twig/intl-extra": "^3.3",
+        "twig/string-extra": "^3.3",
+        "twig/twig": "^2.0 || ^3.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "discard-changes": true,
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "joachim-n/composer-manifest": true
+        }
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true
+    }
+}

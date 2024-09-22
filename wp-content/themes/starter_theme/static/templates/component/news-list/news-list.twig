@@ -1,0 +1,25 @@
+{#
+name: "Aktuality - seznam"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'news-list',
+  'classes': [
+    content.wrapper_classes,
+  ],
+  'container': 'container mb-12 lg:mb-20',
+  'heading': content.heading,
+} %}
+
+{% block content %}
+<div>
+  {% if content.items is not empty %}
+    <div class="space-y-8">
+      {% for item in content.items %}
+        {{ component_news_teaser(item) }}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

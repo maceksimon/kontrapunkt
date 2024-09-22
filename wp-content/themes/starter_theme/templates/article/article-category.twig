@@ -1,0 +1,18 @@
+{% extends "@wordpress/layout/layout.twig" %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ title }}</h1>
+    {% if items|length > 0 %}
+      <div class="row">
+        {% for item in items %}
+          <div class="col-md-8 mb-3">
+            {% include '@component/article/article-teaser/article-teaser.twig' with { item } only %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      Žádný článek nebyl nalezen
+    {% endif %}
+  </div>
+{% endblock %}

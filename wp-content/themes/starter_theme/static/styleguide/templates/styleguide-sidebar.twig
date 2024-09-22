@@ -1,0 +1,66 @@
+<nav x-show="isSidebarOpen" class="fixed top-0 right-0 w-72 h-screen px-6 pt-4 pb-20 bg-white transition-all duration-300 shadow whitespace-nowrap overflow-auto z-10">
+  <div class="pt-12">
+    <div class="sidebar-header">
+      <h3 class="text-xl font-bold mb-2">Základní styly</h3>
+    </div>
+    <ul class="text-base mb-4">
+      <li class="sidebar-item block relative w-full py-2 border-b border-gray-300">
+        <a href="{{ homeUrl }}#logo" class="flex items-center justify-between text-gray-500 no-underline hover:text-primary">Logo</a>
+      </li>
+      <li class="sidebar-item block relative w-full py-2 border-b border-gray-300">
+        <a href="{{ homeUrl }}#colors" class="flex items-center justify-between text-gray-500 no-underline hover:text-primary">Barvy</a>
+      </li>
+      <li x-data="{ isDropdownOpen: false}" class="sidebar-item block relative w-full py-2 border-b border-gray-300">
+        <div class="flex items-center justify-between text-gray-500 no-underline hover:text-primary" @click="isDropdownOpen = !isDropdownOpen">
+          <span>Typografie</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+        <ul x-show="isDropdownOpen" class="ml-4">
+          <li class="my-2">
+            <a href="{{ homeUrl }}#typography" class="text-black no-underline hover:text-primary">Font</a>
+          </li>
+          <li class="my-2">
+            <a href="{{ homeUrl }}#headings" class="text-black no-underline hover:text-primary">Nadpisy</a>
+          </li>
+          <li class="my-2">
+            <a href="{{ homeUrl }}#paragraphs" class="text-black no-underline hover:text-primary">Velikost textu</a>
+          </li>
+          <li class="my-2">
+            <a href="{{ homeUrl }}#list" class="text-black no-underline hover:text-primary">Seznam</a>
+          </li>
+          <li class="my-2">
+            <a href="{{ homeUrl }}#forms" class="text-black no-underline hover:text-primary">Formuláře</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    {% if styleguide.sidebar.component %}
+      <div class="sidebar-header">
+        <h3 class="text-xl font-bold mb-2">Komponenty</h3>
+      </div>
+      <ul class="text-base mb-4">
+        {% for component in styleguide.sidebar.component %}
+          {% if component.styleguide %}
+            <li class="sidebar-item block relative w-full py-2 border-b border-gray-300">
+              <a href="{{ homeUrl }}{{ component.url }}" class="flex items-center justify-between text-gray-500 no-underline hover:text-primary">{{ component.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if styleguide.sidebar.page %}
+      <div class="sidebar-header">
+        <h3 class="text-xl font-bold mb-2">Stránky</h3>
+      </div>
+      <ul class="text-base mb-4">
+        {% for page in styleguide.sidebar.page %}
+          <li class="sidebar-item block relative w-full py-2 border-b border-gray-300">
+            <a href="{{ homeUrl }}{{ page.url }}" class="flex items-center justify-between text-gray-500 no-underline hover:text-primary">{{ page.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</nav>

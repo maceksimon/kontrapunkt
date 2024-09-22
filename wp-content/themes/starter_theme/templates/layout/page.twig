@@ -1,0 +1,17 @@
+{% extends "@wordpress/layout/layout.twig" %}
+
+{% block content %}
+{% if template_exists('@page/' ~ template ~ '/' ~ template ~ '.twig') %}
+  {% include '@page/' ~ template ~ '/' ~ template ~ '.twig'
+    ignore missing with {
+      content: content
+  } %}
+{% else %}
+  {{ component_alert({
+    container: 'container',
+    wrapper_classes: 'my-3',
+    type: 'error',
+    message: 'Page template <strong>' ~ template ~ '.twig</strong> not found',
+  }) }}
+{% endif %}
+{% endblock %}

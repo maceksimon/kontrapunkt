@@ -1,0 +1,33 @@
+{#
+name: "Chybové hlášky"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'alert',
+  'classes': content.wrapper_classes|default('mb-4'),
+  'container': content.container,
+} %}
+{% block content %}
+  {% set alert_attributes = create_attribute({
+    'class': [
+      'rounded-2xl px-4 py-3 border',
+      (content.type == 'success') ? 'bg-green-50 border-green-300 text-green-700',
+      (content.type == 'warning') ? 'bg-orange-50 border-orange-300 text-orange-700',
+      (content.type == 'error') ? 'bg-red-50 border-red-300 text-red-700',
+      (content.type == 'info') ? 'bg-secondary-50 border-secondary-300 text-secondary-700'
+    ],
+    'role': 'alert',
+  }) %}
+  <div{{ alert_attributes|raw }}>
+    <div class="flex gap-3 relative">
+      {% if content.type == 'error' or content.type == 'warning' %}
+        <div class="w-6 h-6 shrink-0">{{ icons.get('warning') }}</div>
+      {% endif %}
+      {% if content.type == 'success' %}
+        <div class="w-6 h-6 shrink-0">{{ icons.get('check') }}</div>
+      {% endif %}
+      <div>{{ content.message|typography }}</div>
+    </div>
+  </div>
+{% endblock %}

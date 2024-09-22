@@ -1,0 +1,61 @@
+{#
+name: "Header"
+weight: 90
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'tag': 'header',
+  'name': 'header',
+  'id': 'header',
+  'classes': [
+    content.wrapper_classes,
+  ],
+} %}
+{% block content %}
+{% set navbar_attributes = create_attribute({
+  id: 'navbar',
+  class: [
+    'navbar',
+  ],
+}) %}
+<nav{{ navbar_attributes }}>
+  <div x-data="{ isMenuOpen: false }" class="container max-lg:px-0 max-lg:max-w-none py-6">
+    <div class="w-full lg:flex lg:justify-between lg:items-center lg:space-x-6">
+      {# Header shown on desktop #}
+      <div class="lg:w-full lg:flex lg:items-center lg:justify-between lg:space-x-12">
+        <div class="mx-4 lg:mx-0">
+
+          {{ component_header_bar({
+            language_switcher: content.language_switcher,
+          }) }}
+
+        </div>
+        <div class="absolute w-full bg-white lg:static lg:w-auto lg:flex lg:items-center lg:space-x-6 z-50">
+
+          {{ component_header_collapse({
+            menu: content.menu,
+            login: content.login,
+            wrapper_classes: content.language_switcher ? ''
+          }) }}
+
+          {# {{ component_header_search({
+            search_url: content.search_url,
+            wrapper_classes: 'hidden lg:block'
+          }) }} #}
+
+        </div>
+      </div>
+
+      <div class="hidden lg:flex lg:items-center lg:space-x-5 mt-4 lg:mt-0">
+
+        {{ component_header_language_switcher_dropdown({
+          items: content.language_switcher,
+          wrapper_classes: 'hidden lg:block'
+        }) }}
+
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}

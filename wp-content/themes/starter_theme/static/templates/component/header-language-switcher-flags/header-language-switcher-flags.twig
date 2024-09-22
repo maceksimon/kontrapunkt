@@ -1,0 +1,38 @@
+{#
+name: "Header - language switcher flags"
+#}
+{% extends "@component/component/component.twig" %}
+{% import '@macro/icons/icons.twig' as icons %}
+{% set component = {
+  'name': 'header-language-switcher',
+  'id': content.wrapper_id,
+  'classes': content.wrapper_classes,
+} %}
+{% block content %}
+{% if content.items %}
+<ul class="flex items-center">
+  {% for item in content.items %}
+    {% if item.is_active %}
+      {# Hide active language #}
+    {% else %}
+      <li class="w-5 h-5 rounded-full overflow-hidden">
+        {% set link_attributes = create_attribute({
+          'href': item.url ? item.url : item.home_url,
+          'class': [
+            'uppercase no-underline',
+            item.is_active ? 'font-bold' : '',
+          ],
+          'title': item.title,
+        }) %}
+        <a{{ link_attributes }}>
+          <div class="sr-only">{{ item.id|typography }}</div>
+          <div class="w-5 h-5 rounded-full border overflow-hidden">
+            {{ icons.get('flag-' ~ item.id) }}
+          </div>
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

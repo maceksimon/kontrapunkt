@@ -1,0 +1,63 @@
+{#
+name: "Otvírací hodiny"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'opening-hours',
+  'classes': [
+    content.wrapper_classes,
+  ],
+} %}
+
+{% block content %}
+{% if content.items %}
+  <div class="mt-4 space-y-2 sm:text-lg">
+    <h3 class="sr-only">Otvírací doba</h3>
+    <dl
+      x-data="{
+        get dayIndex() {
+          const today = new Date();
+          return today.getDay();
+        }
+      }"
+      class="space-y-2 sm:space-y-0"
+      >
+      {% for item in content.items %}
+        {% if item.title %}
+          <div class="flex items-start" :class="{'font-bold' : dayIndex === {{ loop.index % 7 }}}">
+            <dt class="w-32 shrink-0 text-gray-700">
+              {{ item.title }}
+            </dt>
+            {% if item.closed %}
+              <dd>
+                {{ __('Zavřeno', 'klaster') }}
+              </dd>
+            {% else %}
+              <dd class="text-gray-700">
+                {% if item.open_from %}
+                  <time>{{ item.open_from }}</time>
+                {% endif %}
+                {% if item.open_from and item.open_to %}
+                  -
+                {% endif %}
+                {% if item.open_to %}
+                  <time>{{ item.open_to }}</time>
+                {% endif %}
+                {% if item.note %}
+                  <span>{{ item.note }}</span>
+                {% endif %}
+              </dd>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </dl>
+  </div>
+{% else %}
+  {{ component_alert({
+    type: 'error',
+    message: 'Žádné zadané položky'
+  }) }}
+{% endif %}
+{% endblock %}

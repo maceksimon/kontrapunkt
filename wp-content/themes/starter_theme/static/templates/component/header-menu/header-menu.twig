@@ -1,0 +1,81 @@
+{#
+name: "Header - menu"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'header-menu',
+  'id': content.wrapper_id,
+  'classes': [
+    'mt-4 lg:mt-0',
+    content.wrapper_classes
+  ],
+} %}
+{% block content %}
+{% if content.items %}
+<ul class="lg:flex w-full justify-end md:text-lg lg:text-2xl list-none lg:space-x-8 shadow lg:shadow-none">
+  {% for item in content.items %}
+      <li
+        x-data="{
+          open: {% if item.in_active_trail %}true{% else %}false{% endif %},
+        }"
+        class="relative group odd:bg-zinc-100 odd:lg:bg-transparent"
+      >
+        <div class="flex items-center space-x-2 justify-between">
+          {% set link_attributes = create_attribute({
+            href: item.url,
+            class: [
+              'flex grow mx-4 lg:mx-0 py-2 whitespace-nowrap',
+              'hover:lg:no-underline hover:lg:text-primary-500',
+              item.is_active ? 'lg:text-primary-500' : '',
+              item.in_active_trail ? 'lg:text-primary-500' : '',
+              item.attributes.class,
+            ],
+            target: item.attributes.target,
+          }) %}
+          <a href="{{item.url}}" {{ link_attributes }} :class="{'text-primary-500': open}">
+            {{ item.title }}
+          </a>
+          {# mobile expand #}
+          {% if item.below %}
+            <button
+              x-on:click="open = !open"
+              class="inline-flex items-center px-6 lg:px-0 py-2 lg:py-0 flex-shrink-0 focus:outline-none"
+            >
+              {% set caret_attributes = create_attribute({
+                class: [
+                  'inline-block h-4 group-hover:lg:text-primary-500 group-hover:lg:rotate-180 transition-transform duration-200 ease-in-out',
+                  item.is_active ? 'lg:text-primary-500 lg:rotate-180' : '',
+                  item.in_active_trail ? 'lg:text-primary-500 lg:rotate-180' : '',
+                ],
+              }) %}
+              <span {{caret_attributes}} :class="{'text-primary-500 rotate-180': open}">
+                <span class="hidden lg:inline" >{{ icons.get('chevron-up') }}</span>
+                <span class="lg:hidden">{{ icons.get('chevron-down') }}</span>
+              </span>
+            </button>
+          {% endif %}
+        </div>
+        {% if item.below %}
+        <div
+          :class="{'hidden lg:block': !open}"
+          class="lg:absolute overflow-hidden origin-top-left left-0 lg:h-0 lg:p-2 lg:opacity-0 group-hover:h-auto group-hover:opacity-100 pl-4 lg:pl-0 lg:-mr-2 lg:min-w-[10rem] lg:text-xl lg:rounded text-black bg-white lg:bg-transparent border-b border-gray-100 lg:border-none focus:outline-none list-none transition-opacity ease-in-out duration-300"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabindex="-1"
+        >
+          <ul class="overflow-hidden bg-white lg:border-l lg:border-black lg:mt-2">
+          {% for item in item.below %}
+            <li class="block">
+              <a href="{{ item.url }}" class="block py-2 px-4 lg:hover:text-primary-500 {% if item.is_active or item.in_active_trail %} text-primary-500 {% endif %}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

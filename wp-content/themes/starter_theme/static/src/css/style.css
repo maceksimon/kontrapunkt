@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "./global.css";
+
+@import "tailwindcss/components";
+@import "./forms.css";
+@import "./buttons.css";
+@import "./images.css";
+@import "./header.css";
+@import "./typography.css";
+@import "./styleguide.css";
+@import "./wordpress.css";
+@import "./_fixes.css";
+
+@import "tailwindcss/utilities";
+
+@import "./lightgallery.css";
+@import "../../node_modules/swiper/swiper";
