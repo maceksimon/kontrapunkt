@@ -1,0 +1,46 @@
+{#
+name: "Component"
+#}
+{% if block('content') is not empty %}
+  {% set component = {
+    'tag': component.tag ? component.tag : 'div',
+    'name': component.name ? component.name : null,
+    'id': component.id ? component.id : null,
+    'classes': component.classes ? component.classes : null,
+    'container': component.container ? component.container : null,
+    'heading': component.heading ? component.heading : null,
+    'attributes': component.attributes ? component.attributes : null,
+  } %}
+  {% set attributes = create_attribute({
+    'id': component.id,
+    'class': [
+      component.name ? 'component' : '',
+      component.name ? 'component-' ~ component.name : '',
+      component.classes|join(' ')|trim
+    ]
+  }) %}
+  {% if component.attributes %}
+    {% for key, value in component.attributes %}
+      {% set attributes = attributes.setAttribute(key, value) %}
+    {% endfor %}
+  {% endif %}
+  <!-- Start component: {{component.name}} -->
+  <{{ component.tag }}{{ attributes|raw }}>
+    {% if component.container %}
+      <div{{ create_attribute().addClass(component.container)|raw }}>
+    {% endif %}
+    {% if component.heading %}
+      {% include '@component/heading/heading.twig'
+        with {
+          content: component.heading
+      } %}
+    {% endif %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+    {% if component.container %}
+      </div>
+    {% endif %}
+  </{{ component.tag }}>
+  <!-- End component: {{component.name}} -->
+{% endif %}

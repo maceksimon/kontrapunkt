@@ -1,0 +1,37 @@
+{#
+name: "Seznam: odkazy"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'link-list',
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+} %}
+{% block content %}
+{% if content.items|length %}
+<div class="flow-root">
+  <ul role="list" class="space-y-8">
+    {% for item in content.items %}
+      {% if item.link.url %}
+        {{ component_link({
+          title: item.link.title,
+          url: item.link.url,
+          icon_before: '',
+          target: item.link.target,
+        }) }}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+  {{ component_alert({
+    type: 'error',
+    message: __('Žádné zadané odkazy', 'kontrapunkt')
+  }) }}
+{% endif %}
+{% endblock %}

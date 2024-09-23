@@ -1,0 +1,31 @@
+{#
+name: "Slider"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'slider',
+  'id': content.wrapper_id,
+  'classes': [
+    'relative',
+    content.wrapper_classes,
+  ],
+} %}
+
+{% block content %}
+<div class="swiper-container overflow-hidden">
+  <div class="swiper-wrapper">
+    {% for item in content.items %}
+      <div class="swiper-slide">
+        {{ component( content.inner_component, item ) }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<button class="custom-button-prev absolute top-1/2 -left-5 xl:-left-16 w-10 h-10 -translate-y-4 flex justify-center items-center rounded-full bg-white border border-secondary-700 hover:bg-secondary-100 text-secondary-800 z-10 disabled:border-secondary-200 disabled:bg-white disabled:text-secondary-300 transition-colors duration-200 ease-in-out">
+  <div class="w-5 h-5">{{ icons.get('chevron-left') }}</div>
+</button>
+<button class="custom-button-next absolute top-1/2 -right-5 xl:-right-16 w-10 h-10 -translate-y-4 flex justify-center items-center rounded-full bg-white border border-secondary-700 hover:bg-secondary-100 text-secondary-800 z-10 disabled:border-secondary-200 disabled:bg-white disabled:text-secondary-300 transition-colors duration-200 ease-in-out">
+  <div class="w-5 h-5">{{ icons.get('chevron-right') }}</div>
+</button>
+{% endblock %}

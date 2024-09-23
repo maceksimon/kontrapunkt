@@ -1,0 +1,49 @@
+{%
+  set header_menu = [
+    {
+      title: 'Hlavní stránka',
+      url: '/styleguide/page/homepage',
+      in_active_trail: false,
+      is_active: false,
+      below: null,
+    },
+    {
+      title: 'Blog',
+      url: '/styleguide/page/blog',
+      in_active_trail: true,
+      is_active: true,
+    },
+    {
+      title: 'O nás',
+      url: '/styleguide/page/o-nas',
+      in_active_trail: false,
+      is_active: false,
+      below: null
+    },
+    {
+      title: 'Kontakt',
+      url: '/styleguide/page/kontakt',
+      in_active_trail: false,
+      is_active: false,
+      below: null
+    },
+  ]
+%}
+{#
+{%
+  set header_search = include('@component/header-search/header-search.twig', {
+    content: {
+      search_url: '#',
+    }
+  })
+%}
+#}
+{% include '@component/header/header.twig' with {
+  content: {
+    menu: header_menu,
+    socials: header_socials,
+    language_switcher: header_language_switcher,
+    search: header_search,
+    transparent: transparent
+  }
+} %}

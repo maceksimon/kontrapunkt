@@ -1,0 +1,11 @@
+@layer components {
+  .sidebar {
+    @apply -right-72;
+  }
+  .sidebar.active {
+    @apply right-0;
+  }
+  .sidebar-item.active svg {
+    @apply transform rotate-180;
+  }
+}

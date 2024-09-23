@@ -1,0 +1,22 @@
+{#
+name: "Content - image full"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'content-image-full',
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes,
+    content.margin_top ? 'mt-10 sm:mt-12' : '',
+  ],
+} %}
+
+{% block content %}
+<div class="w-full aspect-w-3 aspect-h-2 sm:aspect-h-1">
+  {{ component_picture({
+    image: content.image|resizer(['3840', '1280', '1920', ''], ['1920', '640', '1024', ''], ['1024', '350', '768', ''], ['768', '260', '', '']),
+    image_classes: 'w-full h-full object-cover object-center',
+  }) }}
+</div>
+{% endblock %}

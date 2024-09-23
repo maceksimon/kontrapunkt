@@ -1,0 +1,25 @@
+{% include '@component/pagination/pagination.twig' with {
+  content: {
+    items: {
+      "previous": false,
+      "next": "#",
+      "pages": [
+        {
+          "title": "1",
+          "url": "#",
+          "current": false,
+        },
+        {
+          "title": "2",
+          "url": "#",
+          "current": true,
+        },
+        {
+          "title": "3",
+          "url": "#",
+          "current": false,
+        }
+      ]
+    },
+  }
+} %}

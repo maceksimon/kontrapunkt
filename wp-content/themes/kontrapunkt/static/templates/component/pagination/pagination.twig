@@ -1,0 +1,66 @@
+{#
+name: "Pagination"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'pagination',
+  'id': content.wrapper_id,
+  'classes': [
+    'flex items-center justify-center',
+    content.wrapper_classes,
+  ],
+  'container': content.container,
+} %}
+{% block content %}
+{% if content.items is not empty %}
+<nav aria-label="pagination">
+  <ul class="inline-flex rounded-md">
+    <div class="flex-1 flex justify-between sm:hidden">
+      {% if content.items.previous %}
+        <li>
+          <a href="{{ content.items.previous }}" class="mx-1 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-black">
+            {{ __('Předchozí', 'kontrapunkt') }}
+          </a>
+        </li>
+      {% endif %}
+      {% if content.items.next %}
+        <li>
+          <a href="{{ content.items.next }}" class="mx-1 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-black">
+            {{ __('Další', 'kontrapunkt') }}
+          </a>
+        </li>
+      {% endif %}
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between -space-x-px">
+      <li class="{% if not content.items.previous %} opacity-50 {% endif %}">
+        <a class="inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 hover:text-black" href="{{ content.items.previous }}" aria-label="Předchozí">
+          <div class="h-5 w-5" aria-hidden="true">
+            {{ icons.get('chevron-left') }}
+          </div>
+          <span class="sr-only">{{ __('Předchozí', 'kontrapunkt') }}</span>
+        </a>
+      </li>
+      {% for item in content.items.pages %}
+        <li>
+          <a class="relative inline-flex items-center px-4 py-2 text-sm font-medium {{ item.current ? ' z-10 text-primary' : 'text-gray-500 hover:text-black' }}" href="{{ item.url }}">
+            {{ item.title }}
+            {% if item.current %}
+              <span class="sr-only">{{ __('(current)', 'kontrapunkt') }}</span>
+            {% endif %}
+          </a>
+        </li>
+      {% endfor %}
+      <li class="{% if not content.items.next %} opacity-50 {% endif %}">
+        <a class="inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 hover:text-black" href="{{ content.items.next }}" aria-label="Další">
+          <div class="h-5 w-5" aria-hidden="true">
+            {{ icons.get('chevron-right') }}
+          </div>
+          <span class="sr-only">{{ __('Další', 'kontrapunkt') }}</span>
+        </a>
+      </li>
+    </div>
+  </ul>
+</nav>
+{% endif %}
+{% endblock %}

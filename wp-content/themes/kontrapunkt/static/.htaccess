@@ -1,0 +1,59 @@
+# Don't show directory listings for URLs which map to a directory.
+Options -Indexes
+# Follow symbolic links in this directory.
+Options +FollowSymLinks
+# Requires mod_expires to be enabled.
+<IfModule mod_expires.c>
+# Enable expirations.
+ExpiresActive On
+# Cache all files for 2 weeks after access (A).
+ExpiresDefault A1209600
+<FilesMatch \.php$>
+# Do not allow PHP scripts to be cached unless they explicitly send cache
+# headers themselves. Otherwise all scripts would have to overwrite the
+# headers set by mod_expires if they want another caching behavior. This may
+# fail if an error occurs early in the bootstrap process, and it may cause
+# problems if a non-Drupal PHP file is installed in a subdirectory.
+ExpiresActive Off
+</FilesMatch>
+</IfModule>
+<IfModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options nosniff
+#Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+Header set Referrer-Policy: strict-origin-when-cross-origin
+</IfModule>
+<IfModule mod_deflate.c>
+  <IfModule mod_mime.c>
+  AddType font/opentype .otf
+  AddType font/eot .eot
+  AddType font/truetype .ttf
+  AddType x-font/woff .woff
+  AddType x-font/woff2 .woff2
+  AddType image/webp .webp
+  </IfModule>
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript image/svg+xml font/opentype font/truetype font/eot
+</IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteRule ^vendor/(.*)?$ / [F,L]
+  RewriteRule ^composer\.(lock|json)$ / [F,L]
+  RewriteRule ^composer-manifest\.(yml|yaml)$ / [F,L]
+  RewriteRule ^node_modules/(.*)?$ / [F,L]
+  RewriteRule ^package\.json$ / [F,L]
+  RewriteRule ^package-lock\.json$ / [F,L]
+  RewriteRule ^yarn\.lock$ / [F,L]
+  RewriteRule ^gulpfile\.js$ / [F,L]
+  RewriteRule ^typography\.(yml|yaml)$ / [F,L]
+  RewriteRule ^\.stylelintrc\.json$ / [F,L]
+  RewriteRule ^README\.md$ / [F,L]
+</IfModule>
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
+</IfModule>

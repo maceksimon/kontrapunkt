@@ -1,0 +1,64 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kontrapunkt\n"
+"POT-Creation-Date: 2022-04-01 09:08+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Petr Parimucha\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../templates\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: component/404/404.twig:15
+msgctxt "kontrapunkt"
+msgid "Oops, there's been a mistake somewhere."
+msgstr "Ups, někde se stala chyba."
+
+#: component/404/404.twig:16
+msgctxt "kontrapunkt"
+msgid "No matter what we do, we can't find the page you wanted."
+msgstr "Ať děláme, co děláme, nemůžeme požadovanou stránku najít."
+
+#: component/404/404.twig:17
+msgctxt "kontrapunkt"
+msgid "Go to homepage"
+msgstr "Zpět na hlavní stránku"
+
+#: component/article-list/article-list.twig:32
+msgctxt "kontrapunkt"
+msgid "All items"
+msgstr "Všechny položky"
+
+#: component/pagination/pagination.twig:67
+#: component/pagination/pagination.twig:71
+msgctxt "kontrapunkt"
+msgid "First"
+msgstr "První"
+
+#: component/pagination/pagination.twig:76
+#: component/pagination/pagination.twig:80
+msgctxt "kontrapunkt"
+msgid "Previous"
+msgstr "Předchozí"
+
+#: component/pagination/pagination.twig:96
+#: component/pagination/pagination.twig:100
+msgctxt "kontrapunkt"
+msgid "Next"
+msgstr "Další"
+
+#: component/pagination/pagination.twig:105
+#: component/pagination/pagination.twig:109
+msgctxt "kontrapunkt"
+msgid "Last"
+msgstr "Poslední"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Všechny aktuality"
+#~ msgstr "Všechny aktuality"

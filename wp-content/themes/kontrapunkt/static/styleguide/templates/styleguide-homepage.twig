@@ -1,0 +1,401 @@
+{% extends "@styleguide/styleguide-layout.twig" %}
+
+{% block styleguide %}
+  <div class="lg:max-w-screen-xl px-4 md:px-6 lg:px-8 pb-4">
+  <div id="logo" class="mb-4 md:mb-12">
+    <h3 class="text-xl font-bold mb-4 md:mb-12">Logo</h3>
+      <div class="flex">
+      <div class="mb-4">
+        <p class="mb-4 text-sm font-bold">header logo</p>
+        {{ component_logo() }}
+      </div>
+    </div>
+  </div>
+  {% set shades = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'] %}
+  {% set colors = ['primary', 'secondary', 'gray'] %}
+  {% set colors = {
+    "primary": {
+      "title": "Primary",
+      "use": "Použití: příznaková, charakteristická barva, brand color.",
+      "class": "bg-secondary-500",
+      "shades": [
+        "bg-primary-50",
+        "bg-primary-100",
+        "bg-primary-200",
+        "bg-primary-300",
+        "bg-primary-400",
+        "bg-primary-500",
+        "bg-primary-600",
+        "bg-primary-700",
+        "bg-primary-800",
+        "bg-primary-900"
+      ]
+    },
+    "secondary": {
+      "title": "Secondary",
+      "use": "Použití: doplňková barva",
+      "class": "bg-secondary-500",
+      "shades": [
+        "bg-secondary-50",
+        "bg-secondary-100",
+        "bg-secondary-200",
+        "bg-secondary-300",
+        "bg-secondary-400",
+        "bg-secondary-500",
+        "bg-secondary-600",
+        "bg-secondary-700",
+        "bg-secondary-800",
+        "bg-secondary-900"
+      ]
+    },
+    "gray": {
+      "title": "Gray",
+      "use": "Použití: odstínování",
+      "class": "bg-gray-500",
+      "shades": [
+        "bg-gray-50",
+        "bg-gray-100",
+        "bg-gray-200",
+        "bg-gray-300",
+        "bg-gray-400",
+        "bg-gray-500",
+        "bg-gray-600",
+        "bg-gray-700",
+        "bg-gray-800",
+        "bg-gray-900"
+      ]
+    }
+  } %}
+
+  <div id="colors" class="mb-4 md:mb-12">
+    <h3 class="text-xl font-bold mb-4 md:mb-8">Barvy</h3>
+    <div class="">
+      {% for color in colors %}
+        <div class="mb-12">
+          <div class="mb-4">
+            <strong>{{ color.title }}</strong>
+          </div>
+          <div class="flex gap-2 mb-4">
+            {% for shade in color.shades %}
+            <div class="w-20 h-20 {{ shade }} flex-shrink-0"></div>
+            {% endfor %}
+          </div>
+          <div class="text-sm">
+            <ul class="list-unstyled list-no-style mb-0">
+              <li>{{ color.hex }}</li>
+              <li>{{ color.rgb }}</li>
+              <li>{{ color.use }}</li>
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% set headings = {
+    "h1": {
+      "level": "1",
+      "text": "O tom co umíme jsme už řekli dost. Teď Vám to raději ukážeme.",
+      "size": "h1 48px / 3rem"
+    },
+    "h2": {
+      "level": "2",
+      "text": "O tom co umíme jsme už řekli dost. Teď Vám to raději ukážeme.",
+      "size": "h2 36px / 2.25rem"
+    },
+    "h3": {
+      "level": "3",
+      "text": "O tom co umíme jsme už řekli dost. Teď Vám to raději ukážeme.",
+      "size": "h3 36px / 2.25rem"
+    },
+    "h4": {
+      "level": "4",
+      "text": "O tom co umíme jsme už řekli dost. Teď Vám to raději ukážeme.",
+      "size": "h4 20px / 1.25rem"
+    },
+    "h5": {
+      "level": "5",
+      "text": "O tom co umíme jsme už řekli dost. Teď Vám to raději ukážeme.",
+      "size": "h5 16px / 1rem"
+    }
+  } %}
+
+  {% set paragraphs = {
+    "text-2xl": {
+      "size": "XXL: font-size: 1.5rem",
+      "class": "prose-2xl"
+    },
+    "text-xl": {
+      "size": "XL: font-size: 1.25rem",
+      "class": "prose-xl"
+    },
+    "text-lg": {
+      "size": "Large: font-size: 1.125rem",
+      "class": "prose-lg"
+    },
+    "base": {
+      "size": "Regular: font-size: 1rem",
+      "class": "prose"
+    },
+    "small": {
+      "size": "Small: font-size: 0.875rem",
+      "class": "prose-sm"
+    },
+    "primary": {
+      "size": "font-size: 1rem / primary color",
+      "class": "prose prose-primary"
+    },
+  } %}
+
+  <div id="typography" class="mb-4 md:mb-12">
+    <h2 class="text-2xl font-bold mb-4 md:mb-12">Typografie</h2>
+    <div id="headings" class="mb-12">
+      <h3 class="text-xl font-bold mb-4 md:mb-12">Nadpisy</h3>
+      {% for item in headings %}
+        <div class="mb-4">
+          <p class="small">{{ item.size }}</p>
+          <h{{ item.level }} class="heading heading-{{ item.level }}">
+            {{ item.text }}
+          </h{{ item.level }}>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div id="paragraphs" class="mb-4 md:mb-12">
+      <h3 class="text-xl font-bold mb-4 md:mb-12">Text</h3>
+      {% for item in paragraphs %}
+        <p class="small mb-2">{{ item.size }}</p>
+        <div class="prose {{ item.class }} mb-16">
+          <p class="mb-4 mb-md-0">
+            How should architectural education prepare students for the new dimensions of our profession in the
+            environment of increasing scale and
+            <a href="#">overlapping disciplines</a> ? How should architectural
+            <strong>education prepare students</strong> or the new dimensions of our profession
+            <span class="font-italic">in the environment of increasing scale </span> and overlapping disciplines?
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="prose prose-primary mb-4 md:mb-12">
+      <h3>Standard Typographical Tags</h3>
+      <p>The following are some commonly used HTML tags for typography:</p>
+      <ul>
+        <li>
+          <b>&lt;b&gt;</b> - The <b>&lt;b&gt;</b> tag is used to create bold text. It can be used to draw attention to specific words or phrases within a sentence or paragraph.
+          <br />
+          Example: <b>This text is bold</b>.
+        </li>
+        <li>
+          <strong>&lt;strong&gt;</strong> - The <strong>&lt;strong&gt;</strong> tag is used to create bold text and also indicate that the text has strong importance. It can be used to draw attention to specific words or phrases within a sentence or paragraph.
+          <br />
+          Example: <strong>This text is also bold</strong>.
+        </li>
+        <li>
+          <i>&lt;i&gt;</i> - The <i>&lt;i&gt;</i> tag is used to create italic text. It can be used to emphasize specific words or phrases within a sentence or paragraph.
+          <br />
+          Example: <i>This text is in italic</i>.
+        </li>
+        <li>
+          <em>&lt;em&gt;</em> - The <em>&lt;em&gt;</em> tag is used to create italic text and also indicate that the text has emphasis. It can be used to emphasize specific words or phrases within a sentence or paragraph.
+          <br />
+          Example: <em>This text is also in italic</em>.
+        </li>
+        <li>
+          <a href="https://www.example.com">&lt;a&gt;</a> - The <a href="https://www.example.com">&lt;a&gt;</a> tag is used to create a hyperlink. It can be used to link to other pages or websites.
+          <br />
+          Example: <a href="https://www.example.com">This text is a link</a>.
+        </li>
+        <li>
+          <mark>&lt;mark&gt;</mark> - The <mark>&lt;mark&gt;</mark> tag is used to highlight text. It can be used to draw attention to specific words or phrases within a sentence or paragraph.
+          <br />
+          Example: <mark>This text is highlighted</mark>.
+        </li>
+        <li>
+          <del>&lt;del&gt;</del> - The <del>&lt;del&gt;</del> tag is used to indicate deleted or removed text. It can be used to indicate that text has been removed from a document.
+          <br />
+          Example: <del>This text is deleted</del>.
+        </li>
+        <li>
+          <ins>&lt;ins&gt;</ins> - The <ins>&lt;ins&gt;</ins> tag is used to indicate inserted or added text. It can be used to indicate that text has been added to a document.
+          <br />
+          Example: <ins>This text is inserted</ins>.
+        </li>
+      </ul>
+    </div>
+
+    <div id="list" class="mb-4 md:mb-12">
+      <h3 class="text-xl font-bold mb-4 md:mb-12">Seznamy</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p class="mb-4 text-sm font-bold">Číslovaný seznam</p>
+          <ol class="list-inside list-decimal">
+            <li>drátěnou sítí ohraničené stromky nebo mladé stromky do výše dvou holí / Hráč musí použít úlevu./</li>
+            <li>součásti zavlažovacího a drenážního systému</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <p class="mb-4 text-sm font-bold">Nečíslovaný seznam základní</p>
+          <ul class="list-inside list-arrow">
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+            <li>všechny cesty uvnitř hřiště</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% set heading = {
+    "title": "Grid systém",
+  } %}
+  {% set grid = {
+    "row1": {
+      "class": "grid-cols-2",
+      "items": [
+        {
+          "class": "col-md-6",
+          "title": "1.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-6",
+          "title": "2.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+      ]
+    },
+    "row2": {
+      "class": "grid-cols-3",
+      "items": [
+        {
+          "class": "col-md-4",
+          "title": "1.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-4",
+          "title": "2.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-4",
+          "title": "3.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        }
+      ],
+    },
+    "row3": {
+      "class": "grid-cols-4",
+      "items": [
+        {
+          "class": "col-md-3",
+          "title": "1.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-3",
+          "title": "2.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-3",
+          "title": "3.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        {
+          "class": "col-md-3",
+          "title": "4.",
+          "subtitle": "Card subtitle",
+          "text": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        }
+      ],
+    }
+  } %}
+
+  <div id="forms" class="mb-4 md:mb-12">
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Text Input</h2>
+    <form class="mb-4 md:mb-12">
+      <label for="text">Text:</label>
+      <input type="text" id="text" name="text">
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Password Input</h2>
+    <form class="mb-4 md:mb-12">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Radio Buttons</h2>
+    <form class="mb-4 md:mb-12 space-y-4">
+      <div>
+        <input type="radio" id="radio1" name="radio" value="option1">
+        <label for="radio1">Option 1</label>
+      </div>
+      <div>
+        <input type="radio" id="radio2" name="radio" value="option2">
+        <label for="radio2">Option 2</label>
+      </div>
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Checkboxes</h2>
+    <form class="mb-4 md:mb-12 space-y-4">
+      <div>
+        <input type="checkbox" id="checkbox1" name="checkbox1">
+        <label for="checkbox1">Option 1</label>
+      </div>
+      <div>
+        <input type="checkbox" id="checkbox2" name="checkbox2">
+        <label for="checkbox2">Option 2</label>
+      </div>
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Select Dropdown</h2>
+    <form class="mb-4 md:mb-12">
+      <label for="select">Select an option:</label>
+      <select id="select" name="select">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Textarea</h2>
+    <form class="mb-4 md:mb-12">
+      <label for="textarea">Text:</label>
+      <textarea id="textarea" name="textarea"></textarea>
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">File Input</h2>
+    <form class="mb-4 md:mb-12">
+      <label for="file">Upload a file:</label>
+      <input type="file" id="file" name="file">
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Submit Button</h2>
+    <form class="mb-4 md:mb-12">
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+
+    <h2 class="text-xl font-bold mb-4 md:mb-6">Reset Button</h2>
+    <form class="mb-4 md:mb-12">
+      <input type="reset" value="Reset" class="btn btn-primary">
+    </form>
+  </div>
+
+  </div>
+{% endblock %}

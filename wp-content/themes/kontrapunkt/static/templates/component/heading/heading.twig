@@ -1,0 +1,28 @@
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'heading',
+  'id': content.wrapper_id,
+  'classes': content.wrapper_classes,
+  'container': content.container is null ? 'pb-8 sm:pb-10' : content.container,
+} %}
+{% set heading_attributes = create_attribute({
+  class: [
+    'font-bold',
+    content.type == 'small' ? 'text-lg sm:text-xl lg:text-2xl' : '',
+    content.type is empty or content.type == '' ? 'text-xl sm:text-2xl lg:text-3xl text-center' : '',
+  ]
+}) %}
+{% block content %}
+{% if content.heading %}
+  {% if content.url %}
+    <a href="{{ content.url }}" class="group">
+  {% endif %}
+    <h2{{ heading_attributes }}>
+      {{ content.heading|typography }}
+    </h2>
+  {% if content.url %}
+    </a>
+  {% endif %}
+{% endif %}
+{% endblock %}

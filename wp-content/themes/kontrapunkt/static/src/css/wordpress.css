@@ -1,0 +1,23 @@
+/* Contact Form 7 styles */
+.wpcf7 .ajax-loader {
+  @apply hidden;
+}
+.wpcf7-list-item {
+  @apply block ml-0;
+}
+.wpcf7-list-item:not(.first.last) {
+  @apply my-4;
+}
+.wpcf7-list-item label {
+  @apply flex;
+}
+span.wpcf7-list-item-label {
+  @apply ml-3 text-gray-500;
+}
+.wpcf7-not-valid-tip {
+  @apply mt-2;
+}
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output {
+  @apply py-2 px-4 lg:py-4 lg:px-8 mx-0 mb-0 my-8 rounded-lg border-red-600 bg-red-200 text-red-800;
+}

@@ -1,0 +1,31 @@
+{#
+name: "Social icons"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'social-icons',
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes,
+  ],
+} %}
+
+{% block content %}
+<div class="flex flex-wrap w-full items-center gap-x-4">
+  {% for item in content.items %}
+    {% if item.url %}
+      <a href="{{ item.url }}" target="_blank" class="block h-7 text-black hover:text-primary transition-colors ease-in-out duration-150">
+    {% else %}
+      <div class="h-7 text-black">
+    {% endif %}
+      {{ icons.get(item.icon) }}
+      <span class="sr-only">{{ item.title }}</span>
+    {% if item.url %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

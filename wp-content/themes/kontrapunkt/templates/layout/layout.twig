@@ -1,0 +1,66 @@
+{% block html_head_container %}
+<!doctype html>
+<html class="no-js" {{ site.language_attributes }}>
+  <head>
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'personalization_storage': 'denied',
+        'wait_for_update': 1000
+      });
+      var ccnstL = '{{ ccnstL }}';
+    </script>
+    <meta charset="{{ site.charset }}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ templateUrl }}/images/touch/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ templateUrl }}/images/touch/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ templateUrl }}/images/touch/favicon-16x16.png">
+    <link rel="manifest" href="{{ templateUrl }}/images/touch/site.webmanifest">
+    <link rel="mask-icon" href="{{ templateUrl }}/images/touch/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ templateUrl }}/images/touch/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="{{ templateUrl }}/images/touch/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="author" href="{{ templateUrl }}/humans.txt" />
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    {{ function('wp_head') }}
+    {% block head %}
+    {% endblock %}
+  </head>
+{% endblock %}
+  <body class="{{ body_class }}" data-bs-no-jquery="true">
+    {{ gtm4wp_the_gtm_tag() }}
+    <a class="sr-only" href="#main-content">
+      {{ _x('Skip to main content', 'kontrapunkt', 'kontrapunkt') }}
+    </a>
+    <div class="page-wrapper">
+      {{ component_header({
+        absolute: frontPage,
+        dark: frontPage,
+        menu: header.main_menu,
+        language_switcher: header.language_switcher,
+        announcement: 'Přestěhovali jsme se do nových kanceláří'
+      }) }}
+      <main role="main">
+        <a id="main-content" tabindex="-1"></a>
+        {% block content %}
+          Sorry, no content
+        {% endblock %}
+      </main>
+      {% block footer %}
+        {{ component_footer({
+          footer_menu: footer.footer_menu,
+          social_menu: footer.social_menu,
+          description: footer.description,
+        }) }}
+      {% endblock %}
+    </div>
+    {{ function('wp_footer') }}
+  </body>
+</html>

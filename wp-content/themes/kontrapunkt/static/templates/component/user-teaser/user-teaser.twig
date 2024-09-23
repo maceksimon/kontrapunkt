@@ -1,0 +1,47 @@
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'user-teaser',
+  'id': content.wrapper_id,
+  'classes': [
+    'py-4 md:py-6 lg:py-8',
+    'max-w-prose mx-auto text-lg relative',
+    content.wrapper_classes
+  ],
+} %}
+{% block content %}
+  {% if content.name is not empty %}
+    <div class="flex flex-col md:flex-row md:items-center">
+      {% if content.image %}
+        {% include '@component/picture/picture.twig'
+          with {
+            content: {
+              image: content.image,
+              url: content.url,
+              image_classes: 'img-highlight w-36 h-36 object-cover'
+            }
+          }
+        %}
+      {% endif %}
+      <div class="mt-8 md:mt-0 md:ml-8 lg:ml-12">
+        {% if content.url %}
+        <a href="{{ content.url }}" class="text-2xl font-bold text-primary hover:text-orange-700 transition-colors ease-in-out duration-150">
+          {{- content.name -}}
+        </a>
+        {% else %}
+          <div class="text-2xl font-bold">{{- content.name -}}</div>
+        {% endif %}
+        {% if content.created is not empty %}
+          <div class="mt-2 text-sm font-bold">
+            {{- content.created -}}
+          </div>
+        {% endif %}
+        {% if content.anotation is not empty %}
+          <div class="text-base mt-4">
+            {{- content.anotation|typography -}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

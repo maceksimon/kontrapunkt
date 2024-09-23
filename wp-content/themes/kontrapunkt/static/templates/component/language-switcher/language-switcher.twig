@@ -1,0 +1,15 @@
+  <div class="btn-language">
+{% for code, language in languages %}
+    {% if language.active %}
+      <div class="btn-language-active py-md-2">
+      <img class="mr-3 flag" src="{{ templateUrl }}/images/flags/{{ code }}.svg" title="{{ language.translated_name }}" alt="{{ language.translated_name }}">
+      </div>
+        {% else %}
+          <div class="btn-language-noactive py-md-2">
+            <a href="{{ language.url }}">
+              <img class="d-block flag" src="{{ templateUrl }}/images/flags/{{ code }}.svg" title="{{ language.translated_name }}" alt="{{ language.translated_name }}">
+            </a>
+          </div>
+    {% endif %}
+{% endfor %}
+  </div>
