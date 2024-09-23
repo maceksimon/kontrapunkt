@@ -1,8 +1,0 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine on
-
-  RewriteRule ^acf-json/(.*)?$ / [F,L]
-  RewriteRule ^vendor/(.*)?$ / [F,L]
-  RewriteRule ^composer\.(lock|json)$ / [F,L]
-  RewriteRule ^composer-manifest\.(yml|yaml)$ / [F,L]
-</IfModule>

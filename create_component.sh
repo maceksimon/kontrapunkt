@@ -82,14 +82,14 @@ add_filter('block_"$component_name_snake"_content', 'block_"$component_name_snak
 "
 
 # Create directories
-ensure_dir "./wp-content/themes/starter_theme/static/templates/component/$component_name_kebab"
-ensure_dir "./wp-content/themes/starter_theme/templates/gutenberg/$component_name_kebab"
+ensure_dir "./wp-content/themes/kontrapunkt/static/templates/component/$component_name_kebab"
+ensure_dir "./wp-content/themes/kontrapunkt/templates/gutenberg/$component_name_kebab"
 
 # Create .twig file
-echo "$TWIG_TEMPLATE" > "./wp-content/themes/starter_theme/static/templates/component/$component_name_kebab/$component_name_kebab.twig"
+echo "$TWIG_TEMPLATE" > "./wp-content/themes/kontrapunkt/static/templates/component/$component_name_kebab/$component_name_kebab.twig"
 # Create styleguide file
-echo "$STYLEGUIDE_TEMPLATE" > "./wp-content/themes/starter_theme/static/templates/component/$component_name_kebab/styleguide.twig"
+echo "$STYLEGUIDE_TEMPLATE" > "./wp-content/themes/kontrapunkt/static/templates/component/$component_name_kebab/styleguide.twig"
 # Create .php file
-echo "$PHP_TEMPLATE" > "./wp-content/themes/starter_theme/templates/gutenberg/$component_name_kebab/$component_name_kebab.php"
+echo "$PHP_TEMPLATE" > "./wp-content/themes/kontrapunkt/templates/gutenberg/$component_name_kebab/$component_name_kebab.php"
 
 echo "Component $1 created successfully."

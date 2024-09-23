@@ -1,9 +1,0 @@
-{% extends "@wordpress/layout/layout.twig" %}
-
-{% block content %}
-  {{ component_article_list({items:items}) }}
-  {{ component_pagination({
-    items: pagination,
-    container: 'container'
-  }) }}
-{% endblock %}

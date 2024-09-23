@@ -1,4 +1,4 @@
-name: wpstarter
+name: kontrapunkt
 type: wordpress
 docroot: ""
 php_version: "8.0"
@@ -15,8 +15,8 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 hooks:
   post-start:
-    - exec: composer install --working-dir='wp-content/themes/starter_theme'
-    # - exec: yarn install --cwd='wp-content/themes/starter_theme/static'
+    - exec: composer install --working-dir='wp-content/themes/kontrapunkt'
+    # - exec: yarn install --cwd='wp-content/themes/kontrapunkt/static'
 use_dns_when_possible: true
 composer_version: ""
 web_environment: []

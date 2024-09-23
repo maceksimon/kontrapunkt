@@ -17,17 +17,17 @@ You can reset password with command `ddev wp user update maceksimon --user_pass=
 
 # How to modify theme?
 
-- Theme is located in `/wp-content/themes/starter_theme`
+- Theme is located in `/wp-content/themes/kontrapunkt`
 - Do not forget to set `define( 'WP_DEBUG', true );` to see changes in twig templates
 - Do not forget to set `define( 'GOOGLE_MAPS_API_KEY', 'xxx' );`
-- Static template is located in `/wp-content/themes/starter_theme/static`
-- We use **yarn** package manager for development `/wp-content/themes/starter_theme/static/package.json`
+- Static template is located in `/wp-content/themes/kontrapunkt/static`
+- We use **yarn** package manager for development `/wp-content/themes/kontrapunkt/static/package.json`
 - For quick preview without WordPress installed you can visit `https://kontrapunkt.ddev.site/styleguide`
 
 # How to export DB
 
-`wp db export - --single-transaction --skip-lock-tables --quick --ssh=HOST_ADDRESS.117.79 --path=public_html | gzip > /Users/simon/Projects/personal/starter_theme/db.sql.gz`
-`wp db export - --single-transaction --skip-lock-tables --quick | gzip > /Users/simon/Projects/personal/starter_theme/db.sql.gz`
+`wp db export - --single-transaction --skip-lock-tables --quick --ssh=HOST_ADDRESS.117.79 --path=public_html | gzip > /Users/simon/Projects/personal/kontrapunkt/db.sql.gz`
+`wp db export - --single-transaction --skip-lock-tables --quick | gzip > /Users/simon/Projects/personal/kontrapunkt/db.sql.gz`
 
 # How to import DB
 
@@ -45,20 +45,20 @@ You can reset password with command `ddev wp user update maceksimon --user_pass=
 `wp theme update --all`
 `wp language core update`
 `wp language plugin install cs_CZ --all`
-`composer update --working-dir='wp-content/themes/starter_theme'`
+`composer update --working-dir='wp-content/themes/kontrapunkt'`
 
 # How to deploy
 
-`rsync -rltzvP --delete --filter="merge,p- /Users/simon/Projects/personal/starter_theme/rsync-exclude.txt" /Users/simon/Projects/personal/starter_theme/ HOST_ADDRESS.117.79:public_html/`
+`rsync -rltzvP --delete --filter="merge,p- /Users/simon/Projects/personal/kontrapunkt/rsync-exclude.txt" /Users/simon/Projects/personal/kontrapunkt/ HOST_ADDRESS.117.79:public_html/`
 `wp timber clear_cache_twig --ssh=HOST_ADDRESS.117.79 --path=public_html`
 `wp breeze purge --cache=all --ssh=HOST_ADDRESS.117.79 --path=public_html`
 
 # How to backup
 
-`rsync -rltzvP --delete --filter="merge,p- /Users/simon/Projects/personal/starter_theme/rsync-exclude.txt" HOST_ADDRESS.117.79:public_html/ /Users/simon/Projects/personal/starter_theme/`
+`rsync -rltzvP --delete --filter="merge,p- /Users/simon/Projects/personal/kontrapunkt/rsync-exclude.txt" HOST_ADDRESS.117.79:public_html/ /Users/simon/Projects/personal/kontrapunkt/`
 
 # How to translate
 
 Use Poedit to extract translatable strings from twig templates. Strings will be autoloaded from file.
 
-`_x('Read more', 'starter_theme', 'starter_theme')`
+`_x('Read more', 'kontrapunkt', 'kontrapunkt')`

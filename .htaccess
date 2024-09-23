@@ -1,7 +1,7 @@
 
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteRule ^styleguide(.*)$ /wp-content/themes/starter_theme/static/index.php [L]
+RewriteRule ^styleguide(.*)$ /wp-content/themes/kontrapunkt/static/index.php [L]
 </IfModule>
 # BEGIN WordPress
 # Direktivy (řádky) mezi "BEGIN WordPress" a "END WordPress" jsou

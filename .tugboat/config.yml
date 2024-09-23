@@ -22,7 +22,7 @@ services:
         - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
         - chmod +x wp-cli.phar
         - mv wp-cli.phar /usr/local/bin/wp
-        - composer install --working-dir='wp-content/themes/starter_theme' --no-ansi
+        - composer install --working-dir='wp-content/themes/kontrapunkt' --no-ansi
 
         # Link the document root to the expected path. This example links /web
         # to the docroot
