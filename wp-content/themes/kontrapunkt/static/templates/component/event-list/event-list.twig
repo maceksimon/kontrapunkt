@@ -7,13 +7,11 @@ name: "Event - list"
   'name': 'event-list',
   'id': content.wrapper_id,
   'classes': [
-    'p-component',
+    content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
     content.wrapper_classes,
   ],
   'container': content.inner ? '' : 'container',
-  'heading': {
-    heading: content.heading.heading
-  },
+  'heading': content.heading,
 } %}
 
 {% block content %}
