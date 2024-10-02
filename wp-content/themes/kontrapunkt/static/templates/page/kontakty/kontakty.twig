@@ -1,0 +1,32 @@
+{#
+name: "Kontakty"
+weight: 8
+#}
+
+{% extends "@styleguide/styleguide-base.twig" %}
+{% block content %}
+{% include '@page/_partials/header.twig' %}
+
+{% include '@component/page-header/page-header.twig' with {
+  content: {
+    title: 'Kontakty'
+  }
+} %}
+
+{% include '@component/contact-list/contact-list.twig' with {
+  content: {
+    items: [
+      {
+        type: 'email',
+        email: 'barbora@kontrapunkt.cz'
+      },
+      {
+        type: 'phone',
+        phone: '+420 720 312 000'
+      }
+    ]
+  }
+} %}
+
+{% include '@page/_partials/footer.twig' %}
+{% endblock %}

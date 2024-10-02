@@ -1,0 +1,19 @@
+{#
+name: "Partneři"
+weight: 9
+#}
+
+{% extends "@styleguide/styleguide-base.twig" %}
+{% block content %}
+{% include '@page/_partials/header.twig' %}
+
+{% include '@component/page-header/page-header.twig' with {
+  content: {
+    title: 'Partneři'
+  }
+} %}
+
+{% include '@component/logo-cloud/styleguide.twig' %}
+
+{% include '@page/_partials/footer.twig' %}
+{% endblock %}
