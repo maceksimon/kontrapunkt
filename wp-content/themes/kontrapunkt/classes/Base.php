@@ -113,7 +113,7 @@ class Base extends Site {
           if($post_id) {
             $context['links'][$key] = get_permalink(apply_filters( 'wpml_object_id', $post_id, 'page' ));
           }else{
-            $context['links'][$key] = $url;
+            $context['links'][$key] = $item;
           }
         }elseif(is_array($item) && isset($item['url'])) {
           $post_id = url_to_postid($item['url']);

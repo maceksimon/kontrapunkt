@@ -1,0 +1,79 @@
+{#
+name: "Event - header"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'event-header',
+  'id': content.wrapper_id,
+  'classes': [
+    content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
+    content.wrapper_classes,
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+} %}
+
+{% block content %}
+{% if content.title %}
+  <div class="space-y-8">
+    <div class="space-y-4">
+      <h1 class="font-bold leading-tight text-2xl sm:text-3xl text-gray-950">{{ content.title|typography }}</h1>
+      {# location #}
+      {% if content.location %}
+        <dl>
+          <dt class="sr-only">{{ __("Location", "kontrapunkt") }}</dt>
+          <dd class="text-lg sm:text-xl text-gray-600">{{ content.location|typography }}</dd>
+        </dl>
+      {% endif %}
+      {# date #}
+      <div class="flex shrink-0 gap-2 items-center">
+        {% if content.date_start and not content.date_end %}
+          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
+          {% if content.time_start %}
+            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_start|date('H:i') }}</div>
+          {% endif %}
+        {% endif %}
+        {% if content.date_start and content.date_end %}
+          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n.') }}</div>
+          {% if content.time_start %}
+            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_start|date('H:i') }}</div>
+          {% endif %}
+          -
+          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
+          {% if content.time_end %}
+            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_end|date('H:i') }}</div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="flex flex-col gap-8 sm:flex-row-reverse">
+      <div class="grow space-y-6">
+        {% if content.perex %}
+          <div class="prose prose-primary prose-lg">{{ content.perex|typography }}</div>
+        {% endif %}
+        {% if content.contact_list and content.contact_list.items|length %}
+          <div>
+            {{ component_contact_list({
+            heading: {
+              heading: __("Book tickets", "kontrapunkt"),
+            },
+            items: content.contact_list.items,
+            }) }}
+          </div>
+        {% endif %}
+      </div>
+      {% if content.image %}
+        <div class="js-gallery w-full shrink-0 sm:w-48 lg:w-60">
+          {{ component_picture({
+            image: content.image|resizer(['750', '500', '1024', ''], ['600', '400', '640', ''], ['750', '500', '', '']),
+            url: content.image.0.src,
+            image_classes: 'w-full rounded-xl',
+            link_lightbox: true,
+          }) }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

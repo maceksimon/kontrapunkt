@@ -1,0 +1,41 @@
+{#
+name: "Contact - list"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'contact-list',
+  'id': content.wrapper_id,
+  'classes': [
+    content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
+    content.wrapper_classes,
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+} %}
+
+{% block content %}
+{% if content.items is not empty %}
+  <dl class="leading-7 mt-4 space-y-2 text-gray-700 sm:text-lg">
+    {% for item in content.items %}
+      <div>
+        {% if item.type == 'email' %}
+          <dt class="sr-only">{{ __('Email', 'kontrapunkt') }}</dt>
+          <dd class="flex gap-2">
+            <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-500">{{ icons.get('email') }}</div>
+            <a class="font-semibold hover:underline text-gray-700 hover:text-gray-900 break-all" href="mailto:{{ item.email }}">
+              {{ item.email }}
+            </a>
+          </dd>
+        {% elseif item.type == 'phone' %}
+          <dt class="sr-only">{{ __('Phone', 'kontrapunkt') }}</dt>
+          <dd class="flex gap-2">
+            <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-500">{{ icons.get('phone') }}</div>
+            <a class="font-semibold hover:underline text-gray-700 hover:text-gray-900" href="tel:{{ item.phone }}">{{ item.phone }}</a>
+          </dd>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </dl>
+{% endif %}
+{% endblock %}
