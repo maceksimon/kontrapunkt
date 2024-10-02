@@ -2,20 +2,7 @@
 {% block content %}
 {% include '@page/_partials/header.twig' %}
 
-{% include '@component/zig-zag/zig-zag.twig' with {
-  content: {
-    items: [
-      {
-        text: 'Jde o historicky první český festival Bruna Schulze, polského židovského spisovatele, kritika, malíře a grafika, označovaného často jako „polský Kafka“',
-      },
-      {
-        text: 'Festival se bude konat ve spolupráci polonistiky FF MU, Židovského muzea v Praze (brněnské pobočky) a Centra experimentálního divadla (součást Divadla Husa na provázku).',
-      }
-    ]
-  }
-} only %}
-
-{% include '@component/programme-list/styleguide.twig' %}
+{% include '@component/news-list/styleguide.twig' %}
 
 {% include '@page/_partials/footer.twig' %}
 {% endblock %}
