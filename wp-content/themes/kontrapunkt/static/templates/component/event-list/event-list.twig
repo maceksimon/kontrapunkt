@@ -1,0 +1,29 @@
+{#
+name: "Event - list"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'event-list',
+  'id': content.wrapper_id,
+  'classes': [
+    'p-component',
+    content.wrapper_classes,
+  ],
+  'container': 'container max-w-4xl',
+  'heading': {
+    heading: content.heading.heading
+  },
+} %}
+
+{% block content %}
+{{ component_list_stacked({
+  inner_component: 'event-teaser',
+  items: content.items,
+}) }}
+{% if content.link %}
+  <div class="text-center mt-6 sm:mt-8">
+    {{ component_button(content.link) }}
+  </div>
+{% endif %}
+{% endblock %}

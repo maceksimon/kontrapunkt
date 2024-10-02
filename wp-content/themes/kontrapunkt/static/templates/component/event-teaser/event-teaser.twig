@@ -1,0 +1,58 @@
+{#
+name: Event - teaser
+#}
+
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'event-teaser',
+  'classes': [
+    content.wrapper_classes,
+  ],
+} %}
+
+{% block content %}
+{% if content.title %}
+  <div class="rounded-xl border border-gray-300 space-y-4">
+    <a href="{{ content.link }}" class="block group">
+      <div class="px-6 py-5 space-y-2">
+        <div class="justify-between gap-2 sm:gap-8 flex flex-col sm:flex-row">
+          <h3 class="text-gray-900 text-2xl font-semibold leading-tight transition-colors duration-100 ease-in-out group-hover:text-primary-600">
+            {{ content.title|typography }}
+          </h3>
+          <div class="flex shrink-0 gap-2 items-center">
+            {% if content.date_start and not content.date_end %}
+              <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
+            {% endif %}
+            {% if content.date_start and content.date_end %}
+              <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n.') }}</div>
+              -
+              <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="justify-between gap-4 sm:gap-2 flex flex-col sm:flex-row">
+          {% if content.location %}
+            <p class="text-gray-600 text-xl leading-7">{{ content.location|typography }}</p>
+          {% endif %}
+          {% if content.link %}
+            <button class="self-end flex gap-2 text-gray-600 group-hover:text-gray-800">
+              <div class="justify-start items-center flex">
+                <div class="text-lg leading-none">přečíst si více</div>
+              </div>
+              <div class="w-5 h-5 opacity-75 transition-translate duration-200 ease-in-out group-hover:translate-x-1">
+                {{ icons.get( 'arrow-right' ) }}
+              </div>
+            </button>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  </div>
+{% else %}
+  {{ component_alert({
+    type: 'error',
+    message: __('Není zadán nadpis bloku', 'jaromer')
+  }) }}
+{% endif %}
+{% endblock %}
