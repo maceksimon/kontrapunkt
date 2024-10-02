@@ -1,0 +1,14 @@
+{% extends "@styleguide/styleguide-base.twig" %}
+{% block content %}
+{% include '@page/_partials/header.twig' %}
+
+{% include '@component/event-header/styleguide.twig' %}
+{{ component_content_center({
+  perex: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non fringilla diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque quis lectus dictum, vestibulum urna non, auctor lectus. In aliquet tempor pellentesque. Curabitur sed sem et neque pellentesque faucibus. Morbi sit amet consequat dolor. Donec a suscipit orci, in mattis quam. Curabitur pellentesque egestas ex, eu laoreet dui interdum eu. Nam gravida porttitor nibh, nec pellentesque tellus convallis eu.',
+  variant: 'gray',
+}) }}
+{% include '@component/property-feature/styleguide.twig' %}
+{% include '@component/programme-recommended/styleguide.twig' %}
+
+{% include '@page/_partials/footer.twig' %}
+{% endblock %}

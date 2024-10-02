@@ -1,0 +1,17 @@
+{#
+name: "Program - Detail"
+weight: 20
+#}
+{{ component_breadcrumb({
+  items: breadcrumb
+}) }}
+{% if not content.header_disabled %}
+{{ component_event_header({
+  title: content.title,
+  location: content.location,
+  perex: content.perex,
+  contact_list: content.contact_list,
+  image: content.image,
+}) }}
+{% endif %}
+{{ content.body|raw }}

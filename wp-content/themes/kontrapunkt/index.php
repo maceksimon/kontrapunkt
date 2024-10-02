@@ -28,6 +28,19 @@ elseif(is_singular('post')) {
   ];
   $context['template'] = 'article-full';
 }
+elseif(is_singular('event')) {
+  $post = Timber::query_post();
+  $context['content'] = [
+    'id' => $post->ID,
+    'title' => $post->title(),
+    'body' => $post->content(),
+    'location' => get_field('location', $post->ID),
+    'perex' => get_field('perex', $post->ID),
+    'contact_list' => get_field('contact_list', $post->ID),
+    'image' => Helpers::formatImage(get_field('image', $post->ID)),
+  ];
+  $context['template'] = 'event-full';
+}
 elseif(is_category()) {
   $context['title'] = single_tag_title('', false);
   $context['items'] = new Timber\PostQuery();
