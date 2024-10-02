@@ -1,0 +1,44 @@
+{#
+name: "Download - list"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'download-list',
+  'id': content.wrapper_id,
+  'classes': [
+    content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
+    content.wrapper_classes,
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+} %}
+{% block content %}
+  {% if content.items|length %}
+  <div class="bg-white shadow border border-gray-200 overflow-hidden sm:rounded-lg">
+    <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+      {% for item in content.items %}
+      <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+        <div class="w-0 flex-1 flex items-center">
+          <svg class="shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+          </svg>
+          <span class="ml-2 flex-1 w-0 truncate">
+            {% if link.title is not empty %}
+              {{ link.title }}
+            {% else %}
+              {{ __("Unnamed", "kontrapunkt") }}
+            {% endif %}
+          </span>
+        </div>
+        <div class="ml-4 shrink-0">
+          <a download href="{{ link.url }}" target="_blank" class="font-medium text-primary hover:text-orange-700">
+            {{ __("Download", "kontrapunkt") }}
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endblock %}
