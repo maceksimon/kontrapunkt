@@ -1,10 +1,11 @@
 {#
-name: "Aktuality - seznam"
+name: "Projekty - seznam"
 #}
 {% import '@macro/icons/icons.twig' as icons %}
 {% extends "@component/component/component.twig" %}
 {% set component = {
-  'name': 'news-list',
+  'name': 'project-list',
+  'id': content.wrapper_id,
   'classes': [
     content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
     content.wrapper_classes,
@@ -14,13 +15,11 @@ name: "Aktuality - seznam"
 } %}
 
 {% block content %}
-<div>
-  {% if content.items is not empty %}
-    <div class="space-y-8">
-      {% for item in content.items %}
-        {{ component_news_teaser(item) }}
-      {% endfor %}
-    </div>
-  {% endif %}
-</div>
+{% if content.items is not empty %}
+  <div class="space-y-8">
+  {% for item in content.items %}
+    {{ component_project_teaser(item) }}
+  {% endfor %}
+  </div>
+{% endif %}
 {% endblock %}
