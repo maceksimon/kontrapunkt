@@ -1,7 +1,23 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
-const primary = colors.red;
+const supernova = {
+  'DEFAULT': '#ffcc02',
+  '50': '#fefce8',
+  '100': '#fffac2',
+  '200': '#fff287',
+  '300': '#ffe343',
+  '400': '#ffcc02', // default
+  '500': '#efb603',
+  '600': '#ce8c00',
+  '700': '#a46304',
+  '800': '#884d0b',
+  '900': '#733f10',
+  '950': '#432005',
+}
+
+
+const primary = supernova;
 const secondary = colors.blue;
 
 module.exports = {
