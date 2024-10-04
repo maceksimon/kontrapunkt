@@ -418,7 +418,7 @@ class Base extends Site {
   * Add fonts.
   */
   public function fonts() {
-    wp_enqueue_style( $this->theme_name . '-fonts', get_template_directory_uri() . '/static/fonts/montserrat/stylesheet.css', [], filemtime( wp_normalize_path( get_template_directory() . '/static/fonts/montserrat/stylesheet.css' ) ) );
+    wp_enqueue_style( $this->theme_name . '-fonts', get_template_directory_uri() . '/static/fonts/anonymous-pro/stylesheet.css', [], filemtime( wp_normalize_path( get_template_directory() . '/static/fonts/anonymous-pro/stylesheet.css' ) ) );
   }
 
   /**

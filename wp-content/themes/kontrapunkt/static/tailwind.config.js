@@ -29,7 +29,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+        sans: ["Anonymous Pro", ...defaultTheme.fontFamily.sans],
       },
       typography: {
         DEFAULT: {
