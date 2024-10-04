@@ -2901,6 +2901,9 @@ span.wpcf7-list-item-label {
 .max-w-prose {
   max-width: 65ch;
 }
+.max-w-screen-md {
+  max-width: 768px;
+}
 .flex-1 {
   flex: 1 1 0%;
 }

@@ -556,7 +556,7 @@ class Base extends Site {
       $context['content'] = [
         'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
         'wrapper_classes' => 'container',
-        'container' => 'my-4 prose max-w-none',
+        'container' => 'my-4 prose max-w-screen-md mx-auto',
         'html' => $block_content,
         'raw' => $raw,
       ];
