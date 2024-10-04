@@ -15,30 +15,34 @@ name: "Download - list"
 } %}
 {% block content %}
   {% if content.items|length %}
-  <div class="bg-white shadow border border-gray-200 overflow-hidden sm:rounded-lg">
-    <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
-      {% for item in content.items %}
-      <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-        <div class="w-0 flex-1 flex items-center">
-          <svg class="shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-          </svg>
-          <span class="ml-2 flex-1 w-0 truncate">
-            {% if link.title is not empty %}
-              {{ link.title }}
-            {% else %}
-              {{ __("Unnamed", "kontrapunkt") }}
+    <div class="max-w-screen-md mx-auto">
+      <ul role="list" class="space-y-4">
+        {% for item in content.items %}
+          <li class="max-w-80">
+            {% if item.link.url is not empty %}
+              <a download href="{{ item.link.url }}" target="_blank" class="group">
             {% endif %}
-          </span>
-        </div>
-        <div class="ml-4 shrink-0">
-          <a download href="{{ link.url }}" target="_blank" class="font-medium text-primary hover:text-orange-700">
-            {{ __("Download", "kontrapunkt") }}
-          </a>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+              <div class="py-2.5 px-5 border-l-2 border-black group-hover:border-primary flex items-center justify-between transition-colors">
+                <div class="flex-1 flex items-center">
+                  <span class="sr-only">{{ __("Download", "kontrapunkt") }}</span>
+                  <span class="flex-1 truncate">
+                    {% if item.title %}
+                      {{ item.title }}
+                    {% else %}
+                      {{ __("Unnamed", "kontrapunkt") }}
+                    {% endif %}
+                  </span>
+                </div>
+                <div class="shrink-0 inline-block h-6 text-black group-hover:text-primary transition-colors">
+                  {{ icons.get('paper-clip')}}
+                </div>
+              </div>
+            {% if item.link.url is not empty %}
+              </a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   {% endif %}
 {% endblock %}
