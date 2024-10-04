@@ -27,25 +27,12 @@ name: "Event - header"
         </dl>
       {% endif %}
       {# date #}
-      <div class="flex shrink-0 gap-2 items-center">
-        {% if content.date_start and not content.date_end %}
-          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
-          {% if content.time_start %}
-            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_start|date('H:i') }}</div>
-          {% endif %}
-        {% endif %}
-        {% if content.date_start and content.date_end %}
-          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_start|date('j. n.') }}</div>
-          {% if content.time_start %}
-            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_start|date('H:i') }}</div>
-          {% endif %}
-          -
-          <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
-          {% if content.time_end %}
-            <div class="text-gray-900 text-lg sm:text-2xl leading-tight">{{ content.time_end|date('H:i') }}</div>
-          {% endif %}
-        {% endif %}
-      </div>
+      {{ component_event_datetime({
+        date_start: content.date_start,
+        date_end: content.date_end,
+        time_start: content.time_start,
+        time_end: content.time_end,
+      }) }}
     </div>
     <div class="flex flex-col gap-8 sm:flex-row-reverse">
       <div class="grow space-y-6">
