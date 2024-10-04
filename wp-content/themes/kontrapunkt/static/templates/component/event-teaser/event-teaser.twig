@@ -66,14 +66,14 @@ name: Event - teaser
         </div>
         <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
           {% if content.author %}
-            <div class="gap-2 flex">
+            <div class="gap-2 flex py-1">
               <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
             </div>
           {% endif %}
           {% if content.link.url %}
             <button class="items-center gap-2 flex">
-              <div class="items-center flex">
-                <div class="text-secondary-700 sm:text-gray-800 font-normal leading-none">přečíst si více</div>
+              <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
+                <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
               </div>
             </button>
           {% endif %}
