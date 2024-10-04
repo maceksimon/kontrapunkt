@@ -46,38 +46,42 @@ name: Event - teaser
         <div class="inline-block bg-primary px-4 py-1">
           <h3 class="text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
         </div>
-        <div class="gap-1 flex flex-wrap items-center">
-          {{ component_event_datetime({
-            date_start: content.date_start,
-            date_end: content.date_end,
-            time_start: content.time_start,
-            time_end: content.time_end,
-          }) }}
-        </div>
+        {% if content.date_start or content.date_end %}
+          <div class="gap-1 flex flex-wrap items-center">
+            {{ component_event_datetime({
+              date_start: content.date_start,
+              date_end: content.date_end,
+              time_start: content.time_start,
+              time_end: content.time_end,
+            }) }}
+          </div>
+        {% endif %}
         {% if content.perex %}
           <div class="prose prose-primary">{{ content.perex|typography }}</div>
         {% endif %}
+        {% if content.location %}
         <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          {% if content.location %}
-            <div class="gap-2 flex">
-              <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
-            </div>
-          {% endif %}
+          <div class="gap-2 flex">
+            <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
+          </div>
         </div>
-        <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          {% if content.author %}
-            <div class="gap-2 flex py-1">
-              <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
-            </div>
-          {% endif %}
-          {% if content.link.url %}
-            <button class="items-center gap-2 flex">
-              <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
-                <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
+        {% endif %}
+        {% if content.author or content.link.url %}
+          <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+            {% if content.author %}
+              <div class="gap-2 flex py-1">
+                <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
               </div>
-            </button>
-          {% endif %}
-        </div>
+            {% endif %}
+            {% if content.link.url %}
+              <button class="items-center gap-2 flex">
+                <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
+                  <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
+                </div>
+              </button>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
   </a>
