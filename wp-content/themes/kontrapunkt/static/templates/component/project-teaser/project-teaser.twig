@@ -13,28 +13,25 @@ name: "Projekty - položka"
 {% block content %}
 <div class=" text-black">
   <div class="sm:flex space-y-6 sm:space-y-0 sm:space-x-8">
-    <div class="w-24 max-w-full shrink-0 aspect-square">
-      {% include '@component/picture/picture.twig'
-        with {
-          content: {
-            image: content.image|resizer(['200', '200', '', 'crop']),
-            image_classes: 'w-full h-full object-cover object-top',
-            image_attributes: {
-              loading: 'lazy',
-            }
+    <div class="w-24 h-24 max-w-full shrink-0 aspect-square border">
+      {{ component_picture({
+          image: content.image|resizer(['200', '200', '', 'crop']),
+          image_classes: 'w-full h-full object-cover object-top',
+          image_attributes: {
+            loading: 'lazy',
           }
-        }
-      %}
+        })
+      }}
     </div>
-    <div class="space-y-2 py-6">
+    <div class="space-y-2">
     {% if content.title %}
-      <div class="text-3xl sm:text-4xl font-semibold mb-4">
+      <div class="text-xl font-semibold mb-4">
         {{ content.title|typography }}
       </div>
     {% endif %}
-    {% if content.description %}
-      <div class="prose prose-2xl max-w-none">
-        {{ content.description }}
+    {% if content.perex %}
+      <div class="prose prose-primary max-w-screen-md">
+        {{ content.perex }}
       </div>
     {% endif %}
     </div>
