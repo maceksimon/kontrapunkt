@@ -12,7 +12,9 @@ name: Event - teaser
 
 {% block content %}
 {% if content.title %}
-  <a href="{{ content.url }}" class="block group">
+  {% if content.link.url %}
+    <a href="{{ content.link.url }}" class="block group">
+  {% endif %}
     <div class="bg-white sm:flex gap-12 sm:gap-0">
       <div class="overflow-hidden">
         {{ component_picture({
@@ -84,7 +86,9 @@ name: Event - teaser
         {% endif %}
       </div>
     </div>
-  </a>
+  {% if content.link.url %}
+    </a>
+  {% endif %}
 {% else %}
   {{ component_alert({
     type: 'error',
