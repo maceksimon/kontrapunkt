@@ -16,26 +16,40 @@ name: "Contact - list"
 
 {% block content %}
 {% if content.items is not empty %}
-  <dl class="leading-7 mt-4 space-y-2 text-gray-700 sm:text-lg">
-    {% for item in content.items %}
-      <div>
-        {% if item.type == 'email' %}
-          <dt class="sr-only">{{ __('Email', 'kontrapunkt') }}</dt>
-          <dd class="flex gap-2">
-            <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-500">{{ icons.get('email') }}</div>
-            <a class="font-semibold hover:underline text-gray-700 hover:text-gray-900 break-all" href="mailto:{{ item.email }}">
-              {{ item.email }}
-            </a>
-          </dd>
-        {% elseif item.type == 'phone' %}
-          <dt class="sr-only">{{ __('Phone', 'kontrapunkt') }}</dt>
-          <dd class="flex gap-2">
-            <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-500">{{ icons.get('phone') }}</div>
-            <a class="font-semibold hover:underline text-gray-700 hover:text-gray-900" href="tel:{{ item.phone }}">{{ item.phone }}</a>
-          </dd>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </dl>
+  <div class="max-w-screen-md mx-auto">
+    <dl class="leading-7 mt-4 space-y-4 text-gray-700">
+      {% for item in content.items %}
+        <div>
+          {% if item.type == 'email' %}
+            <dt class="sr-only">{{ __('Email', 'kontrapunkt') }}</dt>
+            <dd class="flex gap-3">
+              <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('email') }}</div>
+              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900 break-all" href="mailto:{{ item.email }}">
+                {{ item.email }}
+              </a>
+            </dd>
+          {% elseif item.type == 'phone' %}
+            <dt class="sr-only">{{ __('Phone', 'kontrapunkt') }}</dt>
+            <dd class="flex gap-3">
+              <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('phone') }}</div>
+              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900" href="tel:{{ item.phone }}">{{ item.phone }}</a>
+            </dd>
+          {% elseif item.type == 'address' %}
+            <dt class="sr-only">{{ __('Address', 'kontrapunkt') }}</dt>
+            <dd class="flex gap-3">
+              <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('location') }}</div>
+              <div>{{ item.address|typography }}</div>
+            </dd>
+          {% elseif item.type == 'bank' %}
+            <dt class="sr-only">{{ __('Bank details', 'kontrapunkt') }}</dt>
+            <dd class="flex gap-3">
+              <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('bank') }}</div>
+              <div>{{ item.bank|typography }}</div>
+            </dd>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </dl>
+  </div>
 {% endif %}
 {% endblock %}

@@ -28,5 +28,41 @@ weight: 8
   }
 } %}
 
+{{ component_content({
+    html: '<p><b>Kontrapunkt, z. ú.</b></p>',
+    prose: true,
+    container: 'container',
+    wrapper_classes: 'my-6',
+}) }}
+
+{% include '@component/contact-list/contact-list.twig' with {
+  content: {
+    items: [
+      {
+        type: 'address',
+        address: 'Náměstí 123, 123 45 Jaroměř',
+      },
+    ]
+  }
+} %}
+
+{{ component_content({
+    html: '<p>IČ: 26998939</p><p>Zapsaný v rejstříku ústavů vedeném u Krajského soudu v Hradci Králové v oddílu U, vložce číslo 86</p><p>b.ú.: (ČSOB a.s.) 235068595 / 0300</p>',
+    prose: true,
+    container: 'container',
+    wrapper_classes: 'my-6',
+}) }}
+
+{% include '@component/contact-list/contact-list.twig' with {
+  content: {
+    items: [
+      {
+        type: 'bank',
+        bank: '<p>ČSOB a.s. 235068595 / 0300</p><p>SWIFT / BIC: CEKOCZPP</p>',
+      }
+    ]
+  }
+} %}
+
 {% include '@page/_partials/footer.twig' %}
 {% endblock %}
