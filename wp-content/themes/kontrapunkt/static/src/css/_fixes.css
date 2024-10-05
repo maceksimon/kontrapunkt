@@ -10,3 +10,6 @@
 .component-slider .swiper-button-lock {
   @apply hidden;
 }
+[x-cloak] {
+  @apply hidden;
+}

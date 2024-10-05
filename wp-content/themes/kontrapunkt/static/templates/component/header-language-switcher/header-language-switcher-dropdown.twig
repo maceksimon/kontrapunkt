@@ -1,0 +1,93 @@
+{#
+name: "Header - language switcher (dropdown)"
+#}
+{% extends "@component/component/component.twig" %}
+{% import '@macro/icons/icons.twig' as icons %}
+{% set component = {
+  'name': 'header-language-switcher',
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes
+  ],
+} %}
+{% block content %}
+{% if content.items %}
+<div
+  x-data="{
+    isLngMenuOpen: false,
+
+    toggleLngMenu() {
+      if (this.isLngMenuOpen) {
+        return this.closeLng()
+      }
+
+      this.$refs.lngButton.focus()
+
+      this.isLngMenuOpen = true
+    },
+
+    closeLng(focusAfter) {
+      if (! this.isLngMenuOpen) return
+
+      this.isLngMenuOpen = false
+
+      focusAfter && focusAfter.focus()
+    }
+  }"
+  x-on:keydown.escape.prevent.stop="closeLng($refs.lngButton)"
+  x-on:focusin.window="! $refs.panel.contains($event.target) && closeLng()"
+  x-id="['lngDropdownButton']"
+  class="relative"
+>
+  <button
+    x-ref="lngButton"
+    x-on:click="toggleLngMenu()"
+    :aria-expanded="isLngMenuOpen"
+    :aria-controls="$id('lngDropdownButton')"
+    class="btn py-1 px-1 bg-slate-100 space-x-1.5"
+  >
+    <div class="w-5 h-5 rounded-full overflow-hidden">
+    {% for item in content.items %}
+      {% if item.is_active %}
+        {{ icons.get('flag-' ~ item.id) }}
+      {% endif %}
+    {% endfor %}
+    </div>
+    <div :class="{'text-lime-500 rotate-180': isLngMenuOpen }" class="transition-transform duration-200 ease-in-out">
+      {{ icons.get('caret-down') }}
+    </div>
+  </button>
+  <div x-cloak>
+    <div
+      x-ref="panel"
+      x-show="isLngMenuOpen"
+      x-transition.origin.top.right
+      x-on:click.outside="closeLng($refs.lngButton)"
+      :id="$id('lngDropdownButton')"
+      class="absolute z-10 flex sm:w-auto origin-top-right left-auto -right-4 sm:right-0 top-12 min-w-[17rem] sm:min-w-[10rem]"
+    >
+      <ul class="flex flex-wrap gap-2 p-4 sm:p-3 mx-auto rounded-2xl shadow-lg bg-white text-zinc-500">
+      {% for item in content.items %}
+        <li class="w-10 h-10 sm:w-5 sm:h-5 rounded-full overflow-hidden">
+          {% set link_attributes = create_attribute({
+            'href': item.url ? item.url : item.home_url,
+            'class': [
+              'uppercase no-underline',
+              item.is_active ? 'font-bold' : '',
+            ],
+            'title': item.title,
+          }) %}
+          <a{{ link_attributes }}>
+            <div class="sr-only">{{ item.id|typography }}</div>
+            <div class="w-10 h-10 sm:w-5 sm:h-5 rounded-full border overflow-hidden">
+              {{ icons.get('flag-' ~ item.id) }}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

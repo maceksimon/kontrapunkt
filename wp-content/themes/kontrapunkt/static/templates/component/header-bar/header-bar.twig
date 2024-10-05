@@ -13,23 +13,23 @@ name: "Header - bar"
 } %}
 {% block content %}
 {{ component_logo({ linkHome: true }) }}
-<div class="flex items-center gap-4 mb-0 lg:hidden">
+<div class="flex items-center gap-2 mb-0 lg:hidden">
 
   {# {{ component_header_search({
     search_url: content.search_url,
     wrapper_classes: 'block lg:hidden'
   }) }} #}
 
-  {{ component_header_language_switcher_dropdown({
+  {{ component_header_language_switcher({
     items: content.language_switcher,
     wrapper_classes: 'block lg:hidden'
   }) }}
 
-  <button class="rounded-full text-zinc-500" type="button" aria-expanded="false" aria-label="{{ _x('Toggle navigation', 'kontrapunkt', 'kontrapunkt') }}" @click="isMenuOpen = !isMenuOpen">
+  <button class="rounded-full text-gray-900" type="button" aria-expanded="false" aria-label="{{ _x('Toggle navigation', 'kontrapunkt', 'kontrapunkt') }}" @click="isMenuOpen = !isMenuOpen">
     <div x-cloak x-show="!isMenuOpen" class="h-6">
       {{ icons.get('hamburger') }}
     </div>
-    <div x-cloak x-show="isMenuOpen" class="h-6 text-secondary-500">
+    <div x-cloak x-show="isMenuOpen" class="h-6 text-gray-900">
       {{ icons.get('close') }}
     </div>
   </button>

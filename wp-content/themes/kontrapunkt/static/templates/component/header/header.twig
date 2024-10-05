@@ -19,11 +19,12 @@ weight: 90
     'navbar',
   ],
 }) %}
+{% set has_language_switcher = false %}
 <nav{{ navbar_attributes }}>
   <div x-data="{ isMenuOpen: false }" class="container max-lg:px-0 max-lg:max-w-none py-6">
-    <div class="w-full lg:flex lg:justify-between lg:items-center lg:space-x-6">
+    <div class="w-full lg:flex lg:justify-between lg:items-center {% if has_language_switcher %}lg:space-x-6{% endif %}">
       {# Header shown on desktop #}
-      <div class="lg:w-full lg:flex lg:items-center lg:justify-between lg:space-x-12">
+      <div class="lg:w-full lg:flex lg:flex-col lg:items-center lg:justify-between lg:space-x-12 lg:gap-8">
         <div class="mx-4 lg:mx-0">
 
           {{ component_header_bar({
@@ -31,7 +32,7 @@ weight: 90
           }) }}
 
         </div>
-        <div class="absolute w-full bg-white lg:static lg:w-auto lg:flex lg:items-center lg:space-x-6 z-50">
+        <div class="lg:flex lg:items-center">
 
           {{ component_header_collapse({
             menu: content.menu,
@@ -39,22 +40,19 @@ weight: 90
             wrapper_classes: content.language_switcher ? ''
           }) }}
 
-          {# {{ component_header_search({
-            search_url: content.search_url,
-            wrapper_classes: 'hidden lg:block'
-          }) }} #}
-
         </div>
       </div>
 
-      <div class="hidden lg:flex lg:items-center lg:space-x-5 mt-4 lg:mt-0">
+      {% if has_language_switcher %}
+        <div class="hidden lg:flex lg:items-center lg:space-x-5 mt-4 lg:mt-0">
 
-        {{ component_header_language_switcher_dropdown({
-          items: content.language_switcher,
-          wrapper_classes: 'hidden lg:block'
-        }) }}
+          {{ component_header_language_switcher({
+            items: content.language_switcher,
+            wrapper_classes: 'hidden lg:block'
+          }) }}
 
-      </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </nav>

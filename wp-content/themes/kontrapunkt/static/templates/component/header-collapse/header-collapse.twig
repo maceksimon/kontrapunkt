@@ -6,12 +6,13 @@ name: "Header - collapse"
   'name': 'header-collapse',
   'id': content.wrapper_id,
   'classes': [
+    'relative',
     content.wrapper_classes
   ],
 } %}
 {% block content %}
 <div>
-  <div :class="[ isMenuOpen ? 'block' : 'hidden lg:block' ]">
+  <div class="absolute inset-x-0 top-0 bg-white lg:relative z-10" :class="[ isMenuOpen ? 'block' : 'hidden lg:block' ]">
     {{ component_header_menu({
       items: content.menu
     }) }}
