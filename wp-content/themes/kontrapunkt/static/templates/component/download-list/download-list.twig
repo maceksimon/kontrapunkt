@@ -22,8 +22,8 @@ name: "Download - list"
             {% if item.link.url is not empty %}
               <a download href="{{ item.link.url }}" target="_blank" class="group">
             {% endif %}
-              <div class="py-2.5 px-5 border-l-2 border-black group-hover:border-primary flex items-center justify-between transition-colors">
-                <div class="flex-1 flex items-center">
+              <div class="relative py-2.5 px-5 border-l-2 border-primary flex items-center justify-between transition-colors before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
+                <div class="isolate flex-1 flex items-center">
                   <span class="sr-only">{{ __("Download", "kontrapunkt") }}</span>
                   <span class="flex-1 truncate">
                     {% if item.title %}
@@ -33,7 +33,7 @@ name: "Download - list"
                     {% endif %}
                   </span>
                 </div>
-                <div class="shrink-0 inline-block h-6 text-black group-hover:text-primary transition-colors">
+                <div class="isolate shrink-0 inline-block h-6 text-black transition-colors">
                   {{ icons.get('paper-clip')}}
                 </div>
               </div>
