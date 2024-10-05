@@ -2826,6 +2826,9 @@ span.wpcf7-list-item-label {
 .min-h-\[6rem\] {
   min-height: 6rem;
 }
+.min-h-screen {
+  min-height: 100vh;
+}
 .w-10 {
   width: 2.5rem;
 }
@@ -5897,6 +5900,14 @@ body:not(.lg-from-hash)
 
   .lg\:gap-8 {
     gap: 2rem;
+  }
+
+  .lg\:gap-x-12 {
+    column-gap: 3rem;
+  }
+
+  .lg\:gap-y-8 {
+    row-gap: 2rem;
   }
 
   .lg\:space-x-12 > :not([hidden]) ~ :not([hidden]) {

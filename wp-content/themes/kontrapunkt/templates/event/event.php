@@ -130,7 +130,7 @@ $event_fields
   'instructions' => 'Vyplňte délku trvání akce',
   'required' => 0,
   'wpml_cf_preferences' => 2,
-])
+]);
 
 $event_fields->setLocation('post_type', '==', 'event');
 
