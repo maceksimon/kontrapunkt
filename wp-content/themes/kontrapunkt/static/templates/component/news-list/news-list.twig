@@ -14,13 +14,10 @@ name: "Aktuality - seznam"
 } %}
 
 {% block content %}
-<div>
-  {% if content.items is not empty %}
-    <div class="space-y-8">
-      {% for item in content.items %}
-        {{ component_news_teaser(item) }}
-      {% endfor %}
-    </div>
-  {% endif %}
-</div>
+{% if content.items is not empty %}
+  {{ component_grid_3_cols({
+    items: content.items,
+    inner_component: 'news-teaser',
+  }) }}
+{% endif %}
 {% endblock %}

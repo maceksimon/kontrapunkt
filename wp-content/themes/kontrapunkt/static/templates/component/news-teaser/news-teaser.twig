@@ -11,28 +11,28 @@ name: "Aktuality - položka"
 } %}
 
 {% block content %}
-<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 text-black">
-  {% if content.image %}
-  <div>
-    {{ component_picture({
-      image: content.image,
-      url: content.link.url,
-      image_classes: 'w-40 object-cover'
-    }) }}
+<div class="max-w-screen-sm text-grey-900">
+  <div class="aspect-[16/9] w-full object-cover sm:aspect-[2/1] lg:aspect-[3/2] bg-gray-200">
+    <div>
+      {{ component_picture({
+        image: content.image,
+        url: content.link.url,
+        image_classes: 'aspect-[16/9] w-full object-cover sm:aspect-[2/1] lg:aspect-[3/2]'
+      }) }}
+    </div>
   </div>
-  {% endif %}
   {% if content.link %}
   <a href="{{ content.link.url }}" target="{{ content.link.target }}" class="block relative group">
   {% endif %}
-    <div class="space-y-2 max-w-3xl sm:py-2">
+    <div class="space-y-2 pt-6">
       <div class="group-hover:text-primary transition-colors duration-150 ease-in-out">
         <div class="flex justify-between">
         {% if content.link.url.title %}
-          <div class="text-3xl sm:text-4xl font-semibold">
+          <div class="text-lg font-bold">
             {{ content.link.url.title|typography }}
           </div>
         {% elseif content.title %}
-          <div class="text-3xl sm:text-4xl font-semibold">
+          <div class="text-lg font-bold">
             {{ content.title|typography }}
           </div>
         {% endif %}
@@ -44,7 +44,7 @@ name: "Aktuality - položka"
         </div>
       </div>
       {% if content.description %}
-        <div class="text-xl">{{ content.description|typography }}</div>
+        <div class="prose prose-primary">{{ content.description|typography }}</div>
       {% endif %}
     </div>
   {% if content.link %}
