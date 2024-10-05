@@ -3024,6 +3024,9 @@ span.wpcf7-list-item-label {
 .gap-y-8 {
   row-gap: 2rem;
 }
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
 .-space-x-px > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(-1px * var(--tw-space-x-reverse));
@@ -3424,6 +3427,15 @@ span.wpcf7-list-item-label {
 }
 .pt-4 {
   padding-top: 1rem;
+}
+.pt-8 {
+  padding-top: 2rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
 }
 .text-center {
   text-align: center;
@@ -5608,6 +5620,10 @@ body:not(.lg-from-hash)
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:gap-12 {
+    gap: 3rem;
   }
 
   .md\:gap-y-8 {

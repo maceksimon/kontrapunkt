@@ -5,9 +5,14 @@ weight: 95
 {% import '@macro/icons/icons.twig' as icons %}
 {% extends "@component/component/component.twig" %}
 {% block content %}
-<footer class="bg-white mt-12 lg:mt-20 pb-8">
-  <div class="container text-black text-lg">
-    <div class="md:flex md:justify-between gap-12">
+<footer class="bg-gray-800 pt-6 pb-6">
+  <div class="container text-white text-lg">
+    <div class="space-y-2 md:space-y-0 md:flex md:items-center md:justify-between md:gap-12">
+      <div>
+        <div class="text-lg leading-loose md:text-right">
+          <div>{{ content.description|typography }}</div>
+        </div>
+      </div>
       <div>
         {{ component_social_icons({
           items: content.social_menu,
@@ -25,11 +30,6 @@ weight: 95
             </ul>
           </nav>
         {% endif %}
-      </div>
-      <div>
-        <div class="text-lg leading-loose md:text-right my-4 text-black">
-          <div>{{- content.description|typography -}}</div>
-        </div>
       </div>
     </div>
   </div>

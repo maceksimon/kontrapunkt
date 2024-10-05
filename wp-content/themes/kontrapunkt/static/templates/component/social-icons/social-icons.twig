@@ -15,9 +15,9 @@ name: "Social icons"
 <div class="flex flex-wrap w-full items-center gap-x-4">
   {% for item in content.items %}
     {% if item.url %}
-      <a href="{{ item.url }}" target="_blank" class="block h-7 text-black hover:text-primary transition-colors ease-in-out duration-150">
+      <a href="{{ item.url }}" target="_blank" class="block h-7 text-white hover:text-primary transition-colors ease-in-out duration-150">
     {% else %}
-      <div class="h-7 text-black">
+      <div class="h-7 text-white">
     {% endif %}
       {{ icons.get(item.icon) }}
       <span class="sr-only">{{ item.title }}</span>
