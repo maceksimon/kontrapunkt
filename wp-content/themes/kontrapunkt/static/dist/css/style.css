@@ -2817,6 +2817,12 @@ span.wpcf7-list-item-label {
 .max-h-\[80vh\] {
   max-height: 80vh;
 }
+.max-h-24 {
+  max-height: 6rem;
+}
+.max-h-16 {
+  max-height: 4rem;
+}
 .min-h-\[35vh\] {
   min-height: 35vh;
 }
@@ -2909,6 +2915,12 @@ span.wpcf7-list-item-label {
 }
 .max-w-80 {
   max-width: 20rem;
+}
+.max-w-64 {
+  max-width: 16rem;
+}
+.max-w-52 {
+  max-width: 13rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -3613,6 +3625,9 @@ span.wpcf7-list-item-label {
 }
 .opacity-70 {
   opacity: 0.7;
+}
+.opacity-100 {
+  opacity: 1;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -5259,6 +5274,9 @@ body:not(.lg-from-hash)
 .hover\:opacity-100:hover {
   opacity: 1;
 }
+.hover\:opacity-70:hover {
+  opacity: 0.7;
+}
 .hover\:brightness-75:hover {
   --tw-brightness: brightness(.75);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -5830,6 +5848,10 @@ body:not(.lg-from-hash)
 
   .lg\:max-h-20 {
     max-height: 5rem;
+  }
+
+  .lg\:max-h-24 {
+    max-height: 6rem;
   }
 
   .lg\:w-0 {
