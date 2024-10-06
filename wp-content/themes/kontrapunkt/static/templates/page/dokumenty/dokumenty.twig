@@ -7,13 +7,15 @@ weight: 7
 {% block content %}
 {% include '@page/_partials/header.twig' %}
 
-{# {% include '@component/breadcrumb/styleguide.twig' %} #}
+<main>
+  {# {% include '@component/breadcrumb/styleguide.twig' %} #}
 
-{{ component_page_header({
-  'title': 'Dokumenty',
-}) }}
+  {{ component_page_header({
+    'title': 'Dokumenty',
+  }) }}
 
-{% include '@component/download-list/styleguide.twig' %}
+  {% include '@component/download-list/styleguide.twig' %}
+</main>
 
 {% include '@page/_partials/footer.twig' %}
 {% endblock %}

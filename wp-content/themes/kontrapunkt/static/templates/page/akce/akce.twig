@@ -7,9 +7,11 @@ weight: 4
 {% block content %}
 {% include '@page/_partials/header.twig' %}
 
-{# {% include '@component/breadcrumb/styleguide.twig' %} #}
+<main>
+  {# {% include '@component/breadcrumb/styleguide.twig' %} #}
 
-{% include '@component/event-list/styleguide.twig' %}
+  {% include '@component/event-list/styleguide.twig' %}
+</main>
 
 {% include '@page/_partials/footer.twig' %}
 {% endblock %}

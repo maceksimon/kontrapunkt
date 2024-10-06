@@ -7,13 +7,15 @@ weight: 9
 {% block content %}
 {% include '@page/_partials/header.twig' %}
 
-{% include '@component/page-header/page-header.twig' with {
-  content: {
-    title: 'Partneři'
-  }
-} %}
+<main>
+  {% include '@component/page-header/page-header.twig' with {
+    content: {
+      title: 'Partneři'
+    }
+  } %}
 
-{% include '@component/logo-cloud/styleguide.twig' %}
+  {% include '@component/logo-cloud/styleguide.twig' %}
+</main>
 
 {% include '@page/_partials/footer.twig' %}
 {% endblock %}
