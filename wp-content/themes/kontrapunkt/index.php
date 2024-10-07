@@ -30,6 +30,7 @@ elseif(is_singular('post')) {
 }
 elseif(is_singular('event')) {
   $post = Timber::query_post();
+
   $context['content'] = [
     'id' => $post->ID,
     'title' => $post->title(),
@@ -38,6 +39,10 @@ elseif(is_singular('event')) {
     'perex' => get_field('perex', $post->ID),
     'contact_list' => get_field('contact_list', $post->ID),
     'image' => Helpers::formatImage(get_field('image', $post->ID)),
+    'date_start' => get_field('date_start', $post->ID),
+    'date_end' => get_field('date_end', $post->ID),
+    'time_start' => get_field('time_start', $post->ID),
+    'time_end' => get_field('time_end', $post->ID),
   ];
   $context['template'] = 'event-full';
 }

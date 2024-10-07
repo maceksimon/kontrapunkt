@@ -37,24 +37,16 @@ function block_event_list_content($content) {
 
   $content['items'] = [];
   foreach ($posts->get_posts() as $key=>$item) {
-    $date_start = get_field('date_start', $item->ID);
-    $date_start_object = DateTime::createFromFormat('Y-m-d', $date_start);
-    $date_end = get_field('date_end', $item->ID);
-    $date_end_object = DateTime::createFromFormat('Y-m-d', $date_end);
-    $time_start = get_field('time_start', $item->ID);
-    $time_end = get_field('time_end', $item->ID);
-    $time_start_object = DateTime::createFromFormat('H:i', $time_start);
-    $time_end_object = DateTime::createFromFormat('H:i', $time_end);
 
     $content['items'][] = [
       'id' => $item->ID,
       'title' => $item->title,
       'image' => Helpers::formatImage(get_field('image', $item->ID)),
       'perex' => get_field('perex', $item->ID),
-      'date_start' => $date_start_object ? $date_start_object->format('j. n. Y') : '',
-      'date_end' => $date_end_object ? $date_end_object->format('j. n. Y') : '',
-      'time_start' => $time_start_object ? $time_start_object->format('H:i') : '',
-      'time_end' => $time_end_object ? $time_end_object->format('H:i') : '',
+      'date_start' => get_field('date_start', $item->ID),
+      'date_end' => get_field('date_end', $item->ID),
+      'time_start' => get_field('time_start', $item->ID),
+      'time_end' => get_field('time_end', $item->ID),
       'price' => get_field('price', $item->ID),
       'location' => get_field('location', $item->ID),
       'author' => get_field('author', $item->ID),

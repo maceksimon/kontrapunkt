@@ -15,7 +15,7 @@ name: Event - teaser
   <div class="bg-white sm:flex gap-12 sm:gap-0 {% if content.url %}group{% endif %}">
     <div class="overflow-hidden">
       {{ component_picture({
-        image: content.image|resizer(['480', '720', '1000', ''], ['240', '360', '', '']),
+        image: content.image|resizer(['600', '900', '1000', ''], ['300', '450', '', '']),
         image_classes: 'w-full max-h-80 sm:w-52 sm:h-full object-cover object-center transition-scale duration-300 ease-in-out group-hover:brightness-90',
         wrapper_classes: 'w-full max-h-80 sm:w-52 sm:h-full bg-gray-300'
       }) }}

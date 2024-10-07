@@ -14,7 +14,7 @@ name: "Event Datetime"
 {% block content %}
 <div class="flex shrink-0 gap-2 items-center text-base">
   {% if content.date_start and not content.date_end %}
-    <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n.') }}</div>
+    <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
     {% if content.time_start %}
       / <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
     {% endif %}
@@ -25,7 +25,7 @@ name: "Event Datetime"
       / <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
     {% endif %}
     -
-    <div class="text-gray-900 leading-tight">{{ content.date_end|date('j. n.') }}</div>
+    <div class="text-gray-900 leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
     {% if content.time_end %}
       / <div class="text-gray-900 leading-tight">{{ content.time_end|date('H:i') }}</div>
     {% endif %}
