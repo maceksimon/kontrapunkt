@@ -12,83 +12,78 @@ name: Event - teaser
 
 {% block content %}
 {% if content.title %}
-  {% if content.url %}
-    <a href="{{ content.url }}" class="block group">
-  {% endif %}
-    <div class="bg-white sm:flex gap-12 sm:gap-0">
-      <div class="overflow-hidden">
-        {{ component_picture({
-          image: content.image|resizer(['480', '720', '1000', ''], ['240', '360', '', '']),
-          image_classes: 'w-full max-h-80 sm:w-52 sm:h-full object-cover object-center transition-scale duration-300 ease-in-out group-hover:brightness-90',
-          wrapper_classes: 'w-full max-h-80 sm:w-52 sm:h-full bg-gray-300'
-        }) }}
-      </div>
-      <div class="grow px-8 py-5 sm:px-10 sm:py-8 space-y-4">
-        {% if content.date_is_today or content.tags|length > 0 %}
-          <div class="justify-between sm:items-center gap-3 flex flex-col sm:flex-row">
-            <ul role="list" class="flex items-center gap-2">
-              {% if content.date_is_today %}
-                <li class="px-2 py-1 bg-amber-500 border border-amber-500 rounded-full space-y-2">
-                  <span class="text-amber-950 font-semibold leading-none">Dnes</span>
-                </li>
-              {% endif %}
-              {% for item in content.tags %}
-                <li class="px-2 py-1 bg-white rounded-full border border-secondary-800 space-y-2">
-                  <span class="text-secondary-900 font-medium leading-none">{{ item.title|typography }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-            {% if content.price %}
-              <div class="gap-2 flex">
-                <div class="text-gray-400 sm:text-xl font-semibold leading-7">{{ content.price }}</div>
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-        <div class="inline-block bg-primary px-4 py-1">
-          <h3 class="text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
-        </div>
-        {% if content.date_start or content.date_end %}
-          <div class="gap-1 flex flex-wrap items-center">
-            {{ component_event_datetime({
-              date_start: content.date_start,
-              date_end: content.date_end,
-              time_start: content.time_start,
-              time_end: content.time_end,
-            }) }}
-          </div>
-        {% endif %}
-        {% if content.perex %}
-          <div class="prose prose-primary">{{ content.perex|typography }}</div>
-        {% endif %}
-        {% if content.location %}
-        <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          <div class="gap-2 flex">
-            <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
-          </div>
-        </div>
-        {% endif %}
-        {% if content.author or content.url %}
-          <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-            {% if content.author %}
-              <div class="gap-2 flex py-1">
-                <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
-              </div>
-            {% endif %}
-            {% if content.url %}
-              <button class="items-center gap-2 flex">
-                <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
-                  <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
-                </div>
-              </button>
-            {% endif %}
-          </div>
-        {% endif %}
-      </div>
+  <div class="bg-white sm:flex gap-12 sm:gap-0 {% if content.url %}group{% endif %}">
+    <div class="overflow-hidden">
+      {{ component_picture({
+        image: content.image|resizer(['480', '720', '1000', ''], ['240', '360', '', '']),
+        image_classes: 'w-full max-h-80 sm:w-52 sm:h-full object-cover object-center transition-scale duration-300 ease-in-out group-hover:brightness-90',
+        wrapper_classes: 'w-full max-h-80 sm:w-52 sm:h-full bg-gray-300'
+      }) }}
     </div>
-  {% if content.url %}
-    </a>
-  {% endif %}
+    <div class="relative grow px-8 py-5 sm:px-10 sm:py-8 space-y-4">
+      {% if content.date_is_today or content.tags|length > 0 %}
+        <div class="justify-between sm:items-center gap-3 flex flex-col sm:flex-row">
+          <ul role="list" class="flex items-center gap-2">
+            {% if content.date_is_today %}
+              <li class="px-2 py-1 bg-amber-500 border border-amber-500 rounded-full space-y-2">
+                <span class="text-amber-950 font-semibold leading-none">Dnes</span>
+              </li>
+            {% endif %}
+            {% for item in content.tags %}
+              <li class="px-2 py-1 bg-white rounded-full border border-secondary-800 space-y-2">
+                <span class="text-secondary-900 font-medium leading-none">{{ item.title|typography }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+          {% if content.price %}
+            <div class="gap-2 flex">
+              <div class="text-gray-400 sm:text-xl font-semibold leading-7">{{ content.price }}</div>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="inline-block bg-primary px-4 py-1">
+        <h3 class="text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
+      </div>
+      {% if content.date_start or content.date_end %}
+        <div class="gap-1 flex flex-wrap items-center">
+          {{ component_event_datetime({
+            date_start: content.date_start,
+            date_end: content.date_end,
+            time_start: content.time_start,
+            time_end: content.time_end,
+          }) }}
+        </div>
+      {% endif %}
+      {% if content.perex %}
+        <div class="prose prose-primary [&_a]:relative [&_a]:z-10">{{ content.perex|typography }}</div>
+      {% endif %}
+      {% if content.location %}
+      <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+        <div class="gap-2 flex">
+          <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
+        </div>
+      </div>
+      {% endif %}
+      {% if content.author or content.url %}
+        <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+          {% if content.author %}
+            <div class="gap-2 flex py-1">
+              <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
+            </div>
+          {% endif %}
+          {% if content.url %}
+            <a href="{{ content.url }}" class="items-center gap-2 flex">
+              <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
+                <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
+              </div>
+              <span class="absolute inset-0"></span>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
 {% else %}
   {{ component_alert({
     type: 'error',
