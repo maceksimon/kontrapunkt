@@ -58,7 +58,7 @@ $args = [
   "rewrite" => [ "slug" => "udalosti", "with_front" => true ],
   "query_var" => true,
   "menu_icon" => "dashicons-calendar-alt",
-  "supports" => [ "title", "excerpt", "thumbnail" ],
+  "supports" => [ "title", "editor"],
   "show_in_graphql" => false,
 ];
 
@@ -79,14 +79,21 @@ $event_fields
 ])
 ->addText('location', [
   'label' => 'Místo',
-  'required' => 1,
+  'required' => 0,
   'placeholder' => 'Zadejte název',
   'maxlength' => 40,
   'wpml_cf_preferences' => 2,
 ])
+->addText('author', [
+  'label' => 'Autor',
+  'required' => 0,
+  'placeholder' => 'Zadejte jméno',
+  'maxlength' => 80,
+  'wpml_cf_preferences' => 2,
+])
 ->addText('price', [
   'label' => 'Cena',
-  'required' => 1,
+  'required' => 0,
   'placeholder' => 'Zadejte cenu',
   'maxlength' => 40,
   'wpml_cf_preferences' => 2,

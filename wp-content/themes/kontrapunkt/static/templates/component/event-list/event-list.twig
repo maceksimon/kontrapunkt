@@ -15,13 +15,13 @@ name: "Event - list"
 } %}
 
 {% block content %}
-{{ component_list_stacked({
-  inner_component: 'event-teaser',
-  items: content.items,
-}) }}
-{% if content.link %}
-  <div class="text-center mt-6 sm:mt-8">
-    {{ component_button(content.link) }}
-  </div>
-{% endif %}
+<div class="max-w-screen-md mx-auto">
+  {{ component_list_stacked({
+    inner_component: 'event-teaser',
+    items: content.items,
+  }) }}
+  {{ component_pagination({
+    items: content.pagination,
+  }) }}
+</div>
 {% endblock %}
