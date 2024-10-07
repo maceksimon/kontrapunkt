@@ -66,10 +66,10 @@ module.exports = {
           css: {
             color: "#000",
             a: {
-              color: primary.DEFAULT,
+              display: "inline",
               fontWeight: "inherit",
               "&:hover": {
-                color: "#c2410c",
+                textDecoration: "none",
               },
             },
           },

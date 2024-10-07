@@ -2056,11 +2056,11 @@ select {
   color: #000;
 }
 .prose-primary :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-  color: #ffcc02;
+  display: inline;
   font-weight: inherit;
 }
 .prose-primary :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)):hover {
-  color: #c2410c;
+  text-decoration: none;
 }
 .prose-center {
   margin: auto;
@@ -3027,11 +3027,6 @@ span.wpcf7-list-item-label {
 .gap-y-12 {
   row-gap: 3rem;
 }
-.-space-x-px > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(-1px * var(--tw-space-x-reverse));
-  margin-left: calc(-1px * calc(1 - var(--tw-space-x-reverse)));
-}
 .space-x-1\.5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.375rem * var(--tw-space-x-reverse));
@@ -3041,6 +3036,11 @@ span.wpcf7-list-item-label {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -3071,16 +3071,6 @@ span.wpcf7-list-item-label {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
-.space-x-1 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-3 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-auto {
   overflow: auto;
@@ -3408,10 +3398,6 @@ span.wpcf7-list-item-label {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-.px-2\.5 {
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
 }
 .pb-12 {
   padding-bottom: 3rem;
