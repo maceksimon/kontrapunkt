@@ -40,5 +40,5 @@ $block->fieldsBuilder()
     'required' => 1,
     'wpml_cf_preferences' => 1,
   ]);
-$block->setValidationFields(['title', 'items']);
+$block->setValidationFields([]);
 $block->register();
