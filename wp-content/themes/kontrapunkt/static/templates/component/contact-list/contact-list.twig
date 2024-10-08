@@ -24,27 +24,27 @@ name: "Contact - list"
             <dt class="sr-only">{{ __('Email', 'kontrapunkt') }}</dt>
             <dd class="flex gap-3">
               <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('email') }}</div>
-              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900 break-all" href="mailto:{{ item.email }}">
-                {{ item.email }}
+              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900 break-all" href="mailto:{{ item.value_simple }}">
+                {{ item.value_simple }}
               </a>
             </dd>
           {% elseif item.type == 'phone' %}
             <dt class="sr-only">{{ __('Phone', 'kontrapunkt') }}</dt>
             <dd class="flex gap-3">
               <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('phone') }}</div>
-              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900" href="tel:{{ item.phone }}">{{ item.phone }}</a>
+              <a class="underline hover:no-underline text-gray-700 hover:text-gray-900" href="tel:{{ item.value_simple }}">{{ item.value_simple }}</a>
             </dd>
           {% elseif item.type == 'address' %}
             <dt class="sr-only">{{ __('Address', 'kontrapunkt') }}</dt>
             <dd class="flex gap-3">
               <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('location') }}</div>
-              <div>{{ item.address|typography }}</div>
+              <div>{{ item.value_wysiwyg|typography }}</div>
             </dd>
           {% elseif item.type == 'bank' %}
             <dt class="sr-only">{{ __('Bank details', 'kontrapunkt') }}</dt>
             <dd class="flex gap-3">
               <div class="h-6 w-6 mt-1 sm:mt-0 sm:h-8 sm:w-8 shrink-0 text-gray-900">{{ icons.get('bank') }}</div>
-              <div>{{ item.bank|typography }}</div>
+              <div>{{ item.value_wysiwyg|typography }}</div>
             </dd>
           {% endif %}
         </div>
