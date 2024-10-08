@@ -19,8 +19,8 @@ name: "Download - list"
       <ul role="list" class="space-y-4">
         {% for item in content.items %}
           <li class="max-w-80">
-            {% if item.link.url is not empty %}
-              <a download href="{{ item.link.url }}" target="_blank" class="group">
+            {% if item.url is not empty %}
+              <a download href="{{ item.url }}" target="_blank" class="group">
             {% endif %}
               <div class="relative py-2.5 px-5 border-l-2 border-primary flex items-center justify-between transition-colors before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
                 <div class="isolate flex-1 flex items-center">
@@ -37,7 +37,7 @@ name: "Download - list"
                   {{ icons.get('paper-clip')}}
                 </div>
               </div>
-            {% if item.link.url is not empty %}
+            {% if item.url is not empty %}
               </a>
             {% endif %}
           </li>
