@@ -21,7 +21,7 @@ name: "Aktuality - položka"
       }) }}
     </div>
   </div>
-  {% if content.link %}
+  {% if content.link.url %}
   <a href="{{ content.link.url }}" target="{{ content.link.target }}" class="block relative group">
   {% endif %}
     <div class="space-y-2 pt-6">
@@ -47,7 +47,7 @@ name: "Aktuality - položka"
         <div class="prose prose-primary">{{ content.description|typography }}</div>
       {% endif %}
     </div>
-  {% if content.link %}
+  {% if content.link.url %}
   </a>
   {% endif %}
 </div>
