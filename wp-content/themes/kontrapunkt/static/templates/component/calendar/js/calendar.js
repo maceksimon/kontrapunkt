@@ -19,7 +19,6 @@ const calendar = new Calendar(calendarEl, {
   },
   displayEventEnd: true,
   initialView: 'dayGridMonth',
-  initialDate: '2022-06-01',
   locale: 'cs',
   headerToolbar: {
     left: 'title',

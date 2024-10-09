@@ -30,7 +30,6 @@ const calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_1__.Calendar(ca
   },
   displayEventEnd: true,
   initialView: 'dayGridMonth',
-  initialDate: '2022-06-01',
   locale: 'cs',
   headerToolbar: {
     left: 'title',
@@ -90,4 +89,4 @@ const useGetDataset = (element, dataContainer) => {
 /***/ })
 
 }]);
-//# sourceMappingURL=templates_component_calendar_js_calendar_js.a1cbaea44de234ff5b57.js.map
+//# sourceMappingURL=templates_component_calendar_js_calendar_js.95ea07c71a6ec016e23e.js.map
