@@ -20,10 +20,10 @@ name: "Header - bar"
     wrapper_classes: 'block lg:hidden'
   }) }} #}
 
-  {{ component_header_language_switcher({
+  {# {{ component_header_language_switcher({
     items: content.language_switcher,
     wrapper_classes: 'block lg:hidden'
-  }) }}
+  }) }} #}
 
   <button class="rounded-full text-gray-900" type="button" aria-expanded="false" aria-label="{{ _x('Toggle navigation', 'kontrapunkt', 'kontrapunkt') }}" @click="isMenuOpen = !isMenuOpen">
     <div x-cloak x-show="!isMenuOpen" class="h-6">
