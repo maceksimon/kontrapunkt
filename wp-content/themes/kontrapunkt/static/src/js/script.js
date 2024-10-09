@@ -18,6 +18,10 @@ var $component = once("processed", ".component-slider").shift();
 if ($component) {
   import("../../templates/component/slider/js/slider");
 }
+var $component = once("processed", ".component-event-header").shift();
+if ($component) {
+  import("../../templates/component/gallery/js/gallery");
+}
 var $component = once("processed", ".component-wp-form").shift();
 if ($component) {
   import("../../templates/component/wp-form/js/wp-form");

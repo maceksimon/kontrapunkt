@@ -4112,6 +4112,10 @@ var $component = (0,_drupal_once__WEBPACK_IMPORTED_MODULE_0__["default"])("proce
 if ($component) {
   Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_swiper_modules_index_mjs-node_modules_swiper_swiper_mjs"), __webpack_require__.e("templates_component_slider_js_slider_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../templates/component/slider/js/slider */ "./templates/component/slider/js/slider.js"));
 }
+var $component = (0,_drupal_once__WEBPACK_IMPORTED_MODULE_0__["default"])("processed", ".component-event-header").shift();
+if ($component) {
+  Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_lightgallery_lightgallery_es5_js"), __webpack_require__.e("templates_component_gallery_js_gallery_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../templates/component/gallery/js/gallery */ "./templates/component/gallery/js/gallery.js"));
+}
 var $component = (0,_drupal_once__WEBPACK_IMPORTED_MODULE_0__["default"])("processed", ".component-wp-form").shift();
 if ($component) {
   __webpack_require__.e(/*! import() */ "templates_component_wp-form_js_wp-form_js").then(__webpack_require__.t.bind(__webpack_require__, /*! ../../templates/component/wp-form/js/wp-form */ "./templates/component/wp-form/js/wp-form.js", 23));
