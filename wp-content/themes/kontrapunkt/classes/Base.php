@@ -551,6 +551,17 @@ class Base extends Site {
         'raw' => $raw,
       ];
       return Timber::compile('@component/content/content.twig', $context);
+    } else if ($block['blockName'] === 'core/list-item') {
+      // do not add margin to list items
+      $context = Timber::context();
+      $context['content'] = [
+        'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
+        'wrapper_classes' => 'container',
+        'container' => 'prose max-w-screen-md mx-auto',
+        'html' => $block_content,
+        'raw' => $raw,
+      ];
+      return Timber::compile('@component/content/content.twig', $context);
     } else {
       $context = Timber::context();
       $context['content'] = [

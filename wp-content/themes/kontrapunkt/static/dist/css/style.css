@@ -2560,6 +2560,9 @@ span.wpcf7-list-item-label {
     padding-bottom: 3rem;
   }
 }
+.component-gutenberg-list .wp-block-list {
+  padding-left: 0px;
+}
 .component-slider .swiper-slide {
   height: auto;
 }
