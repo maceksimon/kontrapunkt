@@ -1,0 +1,22 @@
+{#
+name: "Kalendář"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'calendar',
+  'id': 'calendar',
+  'classes': [
+    content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
+    '[&_table_a]:no-underline [&_table_a]:text-gray-800',
+    content.wrapper_classes,
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+  'attributes': {
+    'data-events': content.items|json_encode(constant('JSON_HEX_APOS') b-or constant('JSON_HEX_AMP') b-or constant('JSON_HEX_QUOT'))|raw,
+  }
+} %}
+{% block content %}
+  <div id="calendar"></div>
+{% endblock %}

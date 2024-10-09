@@ -3896,7 +3896,7 @@ var module_default = src_default;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + "." + {"vendors-node_modules_lightgallery_lightgallery_es5_js":"8c56b6b043d7a1d43f71","templates_component_gallery_js_gallery_js":"2ad5e7f1e55c41bf4904","vendors-node_modules_swiper_modules_index_mjs-node_modules_swiper_swiper_mjs":"a723ef1a7fdf2dcdcdc1","templates_component_slider_js_slider_js":"babd6754fbb855002e36","templates_component_wp-form_js_wp-form_js":"5bab2e70eab4b744a62f"}[chunkId] + ".js";
+/******/ 			return "" + chunkId + "." + {"vendors-node_modules_lightgallery_lightgallery_es5_js":"8c56b6b043d7a1d43f71","templates_component_gallery_js_gallery_js":"2ad5e7f1e55c41bf4904","vendors-node_modules_swiper_modules_index_mjs-node_modules_swiper_swiper_mjs":"a723ef1a7fdf2dcdcdc1","templates_component_slider_js_slider_js":"babd6754fbb855002e36","templates_component_wp-form_js_wp-form_js":"5bab2e70eab4b744a62f","vendors-node_modules_fullcalendar_daygrid_index_js":"da1a02fcd8c9edaf980d","templates_component_calendar_js_calendar_js":"a1cbaea44de234ff5b57"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -4115,6 +4115,10 @@ if ($component) {
 var $component = (0,_drupal_once__WEBPACK_IMPORTED_MODULE_0__["default"])("processed", ".component-wp-form").shift();
 if ($component) {
   __webpack_require__.e(/*! import() */ "templates_component_wp-form_js_wp-form_js").then(__webpack_require__.t.bind(__webpack_require__, /*! ../../templates/component/wp-form/js/wp-form */ "./templates/component/wp-form/js/wp-form.js", 23));
+}
+var $component = (0,_drupal_once__WEBPACK_IMPORTED_MODULE_0__["default"])("processed", ".component-calendar").shift();
+if ($component) {
+  Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_fullcalendar_daygrid_index_js"), __webpack_require__.e("templates_component_calendar_js_calendar_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ../../templates/component/calendar/js/calendar */ "./templates/component/calendar/js/calendar.js"));
 }
 
 // var $component = once("processed", "body").shift();

@@ -6207,3 +6207,10 @@ body:not(.lg-from-hash)
 .\[\&_a\]\:z-10 a {
   z-index: 10;
 }
+.\[\&_table_a\]\:text-gray-800 table a {
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
+}
+.\[\&_table_a\]\:no-underline table a {
+  text-decoration-line: none;
+}

@@ -23,6 +23,11 @@ if ($component) {
   import("../../templates/component/wp-form/js/wp-form");
 }
 
+var $component = once("processed", ".component-calendar").shift();
+if ($component) {
+  import("../../templates/component/calendar/js/calendar");
+}
+
 // var $component = once("processed", "body").shift();
 // if ($component && typeof ccnstL !== "undefined") {
 //   import("../../templates/component/cookieconsent/js/cookieconsent");

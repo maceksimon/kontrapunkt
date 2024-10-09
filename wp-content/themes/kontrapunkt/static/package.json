@@ -45,6 +45,8 @@
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
     "@drupal/once": "^1.0.1",
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
     "alpinejs": "^3.14.1",
     "autosize": "^6.0.1",
     "babel-loader": "^8.3.0",
