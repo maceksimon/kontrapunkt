@@ -4,9 +4,9 @@ RewriteEngine on
 RewriteRule ^styleguide(.*)$ /wp-content/themes/kontrapunkt/static/index.php [L]
 </IfModule>
 # BEGIN WordPress
-# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
-# dynamically generated, and should only be modified via WordPress filters.
-# Any changes to the directives between these markers will be overwritten.
+# Direktivy (řádky) mezi "BEGIN WordPress" a "END WordPress" jsou
+# dynamicky generované a měly by být upravovány pouze pomocí filtrů WordPressu.
+# Veškeré změny směrnic mezi těmito značkami budou přepsány.
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

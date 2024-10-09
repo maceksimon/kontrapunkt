@@ -14,12 +14,10 @@ name: "Aktuality - seznam"
 } %}
 
 {% block content %}
-{% if content.items is not empty %}
-  <div class="max-w-screen-md mx-auto">
-    {{ component_grid_2_cols({
-      items: content.items,
-      inner_component: 'news-teaser',
-    }) }}
-  </div>
-{% endif %}
+<div class="max-w-screen-md mx-auto">
+  {{ component_grid_2_cols({
+    items: content.items,
+    inner_component: 'news-teaser',
+  }) }}
+</div>
 {% endblock %}
