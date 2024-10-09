@@ -60,6 +60,7 @@ function block_calendar_content($content) {
       'end' => $end_datetime,
       'location' => get_field('location', $item->ID),
       'author' => get_field('author', $item->ID),
+      'url' => get_the_permalink($item->ID),
     ];
   }
 

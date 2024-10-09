@@ -3896,7 +3896,7 @@ var module_default = src_default;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + "." + {"vendors-node_modules_lightgallery_lightgallery_es5_js":"8c56b6b043d7a1d43f71","templates_component_gallery_js_gallery_js":"2ad5e7f1e55c41bf4904","vendors-node_modules_swiper_modules_index_mjs-node_modules_swiper_swiper_mjs":"a723ef1a7fdf2dcdcdc1","templates_component_slider_js_slider_js":"babd6754fbb855002e36","templates_component_wp-form_js_wp-form_js":"5bab2e70eab4b744a62f","vendors-node_modules_fullcalendar_daygrid_index_js":"da1a02fcd8c9edaf980d","templates_component_calendar_js_calendar_js":"95ea07c71a6ec016e23e"}[chunkId] + ".js";
+/******/ 			return "" + chunkId + "." + {"vendors-node_modules_lightgallery_lightgallery_es5_js":"8c56b6b043d7a1d43f71","templates_component_gallery_js_gallery_js":"2ad5e7f1e55c41bf4904","vendors-node_modules_swiper_modules_index_mjs-node_modules_swiper_swiper_mjs":"a723ef1a7fdf2dcdcdc1","templates_component_slider_js_slider_js":"babd6754fbb855002e36","templates_component_wp-form_js_wp-form_js":"5bab2e70eab4b744a62f","vendors-node_modules_fullcalendar_daygrid_index_js":"da1a02fcd8c9edaf980d","templates_component_calendar_js_calendar_js":"df490c12f11756d9273a"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

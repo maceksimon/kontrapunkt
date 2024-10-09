@@ -6201,6 +6201,13 @@ body:not(.lg-from-hash)
     line-height: 1;
   }
 }
+.\[\&_\.fc-event-main-frame\]\:flex-wrap .fc-event-main-frame {
+  flex-wrap: wrap;
+}
+.\[\&_\.fc-event-main-frame\]\:px-1 .fc-event-main-frame {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 .\[\&_a\]\:relative a {
   position: relative;
 }

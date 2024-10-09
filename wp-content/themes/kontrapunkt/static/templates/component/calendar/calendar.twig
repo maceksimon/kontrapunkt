@@ -5,18 +5,26 @@ name: "Kalendář"
 {% extends "@component/component/component.twig" %}
 {% set component = {
   'name': 'calendar',
-  'id': 'calendar',
   'classes': [
     content.inner ? '' : 'my-8 sm:my-10 lg:my-12',
     '[&_table_a]:no-underline [&_table_a]:text-gray-800',
+    '[&_.fc-event-main-frame]:flex-wrap [&_.fc-event-main-frame]:px-1',
     content.wrapper_classes,
   ],
   'container': content.inner ? '' : 'container',
   'heading': content.heading,
-  'attributes': {
-    'data-events': content.items|json_encode(constant('JSON_HEX_APOS') b-or constant('JSON_HEX_AMP') b-or constant('JSON_HEX_QUOT'))|raw,
-  }
 } %}
 {% block content %}
-  <div id="calendar"></div>
+  <div id="calendar" data-events='{{ content.items|json_encode(constant('JSON_HEX_APOS') b-or constant('JSON_HEX_AMP') b-or constant('JSON_HEX_QUOT'))|raw }}'></div>
+
+  <style lang="css">
+    #calendar {
+      --fc-button-bg-color: #ffcc02;
+      --fc-button-border-color: transparent;
+      --fc-button-text-color: #000;
+      --fc-button-hover-bg-color: #efb603;
+      --fc-button-hover-border-color: transparent;
+      --fc-button-hover-text-color: #000;
+    }
+  </style>
 {% endblock %}

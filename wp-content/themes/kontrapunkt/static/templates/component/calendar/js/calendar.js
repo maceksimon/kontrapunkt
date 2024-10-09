@@ -27,6 +27,5 @@ const calendar = new Calendar(calendarEl, {
   },
   eventColor: '#ffcc02',
   eventTextColor: '#000',
-
 });
 calendar.render();
