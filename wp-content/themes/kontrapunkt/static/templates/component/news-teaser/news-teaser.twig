@@ -36,7 +36,7 @@ name: "Aktuality - položka"
             {{ content.title|typography }}
           </div>
         {% endif %}
-        {% if content.link %}
+        {% if content.link.url %}
           <div class="w-6 h-6">
             {{ icons.get('external-link') }}
           </div>
