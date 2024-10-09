@@ -16,7 +16,7 @@ name: "Event - header"
 
 {% block content %}
 {% if content.title %}
-  <div class="space-y-8">
+  <div class="max-w-screen-md mx-auto space-y-8">
     <div class="space-y-4">
       <h1 class="font-bold leading-tight text-2xl sm:text-3xl text-gray-950">{{ content.title|typography }}</h1>
       {# location #}
@@ -37,7 +37,7 @@ name: "Event - header"
     <div class="flex flex-col gap-8 sm:flex-row-reverse">
       <div class="grow space-y-6">
         {% if content.perex %}
-          <div class="prose prose-primary prose-lg">{{ content.perex|typography }}</div>
+          <div class="prose prose-primary">{{ content.perex|typography }}</div>
         {% endif %}
         {% if content.contact_list and content.contact_list.items|length %}
           <div>
@@ -55,7 +55,7 @@ name: "Event - header"
           {{ component_picture({
             image: content.image|resizer(['750', '500', '1024', ''], ['600', '400', '640', ''], ['750', '500', '', '']),
             url: content.image.0.src,
-            image_classes: 'w-full rounded-xl',
+            image_classes: 'w-full',
             link_lightbox: true,
           }) }}
         </div>
