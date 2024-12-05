@@ -66,6 +66,12 @@ register_post_type( "event", $args );
 
 $event_fields = new FieldsBuilder('Událost');
 $event_fields
+->addLink('web_link', [
+  'label' => 'Webový odkaz',
+  'instructions' => 'Zadejte URL webové stránky události',
+  'required' => 0,
+  'wpml_cf_preferences' => 2,
+])
 ->addImage('image', [
   'label' => 'Obrázek',
   'required' => 1,
@@ -76,6 +82,7 @@ $event_fields
   'required' => 1,
   'media_upload' => FALSE,
   'show_in_grpahql' => TRUE,
+  'wpml_cf_preferences' => 2,
 ])
 ->addText('location', [
   'label' => 'Místo',

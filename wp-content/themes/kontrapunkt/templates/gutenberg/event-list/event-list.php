@@ -50,6 +50,7 @@ function block_event_list_content($content) {
       'price' => get_field('price', $item->ID),
       'location' => get_field('location', $item->ID),
       'author' => get_field('author', $item->ID),
+      'web_link' => get_field('web_link', $item->ID),
       'url' => $item->link,
       'created' => $item->date('U'),
     ];
