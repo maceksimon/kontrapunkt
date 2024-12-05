@@ -42,7 +42,7 @@ name: Event - teaser
           {% endif %}
         </div>
       {% endif %}
-      <div class="inline-block bg-primary px-4 py-1">
+      <div class="inline-block bg-primary px-4 py-1 mb-4">
         <h3 class="text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
       </div>
       {% if content.date_start or content.date_end %}
@@ -65,13 +65,23 @@ name: Event - teaser
         </div>
       </div>
       {% endif %}
+      {% if content.web_link %}
+        {# Set web link title to link title or link href with https:// removed #}
+        {% set web_link_title = content.web_link.title ? content.web_link.title : content.web_link.url|replace('https://', '') %}
+        <div class="z-10 relative grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+          <div class="gap-2 flex items-center">
+            <span class="inline-block h-4 w-4">{{ icons.get('external-link') }}</span>
+            <a href="{{ content.web_link.url }}" class="text-gray-700 font-normal underline hover:no-underline">{{ web_link_title }}</a>
+          </div>
+        </div>
+      {% endif %}
       {% if content.author or content.url %}
         <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          {% if content.author %}
-            <div class="gap-2 flex py-1">
+          <div class="gap-2 flex py-1">
+            {% if content.author %}
               <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
           {% if content.url %}
             <a href="{{ content.url }}" class="items-center gap-2 flex">
               <div class="relative items-center flex px-2 py-1 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
