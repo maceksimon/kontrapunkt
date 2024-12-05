@@ -65,21 +65,21 @@ name: Event - teaser
         </div>
       </div>
       {% endif %}
-      {% if content.web_link %}
-        {# Set web link title to link title or link href with https:// removed #}
-        {% set web_link_title = content.web_link.title ? content.web_link.title : content.web_link.url|replace('https://', '') %}
-        <div class="z-10 relative grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          <div class="gap-2 flex items-center">
-            <span class="inline-block h-4 w-4">{{ icons.get('external-link') }}</span>
-            <a href="{{ content.web_link.url }}" target="{{ content.web_link.target }}" class="text-gray-700 font-normal underline hover:no-underline">{{ web_link_title }}</a>
-          </div>
-        </div>
+      {% if content.author %}
+        <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
       {% endif %}
       {% if content.author or content.url %}
         <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
           <div class="gap-2 flex py-1">
-            {% if content.author %}
-              <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
+            {% if content.web_link %}
+              {# Set web link title to link title or link href with https:// removed #}
+              {% set web_link_title = content.web_link.title ? content.web_link.title : content.web_link.url|replace('https://', '') %}
+              <div class="z-10 relative group/link grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+                <div class="gap-2 flex items-center">
+                  <span class="inline-block h-4 w-4 group-hover/link:text-primary">{{ icons.get('external-link') }}</span>
+                  <a href="{{ content.web_link.url }}" target="{{ content.web_link.target }}" class="text-gray-700 font-normal underline group-hover/link:no-underline">{{ web_link_title }}</a>
+                </div>
+              </div>
             {% endif %}
           </div>
           {% if content.url %}
