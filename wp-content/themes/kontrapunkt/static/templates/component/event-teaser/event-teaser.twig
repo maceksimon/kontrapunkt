@@ -71,7 +71,7 @@ name: Event - teaser
         <div class="z-10 relative grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
           <div class="gap-2 flex items-center">
             <span class="inline-block h-4 w-4">{{ icons.get('external-link') }}</span>
-            <a href="{{ content.web_link.url }}" class="text-gray-700 font-normal underline hover:no-underline">{{ web_link_title }}</a>
+            <a href="{{ content.web_link.url }}" target="{{ content.web_link.target }}" class="text-gray-700 font-normal underline hover:no-underline">{{ web_link_title }}</a>
           </div>
         </div>
       {% endif %}
