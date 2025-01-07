@@ -5257,10 +5257,6 @@ body:not(.lg-from-hash)
 .hover\:no-underline:hover {
   text-decoration-line: none;
 }
-.hover\:brightness-75:hover {
-  --tw-brightness: brightness(.75);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -5306,8 +5302,8 @@ body:not(.lg-from-hash)
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
 }
-.group:hover .group-hover\:brightness-90 {
-  --tw-brightness: brightness(.9);
+.group:hover .group-hover\:brightness-105 {
+  --tw-brightness: brightness(1.05);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .group:hover .before\:group-hover\:scale-x-100::before {
