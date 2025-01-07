@@ -3,42 +3,42 @@
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 $labels = [
-  "name" => __( "Události", "kontrapunkt" ),
-  "singular_name" => __( "Událost", "kontrapunkt" ),
-  "menu_name" => __( "Události", "kontrapunkt" ),
-  "all_items" => __( "Všechny události", "kontrapunkt" ),
-  "add_new" => __( "Nová událost", "kontrapunkt" ),
-  "add_new_item" => __( "Přidat novou událost", "kontrapunkt" ),
-  "edit_item" => __( "Upravit událost", "kontrapunkt" ),
-  "new_item" => __( "Nová událost", "kontrapunkt" ),
-  "view_item" => __( "Zobrazit události", "kontrapunkt" ),
-  "view_items" => __( "Zobrazit události", "kontrapunkt" ),
-  "search_items" => __( "Vyhledat událost", "kontrapunkt" ),
-  "not_found" => __( "Žádná událost nenalezena", "kontrapunkt" ),
-  "not_found_in_trash" => __( "Žádná událost nenalezena", "kontrapunkt" ),
-  "parent" => __( "Nadřazená událost:", "kontrapunkt" ),
-  "featured_image" => __( "Hlavní obrázek pro tuto událost", "kontrapunkt" ),
-  "set_featured_image" => __( "Nastavit obrázek pro tuto událost", "kontrapunkt" ),
-  "remove_featured_image" => __( "Odstranit obrázek pro tuto událost", "kontrapunkt" ),
-  "use_featured_image" => __( "Použít jako hlavní obrázek pro tuto událost", "kontrapunkt" ),
-  "archives" => __( "Archiv událostí", "kontrapunkt" ),
-  "insert_into_item" => __( "Vložit do události", "kontrapunkt" ),
-  "uploaded_to_this_item" => __( "Nahrát do události", "kontrapunkt" ),
-  "filter_items_list" => __( "Filtrovat seznam událostí", "kontrapunkt" ),
-  "items_list_navigation" => __( "Navigace seznamu událostí", "kontrapunkt" ),
-  "items_list" => __( "Seznam událostí", "kontrapunkt" ),
-  "attributes" => __( "Vlastnosti události", "kontrapunkt" ),
-  "name_admin_bar" => __( "Událost", "kontrapunkt" ),
-  "item_published" => __( "Událost publikována", "kontrapunkt" ),
-  "item_published_privately" => __( "Událost publikována soukromě", "kontrapunkt" ),
-  "item_reverted_to_draft" => __( "Událost převedena na koncept", "kontrapunkt" ),
-  "item_scheduled" => __( "Událost naplánována", "kontrapunkt" ),
-  "item_updated" => __( "Událost aktualizována", "kontrapunkt" ),
-  "parent_item_colon" => __( "Nadřazená událost:", "kontrapunkt" ),
+  "name" => __( "Akce", "kontrapunkt" ),
+  "singular_name" => __( "Akce", "kontrapunkt" ),
+  "menu_name" => __( "Akce", "kontrapunkt" ),
+  "all_items" => __( "Všechny akce", "kontrapunkt" ),
+  "add_new" => __( "Nová akce", "kontrapunkt" ),
+  "add_new_item" => __( "Přidat novou akci", "kontrapunkt" ),
+  "edit_item" => __( "Upravit akci", "kontrapunkt" ),
+  "new_item" => __( "Nová akce", "kontrapunkt" ),
+  "view_item" => __( "Zobrazit akce", "kontrapunkt" ),
+  "view_items" => __( "Zobrazit akce", "kontrapunkt" ),
+  "search_items" => __( "Vyhledat akci", "kontrapunkt" ),
+  "not_found" => __( "Žádná akce nenalezena", "kontrapunkt" ),
+  "not_found_in_trash" => __( "Žádná akce nenalezena", "kontrapunkt" ),
+  "parent" => __( "Nadřazená akce:", "kontrapunkt" ),
+  "featured_image" => __( "Hlavní obrázek pro tuto akci", "kontrapunkt" ),
+  "set_featured_image" => __( "Nastavit obrázek pro tuto akci", "kontrapunkt" ),
+  "remove_featured_image" => __( "Odstranit obrázek pro tuto akci", "kontrapunkt" ),
+  "use_featured_image" => __( "Použít jako hlavní obrázek pro tuto akci", "kontrapunkt" ),
+  "archives" => __( "Archiv akcí", "kontrapunkt" ),
+  "insert_into_item" => __( "Vložit do akce", "kontrapunkt" ),
+  "uploaded_to_this_item" => __( "Nahrát do akce", "kontrapunkt" ),
+  "filter_items_list" => __( "Filtrovat seznam akcí", "kontrapunkt" ),
+  "items_list_navigation" => __( "Navigace seznamu akcí", "kontrapunkt" ),
+  "items_list" => __( "Seznam akcí", "kontrapunkt" ),
+  "attributes" => __( "Vlastnosti akce", "kontrapunkt" ),
+  "name_admin_bar" => __( "Akce", "kontrapunkt" ),
+  "item_published" => __( "Akce publikována", "kontrapunkt" ),
+  "item_published_privately" => __( "Akce publikována soukromě", "kontrapunkt" ),
+  "item_reverted_to_draft" => __( "Akce převedena na koncept", "kontrapunkt" ),
+  "item_scheduled" => __( "Akce naplánována", "kontrapunkt" ),
+  "item_updated" => __( "Akce aktualizována", "kontrapunkt" ),
+  "parent_item_colon" => __( "Nadřazená akce:", "kontrapunkt" ),
 ];
 
 $args = [
-  "label" => __( "Události", "kontrapunkt" ),
+  "label" => __( "Akce", "kontrapunkt" ),
   "labels" => $labels,
   "description" => "",
   "public" => true,
@@ -64,11 +64,11 @@ $args = [
 
 register_post_type( "event", $args );
 
-$event_fields = new FieldsBuilder('Událost');
+$event_fields = new FieldsBuilder('Akce');
 $event_fields
 ->addLink('web_link', [
   'label' => 'Webový odkaz',
-  'instructions' => 'Zadejte URL webové stránky události',
+  'instructions' => 'Zadejte URL webové stránky akce',
   'required' => 0,
   'wpml_cf_preferences' => 2,
 ])
@@ -78,7 +78,7 @@ $event_fields
   'wpml_cf_preferences' => 1,
 ])
 ->addWysiwyg('perex', [
-  'label' => 'Popis události',
+  'label' => 'Popis akce',
   'required' => 1,
   'media_upload' => FALSE,
   'show_in_grpahql' => TRUE,
