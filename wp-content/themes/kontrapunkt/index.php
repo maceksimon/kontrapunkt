@@ -43,6 +43,7 @@ elseif(is_singular('event')) {
     'date_end' => get_field('date_end', $post->ID),
     'time_start' => get_field('time_start', $post->ID),
     'time_end' => get_field('time_end', $post->ID),
+    'additional_showtimes' => get_field('additional_showtimes', $post->ID),
   ];
   $context['template'] = 'event-full';
 }

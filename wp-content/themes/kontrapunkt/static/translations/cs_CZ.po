@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kontrapunkt\n"
-"POT-Creation-Date: 2022-04-01 09:08+0200\n"
+"POT-Creation-Date: 2025-01-31 13:10+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Petr Parimucha\n"
@@ -10,54 +10,171 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../templates\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: component/404/404.twig:15
-msgctxt "kontrapunkt"
-msgid "Oops, there's been a mistake somewhere."
-msgstr "Ups, někde se stala chyba."
+msgid "Omlouváme se, tato stránka neexistuje."
+msgstr ""
 
 #: component/404/404.twig:16
-msgctxt "kontrapunkt"
-msgid "No matter what we do, we can't find the page you wanted."
-msgstr "Ať děláme, co děláme, nemůžeme požadovanou stránku najít."
+msgid "Zkuste se vrátit na domovskou stránku a začít znovu."
+msgstr ""
 
 #: component/404/404.twig:17
-msgctxt "kontrapunkt"
-msgid "Go to homepage"
-msgstr "Zpět na hlavní stránku"
+msgid "Přejít na hlavní stranu"
+msgstr ""
 
-#: component/article-list/article-list.twig:32
-msgctxt "kontrapunkt"
-msgid "All items"
-msgstr "Všechny položky"
+#: component/article-list/article-list.twig:72
+msgid "Zatím nejsou zveřejněny žádné články. Přijďte se podívat později"
+msgstr ""
 
-#: component/pagination/pagination.twig:67
-#: component/pagination/pagination.twig:71
-msgctxt "kontrapunkt"
-msgid "First"
-msgstr "První"
+#: component/contact-list/contact-list.twig:24
+msgid "Email"
+msgstr ""
 
-#: component/pagination/pagination.twig:76
-#: component/pagination/pagination.twig:80
-msgctxt "kontrapunkt"
-msgid "Previous"
-msgstr "Předchozí"
+#: component/contact-list/contact-list.twig:32
+msgid "Phone"
+msgstr ""
 
-#: component/pagination/pagination.twig:96
-#: component/pagination/pagination.twig:100
-msgctxt "kontrapunkt"
-msgid "Next"
-msgstr "Další"
+#: component/contact-list/contact-list.twig:38
+msgid "Address"
+msgstr ""
 
-#: component/pagination/pagination.twig:105
-#: component/pagination/pagination.twig:109
+#: component/contact-list/contact-list.twig:44
+msgid "Bank details"
+msgstr ""
+
+#: component/contact/contact.twig:31
+msgid "Poštovní adresa"
+msgstr ""
+
+#: component/contact/contact.twig:39
+msgid "Telefonní číslo"
+msgstr ""
+
+#: component/contact/contact.twig:48
+msgid "E-mail"
+msgstr ""
+
+#: component/content-image-text/content-image-text.twig:48
+msgid "Není zadán obrázek bloku"
+msgstr ""
+
+#: component/content-image-text/content-image-text.twig:55
+msgid "Není zadán text bloku"
+msgstr ""
+
+#: component/download-list/download-list.twig:27
+msgid "Download"
+msgstr "Stáhnout"
+
+#: component/download-list/download-list.twig:32
+msgid "Unnamed"
+msgstr "Bez názvu"
+
+#: component/event-datetime/event-datetime.twig:17
+#: component/event-datetime/event-datetime.twig:25
+msgid "from"
+msgstr "od"
+
+#: component/event-datetime/event-datetime.twig:38
+msgid "to"
+msgstr "do"
+
+#: component/event-header/event-header.twig:25
+msgid "Location"
+msgstr "Místo"
+
+#: component/event-header/event-header.twig:47
+msgid "Book tickets"
+msgstr "Rezervovat lístky"
+
+#: component/event-teaser/event-teaser.twig:58
 msgctxt "kontrapunkt"
-msgid "Last"
-msgstr "Poslední"
+msgid "Web"
+msgstr "Web"
+
+#: component/event-teaser/event-teaser.twig:70
+msgid "Read more"
+msgstr "Více"
+
+#: component/event-teaser/event-teaser.twig:83
+msgid "Není zadán nadpis bloku"
+msgstr ""
+
+#: component/gallery/gallery.twig:43
+msgid "Žádné zadané obrázky"
+msgstr ""
+
+#: component/header-bar/header-bar.twig:28
+msgctxt "kontrapunkt"
+msgid "Toggle navigation"
+msgstr ""
+
+#: component/link-list/link-list.twig:34
+msgid "Žádné zadané odkazy"
+msgstr ""
+
+#: component/logo-cloud/logo-cloud.twig:31
+msgid "Žádná zadaná loga"
+msgstr ""
+
+#: component/opening-hours/opening-hours.twig:34
+msgid "Zavřeno"
+msgstr ""
+
+#: component/page-header/page-header.twig:37
+msgid "Page title is missing"
+msgstr ""
+
+#: component/pagination/pagination.twig:23
+#: component/pagination/pagination.twig:41
+msgid "Předchozí"
+msgstr ""
+
+#: component/pagination/pagination.twig:30
+#: component/pagination/pagination.twig:59
+msgid "Další"
+msgstr ""
+
+#: component/pagination/pagination.twig:49
+msgid "(current)"
+msgstr ""
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Oops, there's been a mistake somewhere."
+#~ msgstr "Ups, někde se stala chyba."
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "No matter what we do, we can't find the page you wanted."
+#~ msgstr "Ať děláme, co děláme, nemůžeme požadovanou stránku najít."
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Go to homepage"
+#~ msgstr "Zpět na hlavní stránku"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "All items"
+#~ msgstr "Všechny položky"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "First"
+#~ msgstr "První"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Previous"
+#~ msgstr "Předchozí"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Next"
+#~ msgstr "Další"
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Last"
+#~ msgstr "Poslední"
 
 #~ msgctxt "kontrapunkt"
 #~ msgid "Všechny aktuality"

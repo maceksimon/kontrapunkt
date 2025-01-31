@@ -47,6 +47,7 @@ function block_event_list_content($content) {
       'date_end' => get_field('date_end', $item->ID),
       'time_start' => get_field('time_start', $item->ID),
       'time_end' => get_field('time_end', $item->ID),
+      'additional_showtimes' => get_field('additional_showtimes', $item->ID),
       'price' => get_field('price', $item->ID),
       'location' => get_field('location', $item->ID),
       'author' => get_field('author', $item->ID),
