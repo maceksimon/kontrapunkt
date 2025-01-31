@@ -11,76 +11,73 @@ name: Event - teaser
 } %}
 
 {% block content %}
-{% if content.title %}
-  <div class="bg-white sm:flex gap-12 sm:gap-0 {% if content.url %}group{% endif %}">
-    <div class="overflow-hidden">
-      {{ component_picture({
+  {% if content.title %}
+    <div class="bg-white sm:flex gap-12 sm:gap-0 {% if content.url %}group{% endif %}">
+      <div class="overflow-hidden">
+        {{ component_picture({
         image: content.image|resizer(['600', '900', '1000', ''], ['300', '450', '', '']),
         image_classes: 'w-full max-h-80 sm:w-52 sm:h-full object-cover object-center transition-scale',
         wrapper_classes: 'w-full max-h-80 sm:w-52 sm:h-full bg-gray-300',
         url: content.url,
       }) }}
-    </div>
-    <div class="relative grow px-8 py-5 sm:px-10 sm:py-8 space-y-4">
-      <div class="relative inline-block px-4 py-1 mb-4 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
-        <h3 class="isolate text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
       </div>
-      <div class="pl-4 space-y-4">
-        {% if content.date_start or content.date_end %}
-          <div class="gap-1 flex flex-wrap items-center">
-            {{ component_event_datetime({
+      <div class="relative grow px-8 py-5 sm:px-10 sm:py-8 space-y-4">
+        <div class="relative inline-block px-4 py-1 mb-4 before:block before:content-[''] before:absolute before:inset-0 before:h-full before:bg-primary before:w-full before:scale-x-0 before:group-hover:scale-x-100 before:transition before:duration-200 before:origin-left">
+          <h3 class="isolate text-gray-900 text-2xl font-semibold transition-colors duration-100 ease-in-out">{{ content.title|typography }}</h3>
+        </div>
+        <div class="pl-4 space-y-4">
+          {% if content.date_start or content.date_end %}
+            <div class="gap-1 flex flex-wrap items-center">
+              {{ component_event_datetime({
               date_start: content.date_start,
               date_end: content.date_end,
               time_start: content.time_start,
               time_end: content.time_end,
               additional_showtimes: content.additional_showtimes,
             }) }}
-          </div>
-        {% endif %}
-        {% if content.perex %}
-          <div class="prose prose-primary [&_a]:relative [&_a]:z-10">{{ content.perex|typography }}</div>
-        {% endif %}
-        {% if content.location %}
-        <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-          <div class="gap-2 flex">
-            <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
-          </div>
-        </div>
-        {% endif %}
-        {% if content.author %}
-          <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
-        {% endif %}
-        {% if content.author or content.url %}
-          <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-            <div class="gap-2 flex py-1">
-              {% if content.web_link %}
-                {# Set web link title to link title or link href with https:// removed #}
-                {% set web_link_title = content.web_link.title ? content.web_link.title : _x('Web', 'kontrapunkt') %}
-                <div class="z-10 relative group/link grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
-                  <div class="gap-2 flex items-center">
-                    <span class="inline-block h-4 w-4 group-hover/link:text-primary">{{ icons.get('external-link') }}</span>
-                    <a href="{{ content.web_link.url }}" target="{{ content.web_link.target }}" class="text-gray-700 font-normal underline group-hover/link:no-underline">{{ web_link_title }}</a>
+            </div>
+          {% endif %}
+          {% if content.perex %}
+            <div class="prose prose-primary [&_a]:relative [&_a]:z-10">{{ content.perex|typography }}</div>
+          {% endif %}
+          {% if content.location %}
+            <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+              <div class="gap-2 flex">
+                <p class="text-gray-700 font-normal">{{ content.location|typography }}</p>
+              </div>
+            </div>
+          {% endif %}
+          {% if content.author %}
+            <p class="text-gray-700 font-normal leading-none">{{ content.author|typography }}</p>
+          {% endif %}
+          {% if content.author or content.url %}
+            <div class="grow shrink basis-0 justify-between sm:items-end gap-3 flex flex-col sm:flex-row">
+              <div class="gap-2 flex py-1">
+                {% if content.links %}
+                  {{ component_link_list_horizontal({
+                    items: content.links,
+                    inner: true,
+                    wrapper_classes: 'relative z-10',
+                  }) }}
+                {% endif %}
+              </div>
+              {% if content.url %}
+                <a href="{{ content.url }}" class="items-center gap-2 flex underline hover:no-underline">
+                  <div class="relative items-center flex px-2 py-1">
+                    <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
                   </div>
-                </div>
+                  <span class="absolute inset-0"></span>
+                </a>
               {% endif %}
             </div>
-            {% if content.url %}
-              <a href="{{ content.url }}" class="items-center gap-2 flex underline hover:no-underline">
-                <div class="relative items-center flex px-2 py-1">
-                  <div class="relative text-gray-800 font-normal leading-none">{{ __('Read more', 'kontrapunkt') }}</div>
-                </div>
-                <span class="absolute inset-0"></span>
-              </a>
-            {% endif %}
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-{% else %}
-  {{ component_alert({
+  {% else %}
+    {{ component_alert({
     type: 'error',
     message: __('Není zadán nadpis bloku', 'kontrapunkt')
   }) }}
-{% endif %}
+  {% endif %}
 {% endblock %}

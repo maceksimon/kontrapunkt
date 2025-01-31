@@ -72,6 +72,16 @@ $event_fields
   'required' => 0,
   'wpml_cf_preferences' => 2,
 ])
+->addUrl('facebook_link', [
+  'label' => 'Odkaz na Facebook',
+  'required' => 0,
+  'wpml_cf_preferences' => 2,
+])
+->addUrl('instagram_link', [
+  'label' => 'Odkaz na Instagram',
+  'required' => 0,
+  'wpml_cf_preferences' => 2,
+])
 ->addImage('image', [
   'label' => 'Obrázek',
   'required' => 1,

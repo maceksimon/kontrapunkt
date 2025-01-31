@@ -1,0 +1,32 @@
+{#
+name: "Seznam: odkazy vodorovně"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'link-list',
+  'id': content.wrapper_id,
+  'classes': [
+    content.wrapper_classes
+  ],
+  'container': content.inner ? '' : 'container',
+  'heading': content.heading,
+} %}
+{% block content %}
+{% if content.items|length %}
+<div class="flow-root">
+  <ul role="list" class="flex gap-x-6 lg:gap-x-8 gap-y-4 flex-wrap">
+    {% for item in content.items %}
+      {% if item.url %}
+        {{ component_link(item) }}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+  {{ component_alert({
+    type: 'error',
+    message: __('Žádné zadané odkazy', 'kontrapunkt')
+  }) }}
+{% endif %}
+{% endblock %}
