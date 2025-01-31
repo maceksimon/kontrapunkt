@@ -4,7 +4,7 @@ Tags: backup, restore, cloud backup, database backup, wordpress backup
 Requires at least: 4.9
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 4.1.5
+Stable tag: 4.1.7
 License: GPLv2+
 
 Create a complete WordPress backup easily. Schedule automatic backups, store securely, and restore effortlessly with the best WordPress backup plugin!
@@ -34,9 +34,11 @@ This flexibility makes BackWPup the best choice for WordPress backup.
 
 = Easily Restore Your WordPress Site =
 
-The restore option is now included in the free version. Easily restore your site from a backup with just a few clicks.
-To restore a backup, go to the BackWPup plugin dashboard in your WordPress admin area. Navigate to the 'Backups' tab to see a list of your saved backups. Select the backup you wish to restore and click the 'Restore' button. Follow the on-screen instructions to complete the restoration process.
-This feature ensures that even in the event of data loss or site issues, you can quickly and efficiently restore your site to its previous state.
+**Pro version**
+Restore your site effortlessly from a backup with our one-click restore option. To restore a backup, go to the BackWPup plugin dashboard in your WordPress admin area. Navigate to the 'Backups' tab to see a list of your saved backups. Select the backup you wish to restore and click the 'Restore' button. Follow the on-screen instructions to complete the restoration process. This feature ensures that even in the event of data loss or site issues, you can quickly and efficiently restore your site to its previous state.
+
+**Free version**
+The free version now also includes the restore option. With this option, you can manually restore your Backup Archives. Start by downloading the backup file from your backup list. Then, navigate to the 'Restore' menu on the left and drag your backup file there to perform the restoration.
 
 = Improve Your Site’s Reliability and Performance  =
 Did you know that regular backups and database maintenance can improve the performance and reliability of your WordPress site? With BackWPup, you can ensure that your data is always protected and that your site is always running smoothly.
@@ -121,7 +123,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Frequently Asked Questions ==
 
 = How do I restore a backup? =
-Restoring backups made with BackWPup can be done multiple ways. Please take a look at our [documentation here](https://backwpup.com/docs/how-to-restore-a-wordpress-backup/) to learn more.
+Restoring backups made with BackWPup can be done multiple ways. Please take a look at our [documentation here](https://backwpup.com/docs/how-do-i-use-the-backwpup-restore-feature/) to learn more.
 
 = My backup jobs don’t seem to run as scheduled. =
 BackWPup uses WordPress’ own cron job system (**WP Cron**) to execute scheduled backup jobs. In order for WordPress to “know” when to execute a job, its “inner clock” needs to be set regularly. That happens whenever someone (including yourself) visits your site.
@@ -201,6 +203,20 @@ Yes. You need to have writing access to the wp-config.php file (usually residing
 * %s = Two digit representation of the second
 
 == Changelog ==
+
+= 4.1.7 =
+Release date: nov 25, 2024
+* Changed : Update dependencies :
+    ** guzzlehttp/guzzle to 7.0
+    ** onedrive-php-sdk to 3.2.0
+    ** microsoft-graph to 1.7.0
+
+= 4.1.6 =
+Release date: oct 15, 2024
+
+* Changed : Show the Restore feature information notice only for free version users
+* Changed : The default format is now .tar
+* Fixed : Warnings on the backup script on PHP 8.x when tar format is used
 
 = 4.1.5 =
 Release date: sept 27, 2024

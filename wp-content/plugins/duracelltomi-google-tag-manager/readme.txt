@@ -4,8 +4,8 @@ Donate link: https://gtm4wp.com/
 Tags: google tag manager, tag manager, gtm, google, adwords, google adwords, google ads, adwords remarketing, google ads remarketing, remarketing, google analytics, analytics, facebook ads, facebook remarketing, facebook pixel, google optimize, personalisation
 Requires at least: 3.4.0
 Requires PHP: 7.4
-Tested up to: 6.5
-Stable tag: 1.20.2
+Tested up to: 6.7
+Stable tag: 1.20.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -223,6 +223,10 @@ to report micro conversions and/or to serve ads only to visitors who spend more 
 6. Scroll tracking
 
 == Changelog ==
+
+= 1.20.3 =
+
+Fix: notice "_load_textdomain_just_in_time was called incorrectly" - WordPress 6.7 compatibility
 
 = 1.20.2 =
 
@@ -907,6 +911,10 @@ Please report all bugs found in my plugin using the [contact form on my website]
 * First beta release
 
 == Upgrade Notice ==
+
+= 1.20.3 =
+
+Bugfix release
 
 = 1.20.2 =
 
