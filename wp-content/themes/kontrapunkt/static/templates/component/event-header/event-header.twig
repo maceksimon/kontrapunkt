@@ -40,6 +40,13 @@ name: "Event - header"
         {% if content.perex %}
           <div class="prose prose-primary">{{ content.perex|typography }}</div>
         {% endif %}
+        {% if content.links %}
+          {{ component_link_list_horizontal({
+            items: content.links,
+            inner: true,
+            wrapper_classes: 'relative z-10',
+          }) }}
+        {% endif %}
         {% if content.contact_list and content.contact_list.items|length %}
           <div>
             {{ component_contact_list({

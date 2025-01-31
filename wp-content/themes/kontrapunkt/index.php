@@ -31,6 +31,36 @@ elseif(is_singular('post')) {
 elseif(is_singular('event')) {
   $post = Timber::query_post();
 
+  if ($web_link = get_field('web_link', $post->ID)) {
+    $links[] = [
+      'type' => 'web',
+      'url' => $web_link['url'],
+      'title' => $web_link['title'] ?: 'Web',
+      'target' => $web_link['target'],
+      'icon_before' => 'external-link',
+    ];
+  }
+
+  if ($facebook_link = get_field('facebook_link', $post->ID)) {
+    $links[] = [
+      'type' => 'facebook',
+      'url' => $facebook_link,
+      'title' => 'Facebook',
+      'target' => '_blank',
+      'icon_before' => 'facebook',
+    ];
+  }
+
+  if ($instagram_link = get_field('instagram_link', $post->ID)) {
+    $links[] = [
+      'type' => 'instagram',
+      'url' => $instagram_link,
+      'title' => 'Instagram',
+      'target' => '_blank',
+      'icon_before' => 'instagram',
+    ];
+  }
+
   $context['content'] = [
     'id' => $post->ID,
     'title' => $post->title(),
@@ -44,6 +74,7 @@ elseif(is_singular('event')) {
     'time_start' => get_field('time_start', $post->ID),
     'time_end' => get_field('time_end', $post->ID),
     'additional_showtimes' => get_field('additional_showtimes', $post->ID),
+    'links' => $links,
   ];
   $context['template'] = 'event-full';
 }
