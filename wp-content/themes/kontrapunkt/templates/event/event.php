@@ -72,6 +72,16 @@ $event_fields
   'required' => 0,
   'wpml_cf_preferences' => 2,
 ])
+->addUrl('facebook_link', [
+  'label' => 'Odkaz na Facebook',
+  'required' => 0,
+  'wpml_cf_preferences' => 2,
+])
+->addUrl('instagram_link', [
+  'label' => 'Odkaz na Instagram',
+  'required' => 0,
+  'wpml_cf_preferences' => 2,
+])
 ->addImage('image', [
   'label' => 'Obrázek',
   'required' => 1,
@@ -144,7 +154,37 @@ $event_fields
   'instructions' => 'Vyplňte délku trvání akce',
   'required' => 0,
   'wpml_cf_preferences' => 2,
-]);
+])
+->addRepeater('additional_showtimes', [
+  'label' => 'Reprízy',
+  'required' => 0,
+  'min' => 1,
+  'max' => 8,
+  'layout' => 'table',
+])
+  ->addTimePicker('time_start', [
+    'label' => 'Začátek akce',
+    'instructions' => 'Vyplňte čas kdy akce začíná',
+    'required' => 0,
+    'display_format' => 'H:i',
+    'return_format' => 'H:i',
+    'wpml_cf_preferences' => 1,
+  ])
+  ->addTimePicker('time_end', [
+    'label' => 'Konec akce',
+    'instructions' => 'Vyplňte čas kdy akce končí',
+    'required' => 0,
+    'display_format' => 'H:i',
+    'return_format' => 'H:i',
+    'wpml_cf_preferences' => 1,
+  ])
+  ->addText('duration', [
+    'label' => 'Doba trvání',
+    'instructions' => 'Vyplňte délku trvání akce',
+    'required' => 0,
+    'wpml_cf_preferences' => 2,
+  ])
+->endRepeater();
 
 $event_fields->setLocation('post_type', '==', 'event');
 

@@ -1,5 +1,6 @@
 <?php
-function block_event_list_content($content) {
+function block_event_list_content($content)
+{
 
   global $paged;
   if (!isset($paged) || !$paged) {
@@ -36,7 +37,39 @@ function block_event_list_content($content) {
   $posts = new Timber\PostQuery($query);
 
   $content['items'] = [];
-  foreach ($posts->get_posts() as $key=>$item) {
+  foreach ($posts->get_posts() as $key => $item) {
+    // Build links array for social/web links
+    $links = [];
+
+    if ($web_link = get_field('web_link', $item->ID)) {
+      $links[] = [
+        'type' => 'web',
+        'url' => $web_link['url'],
+        'title' => $web_link['title'] ?: 'Web',
+        'target' => $web_link['target'],
+        'icon_before' => 'external-link',
+      ];
+    }
+
+    if ($facebook_link = get_field('facebook_link', $item->ID)) {
+      $links[] = [
+        'type' => 'facebook',
+        'url' => $facebook_link,
+        'title' => 'Facebook',
+        'target' => '_blank',
+        'icon_before' => 'facebook',
+      ];
+    }
+
+    if ($instagram_link = get_field('instagram_link', $item->ID)) {
+      $links[] = [
+        'type' => 'instagram',
+        'url' => $instagram_link,
+        'title' => 'Instagram',
+        'target' => '_blank',
+        'icon_before' => 'instagram',
+      ];
+    }
 
     $content['items'][] = [
       'id' => $item->ID,
@@ -47,10 +80,11 @@ function block_event_list_content($content) {
       'date_end' => get_field('date_end', $item->ID),
       'time_start' => get_field('time_start', $item->ID),
       'time_end' => get_field('time_end', $item->ID),
+      'additional_showtimes' => get_field('additional_showtimes', $item->ID),
       'price' => get_field('price', $item->ID),
       'location' => get_field('location', $item->ID),
       'author' => get_field('author', $item->ID),
-      'web_link' => get_field('web_link', $item->ID),
+      'links' => $links,
       'url' => $item->link,
       'created' => $item->date('U'),
     ];
@@ -67,10 +101,10 @@ function block_event_list_content($content) {
     ];
   }
   // add next and previous links
-  if(!empty($pagination->next)) {
+  if (!empty($pagination->next)) {
     $content['pagination']['next'] = $pagination->next['link'];
   }
-  if(!empty($pagination->prev)) {
+  if (!empty($pagination->prev)) {
     $content['pagination']['previous'] = $pagination->prev['link'];
   }
 
@@ -91,10 +125,10 @@ $block->fieldsBuilder()
     'ui_off_text' => 'Ne',
   ])
   ->addGroup('heading', [
-      'label' => 'Nadpis',
-      'instructions' => '',
-      'required' => 0,
-      'layout' => 'block',
+    'label' => 'Nadpis',
+    'instructions' => '',
+    'required' => 0,
+    'layout' => 'block',
   ])->conditional('enable_heading', '==', '1')
   ->addText('heading', [
     'label' => 'Text nadpisu',

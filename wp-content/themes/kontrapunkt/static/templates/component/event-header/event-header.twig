@@ -32,12 +32,20 @@ name: "Event - header"
         date_end: content.date_end,
         time_start: content.time_start,
         time_end: content.time_end,
+        additional_showtimes: content.additional_showtimes,
       }) }}
     </div>
     <div class="flex flex-col gap-8 sm:flex-row-reverse">
       <div class="grow space-y-6">
         {% if content.perex %}
           <div class="prose prose-primary">{{ content.perex|typography }}</div>
+        {% endif %}
+        {% if content.links %}
+          {{ component_link_list_horizontal({
+            items: content.links,
+            inner: true,
+            wrapper_classes: 'relative z-10',
+          }) }}
         {% endif %}
         {% if content.contact_list and content.contact_list.items|length %}
           <div>

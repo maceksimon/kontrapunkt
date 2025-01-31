@@ -2074,7 +2074,6 @@ input[type="text"],
   margin-top: 1.5rem;
   display: block;
   width: 100%;
-  border-radius: 1.5rem;
   --tw-border-opacity: 1;
   border-color: rgb(115 115 115 / var(--tw-border-opacity));
   padding-left: 1.25rem;
@@ -2127,7 +2126,6 @@ input[type="text"]:disabled,
 input[type="search"] {
   display: block;
   width: 100%;
-  border-radius: 1.5rem;
   border-width: 2px;
   border-color: rgb(115 115 115 / var(--tw-border-opacity));
   --tw-border-opacity: 0.5;
@@ -2157,7 +2155,6 @@ input[type="search"]:focus {
 input[type="checkbox"] {
   height: 1.5rem;
   width: 1.5rem;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(115 115 115 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
@@ -2229,7 +2226,6 @@ input[type="submit"] {
   cursor: pointer;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 0.5rem;
   border-width: 2px;
   border-color: transparent;
   padding-left: 1.25rem;
@@ -2263,17 +2259,15 @@ input[type="submit"]:focus {
 }
 input[type="submit"] {
   --tw-border-opacity: 1;
-  border-color: rgb(206 140 0 / var(--tw-border-opacity));
+  border-color: rgb(239 182 3 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 204 2 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(67 32 5 / var(--tw-text-opacity));
 }
 input[type="submit"]:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(164 99 4 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
-  background-color: rgb(255 227 67 / var(--tw-bg-opacity));
+  background-color: rgb(239 182 3 / var(--tw-bg-opacity));
 }
 input[type="submit"]:focus {
   --tw-ring-opacity: 1;
@@ -2320,7 +2314,6 @@ input[type="submit"]:disabled {
 }
 .form-label.active {
   top: -0.625rem;
-  border-radius: 9999px;
   --tw-border-opacity: 1;
   border-color: rgb(212 212 212 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
@@ -2335,7 +2328,6 @@ input[type="submit"]:disabled {
   cursor: pointer;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 0.5rem;
   border-width: 2px;
   border-color: transparent;
   padding-left: 1.25rem;
@@ -2369,17 +2361,15 @@ input[type="submit"]:disabled {
 }
 .btn-primary {
   --tw-border-opacity: 1;
-  border-color: rgb(206 140 0 / var(--tw-border-opacity));
+  border-color: rgb(239 182 3 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 204 2 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(67 32 5 / var(--tw-text-opacity));
 }
 .btn-primary:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(164 99 4 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
-  background-color: rgb(255 227 67 / var(--tw-bg-opacity));
+  background-color: rgb(239 182 3 / var(--tw-bg-opacity));
 }
 .btn-primary:focus {
   --tw-ring-opacity: 1;
@@ -2775,9 +2765,6 @@ span.wpcf7-list-item-label {
 .h-12 {
   height: 3rem;
 }
-.h-2\.5 {
-  height: 0.625rem;
-}
 .h-20 {
   height: 5rem;
 }
@@ -2819,6 +2806,9 @@ span.wpcf7-list-item-label {
 }
 .max-h-80 {
   max-height: 20rem;
+}
+.max-h-\[46px\] {
+  max-height: 46px;
 }
 .max-h-\[80vh\] {
   max-height: 80vh;
@@ -2985,6 +2975,9 @@ span.wpcf7-list-item-label {
 .items-start {
   align-items: flex-start;
 }
+.items-end {
+  align-items: flex-end;
+}
 .items-center {
   align-items: center;
 }
@@ -3024,6 +3017,9 @@ span.wpcf7-list-item-label {
 .gap-x-4 {
   column-gap: 1rem;
 }
+.gap-x-6 {
+  column-gap: 1.5rem;
+}
 .gap-x-8 {
   column-gap: 2rem;
 }
@@ -3032,6 +3028,9 @@ span.wpcf7-list-item-label {
 }
 .gap-y-12 {
   row-gap: 3rem;
+}
+.gap-y-4 {
+  row-gap: 1rem;
 }
 .space-x-1\.5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -3122,10 +3121,6 @@ span.wpcf7-list-item-label {
 .border-r {
   border-right-width: 1px;
 }
-.border-amber-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(245 158 11 / var(--tw-border-opacity));
-}
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -3157,14 +3152,6 @@ span.wpcf7-list-item-label {
 .border-secondary-700 {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity));
-}
-.border-secondary-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(30 64 175 / var(--tw-border-opacity));
-}
-.bg-amber-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(245 158 11 / var(--tw-bg-opacity));
 }
 .bg-gray-100 {
   --tw-bg-opacity: 1;
@@ -3511,10 +3498,6 @@ span.wpcf7-list-item-label {
 .tracking-tight {
   letter-spacing: -0.025em;
 }
-.text-amber-950 {
-  --tw-text-opacity: 1;
-  color: rgb(69 26 3 / var(--tw-text-opacity));
-}
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -3582,10 +3565,6 @@ span.wpcf7-list-item-label {
 .text-secondary-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
-}
-.text-secondary-900 {
-  --tw-text-opacity: 1;
-  color: rgb(30 58 138 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -5284,10 +5263,6 @@ body:not(.lg-from-hash)
   --tw-translate-y: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.group\/link:hover .group-hover\/link\:text-primary {
-  --tw-text-opacity: 1;
-  color: rgb(255 204 2 / var(--tw-text-opacity));
-}
 .group:hover .group-hover\:text-orange-700 {
   --tw-text-opacity: 1;
   color: rgb(194 65 12 / var(--tw-text-opacity));
@@ -5295,9 +5270,6 @@ body:not(.lg-from-hash)
 .group:hover .group-hover\:text-primary {
   --tw-text-opacity: 1;
   color: rgb(255 204 2 / var(--tw-text-opacity));
-}
-.group\/link:hover .group-hover\/link\:no-underline {
-  text-decoration-line: none;
 }
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
@@ -5902,6 +5874,10 @@ body:not(.lg-from-hash)
     column-gap: 3rem;
   }
 
+  .lg\:gap-x-8 {
+    column-gap: 2rem;
+  }
+
   .lg\:gap-y-8 {
     row-gap: 2rem;
   }
@@ -6179,7 +6155,7 @@ body:not(.lg-from-hash)
     color: rgb(239 182 3 / var(--tw-text-opacity));
   }
 
-  .group:hover .group-hover\:lg\:underline {
+  .group\/link:hover .group-hover\/link\:lg\:underline {
     text-decoration-line: underline;
   }
 

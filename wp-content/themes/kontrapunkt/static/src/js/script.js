@@ -27,6 +27,11 @@ if ($component) {
   import("../../templates/component/wp-form/js/wp-form");
 }
 
+var $component = once("processed", ".component-newsletter").shift();
+if ($component) {
+  import("../../templates/component/newsletter/js/newsletter");
+}
+
 var $component = once("processed", ".component-calendar").shift();
 if ($component) {
   import("../../templates/component/calendar/js/calendar");
