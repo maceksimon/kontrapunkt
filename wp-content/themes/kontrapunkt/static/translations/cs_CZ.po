@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kontrapunkt\n"
-"POT-Creation-Date: 2025-01-31 13:10+0100\n"
+"POT-Creation-Date: 2025-01-31 22:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Petr Parimucha\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Telefonní číslo"
 msgstr ""
 
-#: component/contact/contact.twig:48
+#: component/contact/contact.twig:48 component/newsletter/newsletter.twig:36
 msgid "E-mail"
 msgstr ""
 
@@ -88,20 +88,15 @@ msgstr "do"
 msgid "Location"
 msgstr "Místo"
 
-#: component/event-header/event-header.twig:47
+#: component/event-header/event-header.twig:54
 msgid "Book tickets"
 msgstr "Rezervovat lístky"
 
-#: component/event-teaser/event-teaser.twig:58
-msgctxt "kontrapunkt"
-msgid "Web"
-msgstr "Web"
-
-#: component/event-teaser/event-teaser.twig:70
+#: component/event-teaser/event-teaser.twig:67
 msgid "Read more"
 msgstr "Více"
 
-#: component/event-teaser/event-teaser.twig:83
+#: component/event-teaser/event-teaser.twig:80
 msgid "Není zadán nadpis bloku"
 msgstr ""
 
@@ -114,6 +109,7 @@ msgctxt "kontrapunkt"
 msgid "Toggle navigation"
 msgstr ""
 
+#: component/link-list-horizontal/link-list-horizontal.twig:29
 #: component/link-list/link-list.twig:34
 msgid "Žádné zadané odkazy"
 msgstr ""
@@ -121,6 +117,10 @@ msgstr ""
 #: component/logo-cloud/logo-cloud.twig:31
 msgid "Žádná zadaná loga"
 msgstr ""
+
+#: component/newsletter/newsletter.twig:40
+msgid "Subscribe"
+msgstr "Přihlásit k odběru"
 
 #: component/opening-hours/opening-hours.twig:34
 msgid "Zavřeno"
@@ -143,6 +143,10 @@ msgstr ""
 #: component/pagination/pagination.twig:49
 msgid "(current)"
 msgstr ""
+
+#~ msgctxt "kontrapunkt"
+#~ msgid "Web"
+#~ msgstr "Web"
 
 #~ msgctxt "kontrapunkt"
 #~ msgid "Oops, there's been a mistake somewhere."

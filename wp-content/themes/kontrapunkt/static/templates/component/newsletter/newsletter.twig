@@ -1,0 +1,47 @@
+{#
+name: "Newsletter"
+#}
+{% import '@macro/icons/icons.twig' as icons %}
+{% extends "@component/component/component.twig" %}
+{% set component = {
+  'name': 'newsletter',
+  'id': content.wrapper_id,
+  'classes': [
+    'my-8 sm:my-10 lg:my-12',
+    content.wrapper_classes,
+  ],
+  'container': 'container',
+} %}
+
+{% block content %}
+<div class="max-w-screen-md mx-auto">
+  {% if content.heading %}
+    <h3 class="text-lg sm:text-xl lg:text-2xl">{{ content.heading.heading|typography }}</h3>
+  {% endif %}
+  <form action="{{ content.form.action }}" method="post" class="newsletter-form" target="{{ content.form.target }}">
+    <div class="flex gap-4 items-end">
+      <div class="flex-1">
+        <div class="form-floating">
+          <span class="wpcf7-form-control-wrap" data-name="user-email">
+            <input
+              size="40"
+              class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control required"
+              id="input-email"
+              autocomplete="email"
+              aria-required="true"
+              aria-invalid="false"
+              type="email"
+              name="email"
+              required
+            >
+          </span>
+          <label class="form-label" for="input-email">{{ __('E-mail', 'kontrapunkt') }}</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary max-h-[46px]">
+        {{ __('Subscribe', 'kontrapunkt') }}
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
