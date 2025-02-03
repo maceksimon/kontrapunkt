@@ -45,14 +45,11 @@ module.exports = {
         primary: primary,
         secondary: secondary,
         gray: colors.neutral,
+        yellow: primary,
       },
       container: {
         center: true,
         padding: "1rem",
-      },
-      maxWidth: {
-        "1/3": "33.3%",
-        "1/2": "50%",
       },
     },
   },

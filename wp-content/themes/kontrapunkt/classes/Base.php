@@ -603,7 +603,7 @@ class Base extends Site
       $context['content'] = [
         'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
         'wrapper_classes' => 'px-4 mb-6',
-        'container' => 'max-w-screen-md mx-auto prose max-w-none',
+        'container' => 'max-w-screen-md mx-auto prose prose-yellow max-w-none',
         'html' => $block_content,
         'raw' => $raw,
       ];
