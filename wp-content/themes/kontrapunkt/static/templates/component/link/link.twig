@@ -21,7 +21,7 @@ name: "Odkaz"
 {% if content.icon_before %}
   <div class="shrink-0 h-5">{{ icons.get(content.icon_before )}}</div>
 {% endif %}
-<span class="underline lg:no-underline group-hover/link:lg:underline">{{ content.title|typography }}</span>
+<span class="underline lg:underline group-hover/link:lg:no-underline">{{ content.title|typography }}</span>
 {% if content.icon_after %}
   <div class="shrink-0 h-5">{{ icons.get(content.icon_after )}}</div>
 {% endif %}

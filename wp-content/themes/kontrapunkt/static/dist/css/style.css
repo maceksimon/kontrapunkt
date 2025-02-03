@@ -6064,8 +6064,8 @@ body:not(.lg-from-hash)
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 
-  .lg\:no-underline {
-    text-decoration-line: none;
+  .lg\:underline {
+    text-decoration-line: underline;
   }
 
   .lg\:opacity-0 {
@@ -6169,8 +6169,8 @@ body:not(.lg-from-hash)
     color: rgb(239 182 3 / var(--tw-text-opacity));
   }
 
-  .group\/link:hover .group-hover\/link\:lg\:underline {
-    text-decoration-line: underline;
+  .group\/link:hover .group-hover\/link\:lg\:no-underline {
+    text-decoration-line: none;
   }
 
   .group:hover .lg\:before\:group-hover\:scale-y-100::before {
