@@ -5048,6 +5048,10 @@
   content: var(--tw-content);
   width: 100%;
 }
+.acf-block-preview .before\:origin-bottom::before {
+  content: var(--tw-content);
+  transform-origin: bottom;
+}
 .acf-block-preview .before\:origin-left::before {
   content: var(--tw-content);
   transform-origin: left;
@@ -5055,6 +5059,11 @@
 .acf-block-preview .before\:scale-x-0::before {
   content: var(--tw-content);
   --tw-scale-x: 0;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.acf-block-preview .before\:scale-y-0::before {
+  content: var(--tw-content);
+  --tw-scale-y: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .acf-block-preview .before\:bg-primary::before {
@@ -5150,6 +5159,11 @@
 .acf-block-preview .group:hover .before\:group-hover\:scale-x-100::before {
   content: var(--tw-content);
   --tw-scale-x: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.acf-block-preview .group:hover .before\:group-hover\:scale-y-100::before {
+  content: var(--tw-content);
+  --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 @media not all and (min-width: 1024px) {
@@ -5782,13 +5796,13 @@
     content: var(--tw-content);
     width: 100%;
   }
-  .acf-block-preview .lg\:before\:origin-left::before {
+  .acf-block-preview .lg\:before\:origin-bottom::before {
     content: var(--tw-content);
-    transform-origin: left;
+    transform-origin: bottom;
   }
-  .acf-block-preview .lg\:before\:scale-x-0::before {
+  .acf-block-preview .lg\:before\:scale-y-0::before {
     content: var(--tw-content);
-    --tw-scale-x: 0;
+    --tw-scale-y: 0;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
   .acf-block-preview .lg\:before\:bg-primary::before {
@@ -5834,9 +5848,9 @@
   .acf-block-preview .group\/link:hover .group-hover\/link\:lg\:underline {
     text-decoration-line: underline;
   }
-  .acf-block-preview .group:hover .lg\:before\:group-hover\:scale-x-100::before {
+  .acf-block-preview .group:hover .lg\:before\:group-hover\:scale-y-100::before {
     content: var(--tw-content);
-    --tw-scale-x: 1;
+    --tw-scale-y: 1;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 }
