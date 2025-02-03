@@ -38,7 +38,7 @@ name: "Event - header"
     <div class="flex flex-col gap-8 sm:flex-row-reverse">
       <div class="grow space-y-6">
         {% if content.perex %}
-          <div class="prose prose-primary">{{ content.perex|typography }}</div>
+          <div class="prose">{{ content.perex|typography }}</div>
         {% endif %}
         {% if content.links %}
           {{ component_link_list_horizontal({

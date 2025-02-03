@@ -33,9 +33,6 @@
   table a {
     @apply text-primary-500 underline hover:no-underline;
   }
-  a strong {
-    @apply text-primary-500 !important;
-  }
   /* highlighted text for component highlight-services */
   .component-highlight-services img {
     @apply inline-block;

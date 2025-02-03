@@ -734,10 +734,6 @@ select {
   table a:hover {
   text-decoration-line: none;
 }
-  a strong {
-  --tw-text-opacity: 1 !important;
-  color: rgb(239 182 3 / var(--tw-text-opacity)) !important;
-}
   /* highlighted text for component highlight-services */
   .list-arrow {
     list-style: url("../../images/icons/ico-list.svg");
@@ -2057,6 +2053,7 @@ select {
 }
 .prose-primary :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   display: inline;
+  text-decoration: underline;
   font-weight: inherit;
 }
 .prose-primary :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)):hover {
@@ -3014,6 +3011,9 @@ span.wpcf7-list-item-label {
 .gap-8 {
   gap: 2rem;
 }
+.gap-x-12 {
+  column-gap: 3rem;
+}
 .gap-x-4 {
   column-gap: 1rem;
 }
@@ -3028,6 +3028,9 @@ span.wpcf7-list-item-label {
 }
 .gap-y-12 {
   row-gap: 3rem;
+}
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 .gap-y-4 {
   row-gap: 1rem;
@@ -3348,10 +3351,6 @@ span.wpcf7-list-item-label {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 .py-1 {
   padding-top: 0.25rem;
@@ -5109,6 +5108,12 @@ body:not(.lg-from-hash)
   }
 }
 /* Slide styles end */
+.component-gutenberg-paragraph a {
+  text-decoration-line: underline;
+}
+.component-gutenberg-paragraph a:hover {
+  text-decoration-line: none;
+}
 @media (min-width: 640px) {
 
   .sm\:aspect-h-1 {
@@ -5472,6 +5477,11 @@ body:not(.lg-from-hash)
     padding-right: 2.5rem;
   }
 
+  .sm\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .sm\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -5610,10 +5620,6 @@ body:not(.lg-from-hash)
 
   .md\:justify-between {
     justify-content: space-between;
-  }
-
-  .md\:gap-12 {
-    gap: 3rem;
   }
 
   .md\:gap-y-8 {

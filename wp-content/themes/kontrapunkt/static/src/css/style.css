@@ -16,3 +16,7 @@
 @import "./lightgallery.css";
 @import "./fullcalendar.css";
 @import "../../node_modules/swiper/swiper";
+
+.component-gutenberg-paragraph a {
+  @apply underline hover:no-underline;
+}

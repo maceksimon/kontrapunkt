@@ -67,6 +67,7 @@ module.exports = {
             color: "#000",
             a: {
               display: "inline",
+              textDecoration: "underline",
               fontWeight: "inherit",
               "&:hover": {
                 textDecoration: "none",

@@ -21,7 +21,7 @@ name: "Event Datetime"
     {% endif %}
   {% endif %}
   {% if content.date_start and content.date_end %}
-    <div class="flex gap-2 shrink-0 items-center">
+    <div class="flex flex-wrap gap-2 shrink-0 items-center">
       {{ __('from', 'kontrapunkt') }}:
       <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n.') }}</div>
       {% if content.time_start %}
@@ -34,7 +34,7 @@ name: "Event Datetime"
       {% endif %}
     </div>
 
-    <div class="flex gap-2 shrink-0 items-center">
+    <div class="flex flex-wrap gap-2 shrink-0 items-center">
       {{ __('to', 'kontrapunkt') }}:
       <div class="text-gray-900 leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
       {% if content.time_end %}
