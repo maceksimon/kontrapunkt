@@ -17,41 +17,43 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\DomCrawler\Crawler;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Base extends Site {
+class Base extends Site
+{
 
   public $theme_name;
 
-  public function __construct() {
-    add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
-    add_filter( 'timber/context', array( $this, 'timber_context' ) );
-    add_filter( 'timber/twig', array( $this, 'timber_twig' ) );
-    add_filter( 'timber/loader/loader', array( $this, 'timber_twig_loader') );
-    add_action( 'timber/cache/location', array( $this, 'timber_cache_location' ) );
-    add_action( 'timber/image/new_url', array( $this, 'timber_image_new_url' ) );
-    add_action( 'timber/image/new_path', array( $this, 'timber_image_new_path' ) );
-    add_action( 'init', array( $this, 'register_menus') );
-    add_action( 'acf/init', array( $this, 'register_post_types' ) );
-    add_action( 'wp_enqueue_scripts', array( $this, 'scripts') );
-    add_action( 'wp_enqueue_scripts', array( $this, 'fonts') );
-    add_filter( 'script_loader_tag', array( $this, 'script_loader_tag'), 10, 2 );
-    add_action( 'enqueue_block_editor_assets', array($this, 'block_editor_assets') );
-    add_action( 'enqueue_block_editor_assets', array($this, 'fonts') );
-    add_filter( 'allowed_block_types_all', array($this, 'allowed_block_types_all') );
-    add_action( 'acf/init', array($this, 'acf_gutenberg_blocks') );
-    add_action( 'acf/init', array($this, 'acf_options_page') );
-    add_action( 'acf/fields/google_map/api', array($this, 'acf_google_map_api') );
-    add_action( 'template_redirect', array($this, 'template_redirect'), 0);
-    add_filter( 'theme_page_templates', array( $this, 'theme_page_templates'));
-    add_action( 'restrict_manage_posts', array( $this, 'restrict_manage_posts' ));
-    add_filter( 'render_block', array( $this, 'render_block'), 10, 2 );
-    add_filter( 'block_categories_all', array( $this, 'block_categories_all'));
-    add_action( 'admin_head', array( $this, 'hide_core_update_notifications'), 1 );
-    add_action( 'acf/input/admin_footer', array( $this, 'acf_input_admin_footer') );
-    add_filter( 'tiny_mce_before_init' , array( $this, 'tiny_mce_before_init') );
-    add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes'), 10, 2 );
-    add_filter( 'jpeg_quality', array( $this, 'jpeg_quality') );
-    add_filter( 'wp_editor_set_quality', array( $this, 'wp_editor_set_quality') );
-    add_filter( 'allowed_block_types_all', array( $this, 'define_block_types') );
+  public function __construct()
+  {
+    add_action('after_setup_theme', array($this, 'theme_supports'));
+    add_filter('timber/context', array($this, 'timber_context'));
+    add_filter('timber/twig', array($this, 'timber_twig'));
+    add_filter('timber/loader/loader', array($this, 'timber_twig_loader'));
+    add_action('timber/cache/location', array($this, 'timber_cache_location'));
+    add_action('timber/image/new_url', array($this, 'timber_image_new_url'));
+    add_action('timber/image/new_path', array($this, 'timber_image_new_path'));
+    add_action('init', array($this, 'register_menus'));
+    add_action('acf/init', array($this, 'register_post_types'));
+    add_action('wp_enqueue_scripts', array($this, 'scripts'));
+    add_action('wp_enqueue_scripts', array($this, 'fonts'));
+    add_filter('script_loader_tag', array($this, 'script_loader_tag'), 10, 2);
+    add_action('enqueue_block_editor_assets', array($this, 'block_editor_assets'));
+    add_action('enqueue_block_editor_assets', array($this, 'fonts'));
+    add_filter('allowed_block_types_all', array($this, 'allowed_block_types_all'));
+    add_action('acf/init', array($this, 'acf_gutenberg_blocks'));
+    add_action('acf/init', array($this, 'acf_options_page'));
+    add_action('acf/fields/google_map/api', array($this, 'acf_google_map_api'));
+    add_action('template_redirect', array($this, 'template_redirect'), 0);
+    add_filter('theme_page_templates', array($this, 'theme_page_templates'));
+    add_action('restrict_manage_posts', array($this, 'restrict_manage_posts'));
+    add_filter('render_block', array($this, 'render_block'), 10, 2);
+    add_filter('block_categories_all', array($this, 'block_categories_all'));
+    add_action('admin_head', array($this, 'hide_core_update_notifications'), 1);
+    add_action('acf/input/admin_footer', array($this, 'acf_input_admin_footer'));
+    add_filter('tiny_mce_before_init', array($this, 'tiny_mce_before_init'));
+    add_filter('wp_get_attachment_image_attributes', array($this, 'wp_get_attachment_image_attributes'), 10, 2);
+    add_filter('jpeg_quality', array($this, 'jpeg_quality'));
+    add_filter('wp_editor_set_quality', array($this, 'wp_editor_set_quality'));
+    add_filter('allowed_block_types_all', array($this, 'define_block_types'));
 
     $theme = wp_get_theme();
     $this->theme_name = $theme->get('TextDomain');
@@ -60,17 +62,19 @@ class Base extends Site {
   }
 
   /**
-  * Register Menu.
-  */
-  public function register_menus() {
-    register_nav_menu( 'main-menu', __( 'Main Menu', $this->theme_name ) );
-    register_nav_menu( 'footer-menu', __( 'Footer Menu', $this->theme_name ) );
+   * Register Menu.
+   */
+  public function register_menus()
+  {
+    register_nav_menu('main-menu', __('Main Menu', $this->theme_name));
+    register_nav_menu('footer-menu', __('Footer Menu', $this->theme_name));
   }
 
   /**
-  * Register Post Type.
-  */
-  public function register_post_types() {
+   * Register Post Type.
+   */
+  public function register_post_types()
+  {
 
     $directory = get_template_directory() . '/templates';
     $directory_iterator = new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS);
@@ -78,23 +82,23 @@ class Base extends Site {
 
     $regex_iterator = new RegexIterator($flattened, '/\.php$/');
     foreach ($regex_iterator as $file) {
-      if(strpos($file->getPath(), 'gutenberg') === FALSE) {
+      if (strpos($file->getPath(), 'gutenberg') === FALSE) {
         include $file->getPathname();
       }
     }
-
   }
 
   /**
-  * Add variables to global context
-  */
-  public function timber_context( $context ) {
+   * Add variables to global context
+   */
+  public function timber_context($context)
+  {
 
     // basic
     $context['homeUrl'] = get_home_url();
     $context['templateUrl'] = get_template_directory_uri() . '/static';
     $context['frontPage'] = is_front_page();
-    $context['langcode'] = get_bloginfo( 'language' );
+    $context['langcode'] = get_bloginfo('language');
     $context['ccnstL'] = get_privacy_policy_url();
     $context['search_query'] = get_search_query();
     $breadcrumbs = new Breadcrumb();
@@ -106,20 +110,20 @@ class Base extends Site {
 
     // global links
     $context['links'] = [];
-    if(isset($links) && is_countable($links)) {
+    if (isset($links) && is_countable($links)) {
       foreach ($links as $key => $item) {
-        if(is_string($item)) {
+        if (is_string($item)) {
           $post_id = url_to_postid($item);
-          if($post_id) {
-            $context['links'][$key] = get_permalink(apply_filters( 'wpml_object_id', $post_id, 'page' ));
-          }else{
+          if ($post_id) {
+            $context['links'][$key] = get_permalink(apply_filters('wpml_object_id', $post_id, 'page'));
+          } else {
             $context['links'][$key] = $item;
           }
-        }elseif(is_array($item) && isset($item['url'])) {
+        } elseif (is_array($item) && isset($item['url'])) {
           $post_id = url_to_postid($item['url']);
-          if($post_id) {
-            $url = get_permalink(apply_filters( 'wpml_object_id', $post_id, 'page' ));
-          }else{
+          if ($post_id) {
+            $url = get_permalink(apply_filters('wpml_object_id', $post_id, 'page'));
+          } else {
             $url = $item['url'];
           }
           $context['links'][$key] = [
@@ -133,11 +137,11 @@ class Base extends Site {
 
     // header
     $language_switcher = '';
-    if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) ) {
+    if (is_plugin_active('sitepress-multilingual-cms/sitepress.php')) {
       $language_switcher = $this->get_languages();
     }
 
-    if ( function_exists( 'pll_the_languages' ) ) {
+    if (function_exists('pll_the_languages')) {
       $language_switcher = $this->get_pll_languages();
     }
 
@@ -156,7 +160,8 @@ class Base extends Site {
     return $context;
   }
 
-  public function theme_supports() {
+  public function theme_supports()
+  {
     // Add default posts and comments RSS feed links to head.
     // add_theme_support( 'automatic-feed-links' );
 
@@ -166,14 +171,14 @@ class Base extends Site {
     * hard-coded <title> tag in the document head, and expect WordPress to
     * provide it for us.
     */
-    add_theme_support( 'title-tag' );
+    add_theme_support('title-tag');
 
     /*
     * Enable support for Post Thumbnails on posts and pages.
     *
     * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
     */
-    add_theme_support( 'post-thumbnails' );
+    add_theme_support('post-thumbnails');
 
     /*
     * Switch default core markup for search form, comment form, and comments
@@ -212,36 +217,37 @@ class Base extends Site {
     *
     * See: https://codex.wordpress.org/WordPress_Menu_User_Guide
     */
-    add_theme_support( 'menus' );
+    add_theme_support('menus');
 
     /*
     * Enable support for translations files.
     *
     * See: https://developer.wordpress.org/reference/functions/load_theme_textdomain/
     */
-    load_theme_textdomain( $this->theme_name, get_template_directory() . '/static/translations' );
+    load_theme_textdomain($this->theme_name, get_template_directory() . '/static/translations');
   }
 
   /**
-  * Option to limit the default visual editor blocks
-  */
-  function define_block_types( $allowed_blocks ) {
+   * Option to limit the default visual editor blocks
+   */
+  function define_block_types($allowed_blocks)
+  {
 
     return $allowed_blocks;
-
   }
 
   /**
-  * Register Twig Functions.
-  */
-  public function timber_twig($twig) {
+   * Register Twig Functions.
+   */
+  public function timber_twig($twig)
+  {
     $twig->addExtension(new StringLoaderExtension());
     $twig->addExtension(new CommonExtension());
     $twig->addExtension(new AttributeExtension());
     $typography_settings = get_template_directory() . '/static/typography.yml';
     $twig->addExtension(new TypographyExtension($typography_settings));
     $twig->addExtension(new StringExtension());
-    $twig->addFilter(new TwigFilter('resizer', function($image, ...$variants) {
+    $twig->addFilter(new TwigFilter('resizer', function ($image, ...$variants) {
       return Helpers::resizeImage($image, $variants);
     }));
     $twig->addFunction(new TwigFunction('component_*', function (Environment $env, $context, $template_name, $content = []) {
@@ -350,9 +356,10 @@ class Base extends Site {
   }
 
   /**
-  * Register Twig Namespace.
-  */
-  public function timber_twig_loader($loader) {
+   * Register Twig Namespace.
+   */
+  public function timber_twig_loader($loader)
+  {
     $loader->addPath(get_template_directory() . '/static/templates/component', 'component');
     $loader->addPath(get_template_directory() . '/static/templates/macro', 'macro');
     $loader->addPath(get_template_directory() . '/static/templates/page', 'page');
@@ -365,18 +372,20 @@ class Base extends Site {
   /**
    * Change Timber's cache folder.
    */
-  public function timber_cache_location() {
+  public function timber_cache_location()
+  {
     return WP_CONTENT_DIR . '/cache/timber';
   }
 
   /**
    * Change Timber's image url.
    */
-  public function timber_image_new_url($location) {
+  public function timber_image_new_url($location)
+  {
     $upload_dir = wp_upload_dir();
 
     $new_dir = str_replace($upload_dir['relative'], '/wp-content/cache/image', $upload_dir['basedir']);
-    if(!file_exists($new_dir)) {
+    if (!file_exists($new_dir)) {
       wp_mkdir_p($new_dir);
     }
 
@@ -384,7 +393,7 @@ class Base extends Site {
     // Resolves issues with wrong relative URLs with WPML
     // Without this we cannot generate unique images from non default languages
     // https://github.com/timber/timber/issues/2117
-    if(strpos($location, '/wp-content/') === 0) {
+    if (strpos($location, '/wp-content/') === 0) {
       $location = str_replace('/wp-content', content_url(), $location);
     }
 
@@ -394,18 +403,19 @@ class Base extends Site {
   /**
    * Change Timber's image path.
    */
-  public function timber_image_new_path($location) {
+  public function timber_image_new_path($location)
+  {
     $upload_dir = wp_upload_dir();
 
     // Resolves issues with wrong relative URLs with WPML
     // Without this we cannot generate unique images from non default languages
     // https://github.com/timber/timber/issues/2117
-    if(strpos($upload_dir['relative'], 'http') === 0) {
+    if (strpos($upload_dir['relative'], 'http') === 0) {
       $upload_dir['relative'] = str_replace(content_url(), '/wp-content', $upload_dir['relative']);
     }
 
     $new_dir = str_replace($upload_dir['relative'], '/wp-content/cache/image', $upload_dir['basedir']);
-    if(!file_exists($new_dir)) {
+    if (!file_exists($new_dir)) {
       wp_mkdir_p($new_dir);
     }
 
@@ -415,40 +425,43 @@ class Base extends Site {
   }
 
   /**
-  * Add fonts.
-  */
-  public function fonts() {
-    wp_enqueue_style( $this->theme_name . '-fonts', get_template_directory_uri() . '/static/fonts/anonymous-pro/stylesheet.css', [], filemtime( wp_normalize_path( get_template_directory() . '/static/fonts/anonymous-pro/stylesheet.css' ) ) );
+   * Add fonts.
+   */
+  public function fonts()
+  {
+    wp_enqueue_style($this->theme_name . '-fonts', get_template_directory_uri() . '/static/fonts/anonymous-pro/stylesheet.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/fonts/anonymous-pro/stylesheet.css')));
   }
 
   /**
-  * Enqueue scripts and styles.
-  */
-  public function scripts($query_args) {
-    wp_enqueue_style( $this->theme_name, get_template_directory_uri() . '/static/dist/css/style.css', [], filemtime( wp_normalize_path( get_template_directory() . '/static/dist/css/style.css' ) ) );
-    wp_enqueue_script( $this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime( wp_normalize_path( get_template_directory() . '/static/dist/js/script.js' ) ), TRUE );
-    wp_script_add_data( $this->theme_name, 'defer', true );
+   * Enqueue scripts and styles.
+   */
+  public function scripts($query_args)
+  {
+    wp_enqueue_style($this->theme_name, get_template_directory_uri() . '/static/dist/css/style.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/style.css')));
+    wp_enqueue_script($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')), TRUE);
+    wp_script_add_data($this->theme_name, 'defer', true);
 
-    wp_dequeue_script( 'jquery');
+    wp_dequeue_script('jquery');
   }
 
   /**
-  * Add async/defer attributes to enqueued scripts that have the specified script_execution flag.
-  * From https://github.com/WordPress/WordPress/blob/master/wp-content/themes/twentytwenty/classes/class-twentytwenty-script-loader.php
+   * Add async/defer attributes to enqueued scripts that have the specified script_execution flag.
+   * From https://github.com/WordPress/WordPress/blob/master/wp-content/themes/twentytwenty/classes/class-twentytwenty-script-loader.php
 
-  * @link https://core.trac.wordpress.org/ticket/12009
-  * @param string $tag    The script tag.
-  * @param string $handle The script handle.
-  * @return string
-  */
-  public function script_loader_tag($tag, $handle) {
-    foreach ( array( 'async', 'defer' ) as $attr ) {
-      if ( ! wp_scripts()->get_data( $handle, $attr ) ) {
+   * @link https://core.trac.wordpress.org/ticket/12009
+   * @param string $tag    The script tag.
+   * @param string $handle The script handle.
+   * @return string
+   */
+  public function script_loader_tag($tag, $handle)
+  {
+    foreach (array('async', 'defer') as $attr) {
+      if (! wp_scripts()->get_data($handle, $attr)) {
         continue;
       }
       // Prevent adding attribute when already added in #12009.
-      if ( ! preg_match( ":\s$attr(=|>|\s):", $tag ) ) {
-        $tag = preg_replace( ':(?=></script>):', " $attr", $tag, 1 );
+      if (! preg_match(":\s$attr(=|>|\s):", $tag)) {
+        $tag = preg_replace(':(?=></script>):', " $attr", $tag, 1);
       }
       // Only allow async or defer, not both.
       break;
@@ -457,23 +470,25 @@ class Base extends Site {
   }
 
   /**
-  * Enqueue block editor style
-  */
-  public function block_editor_assets() {
-    wp_enqueue_style( $this->theme_name . '-theme-gutenberg', get_template_directory_uri() . '/static/dist/css/gutenberg.css', [], filemtime( wp_normalize_path(get_template_directory() . '/static/dist/css/gutenberg.css')) );
-    wp_enqueue_script( $this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime( wp_normalize_path( get_template_directory() . '/static/dist/js/script.js' ) ), TRUE );
+   * Enqueue block editor style
+   */
+  public function block_editor_assets()
+  {
+    wp_enqueue_style($this->theme_name . '-theme-gutenberg', get_template_directory_uri() . '/static/dist/css/gutenberg.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/gutenberg.css')));
+    wp_enqueue_script($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')), TRUE);
   }
 
   /**
-  * Allow only specific blocks in Gutenberg editor
-  */
-  public function allowed_block_types_all( $allowed_blocks ) {
+   * Allow only specific blocks in Gutenberg editor
+   */
+  public function allowed_block_types_all($allowed_blocks)
+  {
 
     // get widget blocks and registered by plugins blocks
     $registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 
     // now $registered_blocks contains only blocks registered by plugins, but we need keys only
-    $registered_blocks = array_keys( $registered_blocks );
+    $registered_blocks = array_keys($registered_blocks);
 
     // // merge the whitelist with plugins blocks
     // $allowed_blocks = array_merge( array(
@@ -503,9 +518,10 @@ class Base extends Site {
   }
 
   /**
-  * Load Dynamicaly Custom Gutenberg Blocks
-  */
-  public function acf_gutenberg_blocks() {
+   * Load Dynamicaly Custom Gutenberg Blocks
+   */
+  public function acf_gutenberg_blocks()
+  {
 
     $directory = get_template_directory() . '/templates/gutenberg';
     $directory_iterator = new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS);
@@ -515,13 +531,13 @@ class Base extends Site {
     foreach ($regex_iterator as $file) {
       include $file->getPathname();
     }
-
   }
 
   /**
-  * Add custom wrapper to all core Gutenberg blocks
-  */
-  public function render_block($block_content, $block) {
+   * Add custom wrapper to all core Gutenberg blocks
+   */
+  public function render_block($block_content, $block)
+  {
 
     // Apply filter only on core gutenberg blocks
     // Custom blocks will get filter via Twig
@@ -578,9 +594,10 @@ class Base extends Site {
   }
 
   /**
-  * Custom categories for Gutenberg Blocks
-  */
-  public function block_categories_all($categories) {
+   * Custom categories for Gutenberg Blocks
+   */
+  public function block_categories_all($categories)
+  {
     return array_merge(
       $categories,
       array(
@@ -593,20 +610,22 @@ class Base extends Site {
   }
 
   /**
-  * Hide WordPress core update notifications from all users except administrators
-  * From https://www.cssigniter.com/hide-the-wordpress-update-notifications-from-all-users-except-administrators/
-  */
-  public function hide_core_update_notifications() {
-    if (!current_user_can( 'update_core' )) {
-      remove_action( 'admin_notices', 'update_nag', 3 );
+   * Hide WordPress core update notifications from all users except administrators
+   * From https://www.cssigniter.com/hide-the-wordpress-update-notifications-from-all-users-except-administrators/
+   */
+  public function hide_core_update_notifications()
+  {
+    if (!current_user_can('update_core')) {
+      remove_action('admin_notices', 'update_nag', 3);
     }
   }
 
   /**
-  * ACF Wysiwyg set height to lower value then default
-  * From https://gist.github.com/courtneymyers/eb51f918181746181871f7ae516b428b
-  */
-  public function acf_input_admin_footer() {
+   * ACF Wysiwyg set height to lower value then default
+   * From https://gist.github.com/courtneymyers/eb51f918181746181871f7ae516b428b
+   */
+  public function acf_input_admin_footer()
+  {
 
     $str = <<<EOF
       <style>
@@ -638,12 +657,13 @@ class Base extends Site {
   }
 
   /**
-  * ACF Wysiwyg set height to lower value then default
-  * From https://gist.github.com/courtneymyers/eb51f918181746181871f7ae516b428b
-  */
-  public function tiny_mce_before_init($mceInit) {
+   * ACF Wysiwyg set height to lower value then default
+   * From https://gist.github.com/courtneymyers/eb51f918181746181871f7ae516b428b
+   */
+  public function tiny_mce_before_init($mceInit)
+  {
     $styles = 'body.mce-content-body { margin-top:0;margin-bottom:0 }';
-    if(isset($mceInit['content_style'])) {
+    if (isset($mceInit['content_style'])) {
       $mceInit['content_style'] .= ' ' . $styles . ' ';
     } else {
       $mceInit['content_style'] = $styles . ' ';
@@ -652,10 +672,11 @@ class Base extends Site {
   }
 
   /**
-  * Create custom admin pages
-  */
-  public function acf_options_page() {
-    if(function_exists('acf_add_options_page')) {
+   * Create custom admin pages
+   */
+  public function acf_options_page()
+  {
+    if (function_exists('acf_add_options_page')) {
       acf_add_options_page([
         'page_title'    => 'Nastavení',
         'menu_title'    => 'Nastavení',
@@ -688,7 +709,7 @@ class Base extends Site {
       $fields_builder = new FieldsBuilder('footer_fields', [
         'title' => 'Patička',
         'position' => 'acf_after_title',
-       ]);
+      ]);
       $fields_builder
         ->addGroup('footer', [
           'label' => '',
@@ -697,17 +718,17 @@ class Base extends Site {
           'layout' => 'block',
         ])
         ->addTextarea('description', [
-            'label' => 'Dovětek',
-              'instructions' => '',
-            'required' => 0,
-            'placeholder' => 'Přidejte volitelnou informaci',
-            'rows' => '6',
-            'new_lines' => 'br',
-          ])
+          'label' => 'Dovětek',
+          'instructions' => '',
+          'required' => 0,
+          'placeholder' => 'Přidejte volitelnou informaci',
+          'rows' => '6',
+          'new_lines' => 'br',
+        ])
         ->addRepeater('social_menu', [
           'label' => 'Ikony sociálních sítí',
           'max' => 15,
-          ])
+        ])
         ->addText('title', [
           'label' => 'Název',
           'required' => TRUE,
@@ -738,9 +759,10 @@ class Base extends Site {
   }
 
   /**
-  * Google Maps API key
-  */
-  public function acf_google_map_api($api) {
+   * Google Maps API key
+   */
+  public function acf_google_map_api($api)
+  {
     // Place CONSTANT definition to wp-config.php
     // define('GOOGLE_MAPS_API_KEY', 'XXX');
     if (defined('GOOGLE_MAPS_API_KEY')) {
@@ -750,43 +772,46 @@ class Base extends Site {
   }
 
   /**
-  * Template redirect
-  * Allow paging on custom post types
-  */
-  public function template_redirect() {
+   * Template redirect
+   * Allow paging on custom post types
+   */
+  public function template_redirect()
+  {
 
     global $wp_query;
 
-    if ( is_singular('post') ) {
+    if (is_singular('post')) {
       $page = (int) $wp_query->get('page');
-      if ( $page > 1 ) {
+      if ($page > 1) {
         // convert 'page' to 'paged'
-        $wp_query->set( 'page', 1 );
-        $wp_query->set( 'paged', $page );
+        $wp_query->set('page', 1);
+        $wp_query->set('paged', $page);
       }
       // prevent redirect
-      remove_action( 'template_redirect', 'redirect_canonical' );
+      remove_action('template_redirect', 'redirect_canonical');
     }
   }
 
   /**
-  * Define custom page templates in code
-  */
-  public function theme_page_templates($templates) {
+   * Define custom page templates in code
+   */
+  public function theme_page_templates($templates)
+  {
 
     $register_templates = [
       //'article-list.php' => 'Články - výpis',
     ];
 
-    $templates = array_merge( $templates, $register_templates );
+    $templates = array_merge($templates, $register_templates);
     return $templates;
   }
 
   /**
-  * Allow to filter by custom taxonomies in administration
-  * https://wordpress.stackexchange.com/a/387502
-  */
-  public function restrict_manage_posts() {
+   * Allow to filter by custom taxonomies in administration
+   * https://wordpress.stackexchange.com/a/387502
+   */
+  public function restrict_manage_posts()
+  {
 
     $screen = get_current_screen();
 
@@ -799,12 +824,12 @@ class Base extends Site {
       'nav_menu_item',
     );
 
-    if ( 'edit' === $screen->base && ! in_array( $screen->post_type, $restricted_post_types ) ) {
-      $taxonomies = get_object_taxonomies( $screen->post_type, 'objects' );
+    if ('edit' === $screen->base && ! in_array($screen->post_type, $restricted_post_types)) {
+      $taxonomies = get_object_taxonomies($screen->post_type, 'objects');
 
       // Loop through each taxonomy
-      foreach ( $taxonomies as $taxonomy ) {
-        if ( $taxonomy->show_admin_column ) {
+      foreach ($taxonomies as $taxonomy) {
+        if ($taxonomy->show_admin_column) {
           wp_dropdown_categories(
             array(
               'show_option_all' => $taxonomy->labels->all_items,
@@ -825,21 +850,22 @@ class Base extends Site {
   }
 
   /**
-  * Generate main menu array
-  */
-  public function get_nav_menu($menu_name) {
+   * Generate main menu array
+   */
+  public function get_nav_menu($menu_name)
+  {
 
     $menu = new Timber\Menu($menu_name);
 
     $items = [];
-    if(isset($menu->items)) {
+    if (isset($menu->items)) {
       foreach ($menu->items as $item) {
         $below = [];
         foreach ($item->children as $child) {
 
           $attributes = [];
           $attributes['target'] = $child->is_external() ? '_blank' : '';
-          if(isset($item->classes) && is_array($item->classes)) {
+          if (isset($item->classes) && is_array($item->classes)) {
             $attributes['class'] = reset($item->classes);
           }
 
@@ -855,7 +881,7 @@ class Base extends Site {
 
         $attributes = [];
         $attributes['target'] = $item->is_external() ? '_blank' : null;
-        if(isset($item->classes) && is_array($item->classes)) {
+        if (isset($item->classes) && is_array($item->classes)) {
           $attributes['class'] = reset($item->classes);
         }
 
@@ -874,19 +900,20 @@ class Base extends Site {
   }
 
   /**
-  * Generate language switcher array
-  */
-  public function get_languages() {
+   * Generate language switcher array
+   */
+  public function get_languages()
+  {
 
     global $sitepress;
 
     $languages = apply_filters('wpml_active_languages', null, ['skip_missing' => FALSE]);
 
     $items = [];
-    if(!empty($languages) && is_countable($languages)) {
+    if (!empty($languages) && is_countable($languages)) {
       foreach ($languages as $language) {
         $url = esc_url($language['url']);
-        if(isset($language['missing']) && $language['missing']) {
+        if (isset($language['missing']) && $language['missing']) {
           $url = '';
         }
         $home_url = esc_url($sitepress->language_url($language['language_code']));
@@ -895,7 +922,7 @@ class Base extends Site {
           'title' => esc_html($language['native_name']),
           'url' => $url,
           'home_url' => $home_url,
-          'is_active' => (boolean)$language['active'],
+          'is_active' => (bool)$language['active'],
         ];
       }
     }
@@ -904,9 +931,10 @@ class Base extends Site {
   }
 
   /**
-  * Generate language switcher array if using Polylang plugin
-  */
-  public function get_pll_languages() {
+   * Generate language switcher array if using Polylang plugin
+   */
+  public function get_pll_languages()
+  {
 
     $languages = pll_the_languages(array(
       'dropdown' => 0,
@@ -922,7 +950,7 @@ class Base extends Site {
         'id' => $language['slug'],
         'title' => $language['name'],
         'url' => $language['url'],
-        'is_active' => (boolean)$language['current_lang'],
+        'is_active' => (bool)$language['current_lang'],
       ];
     }
 
@@ -930,11 +958,12 @@ class Base extends Site {
   }
 
   /**
-  * Add default CSS classes to image
-  */
-  public function wp_get_attachment_image_attributes($attr, $attachment) {
+   * Add default CSS classes to image
+   */
+  public function wp_get_attachment_image_attributes($attr, $attachment)
+  {
 
-    if(strpos($attr['class'], 'img-fluid') === FALSE) {
+    if (strpos($attr['class'], 'img-fluid') === FALSE) {
       $attr['class'] .= ' img-fluid';
     }
 
@@ -942,16 +971,18 @@ class Base extends Site {
   }
 
   /**
-  * Set maximum quality, use resiter for optimization.
-  */
-  public function jpeg_quality($quality) {
+   * Set maximum quality, use resiter for optimization.
+   */
+  public function jpeg_quality($quality)
+  {
     return 100;
   }
 
   /**
-  * Set maximum quality, use resiter for optimization.
-  */
-  public function wp_editor_set_quality($quality) {
+   * Set maximum quality, use resiter for optimization.
+   */
+  public function wp_editor_set_quality($quality)
+  {
     return 100;
   }
 }
