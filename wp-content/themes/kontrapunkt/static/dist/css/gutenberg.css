@@ -865,16 +865,13 @@
 .acf-block-preview .prose :where(blockquote):not(:where([class~=not-prose], [class~=not-prose] *)) {
   font-weight: 500;
   font-style: italic;
-  color: #f15d22;
+  color: var(--tw-prose-quotes);
   border-inline-start-width: 0.25rem;
   border-inline-start-color: var(--tw-prose-quote-borders);
   quotes: "“" "”" "‘" "’";
   margin-top: 1.6em;
   margin-bottom: 1.6em;
   padding-inline-start: 1em;
-}
-.acf-block-preview .prose :where(blockquote):not(:where([class~=not-prose], [class~=not-prose] *)) strong {
-  color: #f15d22;
 }
 .acf-block-preview .prose :where(blockquote p:first-of-type):not(:where([class~=not-prose], [class~=not-prose] *))::before {
   content: open-quote;
@@ -898,8 +895,8 @@
   color: var(--tw-prose-headings);
   font-weight: 700;
   font-size: 1.5em;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: 2em;
+  margin-bottom: 1em;
   line-height: 1.3333333;
 }
 .acf-block-preview .prose :where(h2 strong):not(:where([class~=not-prose], [class~=not-prose] *)) {
@@ -910,8 +907,8 @@
   color: var(--tw-prose-headings);
   font-weight: 600;
   font-size: 1.25em;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
   line-height: 1.6;
 }
 .acf-block-preview .prose :where(h3 strong):not(:where([class~=not-prose], [class~=not-prose] *)) {
@@ -921,8 +918,8 @@
 .acf-block-preview .prose :where(h4):not(:where([class~=not-prose], [class~=not-prose] *)) {
   color: var(--tw-prose-headings);
   font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
   line-height: 1.5;
 }
 .acf-block-preview .prose :where(h4 strong):not(:where([class~=not-prose], [class~=not-prose] *)) {
@@ -1192,10 +1189,6 @@
 }
 .acf-block-preview .prose :where(.prose > :last-child):not(:where([class~=not-prose], [class~=not-prose] *)) {
   margin-bottom: 0;
-}
-.acf-block-preview .prose :where(h5):not(:where([class~=not-prose], [class~=not-prose] *)) {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
 }
 .acf-block-preview .prose-sm {
   font-size: 0.875rem;
@@ -1992,20 +1985,6 @@
 }
 .acf-block-preview .prose-2xl :where(.prose-2xl > :last-child):not(:where([class~=not-prose], [class~=not-prose] *)) {
   margin-bottom: 0;
-}
-.acf-block-preview .prose-primary {
-  color: #000;
-}
-.acf-block-preview .prose-primary :where(a):not(:where([class~=not-prose], [class~=not-prose] *)) {
-  display: inline;
-  text-decoration: underline;
-  font-weight: inherit;
-}
-.acf-block-preview .prose-primary :where(a):not(:where([class~=not-prose], [class~=not-prose] *)):hover {
-  text-decoration: none;
-}
-.acf-block-preview .prose-center {
-  margin: auto;
 }
 .acf-block-preview input[type=text],
 .acf-block-preview input[type=email],

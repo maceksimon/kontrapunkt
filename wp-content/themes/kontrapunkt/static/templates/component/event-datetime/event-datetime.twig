@@ -16,34 +16,38 @@ name: "Event Datetime"
   {% if content.date_start and not content.date_end %}
     {{ __('from', 'kontrapunkt') }}:
     <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
-    {% if content.time_start %}
+    {% if content.time_start is not empty %}
       - <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
     {% endif %}
   {% endif %}
   {% if content.date_start and content.date_end %}
     <div class="flex flex-wrap gap-2 shrink-0 items-center">
       {{ __('from', 'kontrapunkt') }}:
-      <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n.') }}</div>
-      {% if content.time_start %}
+      <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
+      {% if content.time_start is not empty %}
         - <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
-      {% endif %}
-      {% if content.additional_showtimes %}
-        {% for showtime in content.additional_showtimes %}
-          / <div class="text-gray-900 leading-tight">{{ showtime.time_start|date('H:i') }}</div>
-        {% endfor %}
+        {% if content.additional_showtimes %}
+          {% for showtime in content.additional_showtimes %}
+            {% if showtime.time_start is not empty %}
+              / <div class="text-gray-900 leading-tight">{{ showtime.time_start|date('H:i') }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       {% endif %}
     </div>
 
     <div class="flex flex-wrap gap-2 shrink-0 items-center">
       {{ __('to', 'kontrapunkt') }}:
       <div class="text-gray-900 leading-tight">{{ content.date_end|date('j. n. Y') }}</div>
-      {% if content.time_end %}
+      {% if content.time_end is not empty %}
         - <div class="text-gray-900 leading-tight">{{ content.time_end|date('H:i') }}</div>
-      {% endif %}
-      {% if content.additional_showtimes %}
-        {% for showtime in content.additional_showtimes %}
-          / <div class="text-gray-900 leading-tight">{{ showtime.time_end|date('H:i') }}</div>
-        {% endfor %}
+        {% if content.additional_showtimes %}
+          {% for showtime in content.additional_showtimes %}
+            {% if showtime.time_end is not empty %}
+              / <div class="text-gray-900 leading-tight">{{ showtime.time_end|date('H:i') }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       {% endif %}
     </div>
   {% endif %}

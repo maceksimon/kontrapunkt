@@ -29,12 +29,12 @@ name: Event - teaser
           {% if content.date_start or content.date_end %}
             <div class="gap-1 flex flex-wrap items-center">
               {{ component_event_datetime({
-              date_start: content.date_start,
-              date_end: content.date_end,
-              time_start: content.time_start,
-              time_end: content.time_end,
-              additional_showtimes: content.additional_showtimes,
-            }) }}
+            date_start: content.date_start,
+            date_end: content.date_end,
+            time_start: content.time_start,
+            time_end: content.time_end,
+            additional_showtimes: content.additional_showtimes,
+          }) }}
             </div>
           {% endif %}
           {% if content.perex %}
@@ -55,10 +55,10 @@ name: Event - teaser
               <div class="gap-2 flex py-1">
                 {% if content.links %}
                   {{ component_link_list_horizontal({
-                    items: content.links,
-                    inner: true,
-                    wrapper_classes: 'relative z-10',
-                  }) }}
+                  items: content.links,
+                  inner: true,
+                  wrapper_classes: 'relative z-10',
+                }) }}
                 {% endif %}
               </div>
               {% if content.url %}

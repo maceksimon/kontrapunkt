@@ -38,56 +38,6 @@ module.exports = {
             img: {
               display: "inline-block",
             },
-            blockquote: {
-              color: "#f15d22",
-              strong: {
-                color: "#f15d22",
-              },
-            },
-            h2: {
-              marginTop: "1.5rem",
-              marginBottom: "0.75rem",
-            },
-            h3: {
-              marginTop: "1.5rem",
-              marginBottom: "0.75rem",
-            },
-            h4: {
-              marginTop: "1.5rem",
-              marginBottom: "0.75rem",
-            },
-            h5: {
-              marginTop: "1.5rem",
-              marginBottom: "0.75rem",
-            },
-          },
-        },
-        primary: {
-          css: {
-            color: "#000",
-            a: {
-              display: "inline",
-              textDecoration: "underline",
-              fontWeight: "inherit",
-              "&:hover": {
-                textDecoration: "none",
-              },
-            },
-          },
-        },
-        center: {
-          css: {
-            margin: "auto",
-          },
-        },
-        narrow: {
-          css: {
-            maxWidth: "768px",
-          },
-        },
-        wide: {
-          css: {
-            maxWidth: "none",
           },
         },
       },
