@@ -14,7 +14,7 @@ name: "Newsletter"
 } %}
 
 {% block content %}
-<div class="max-w-screen-md mx-auto">
+<div class="max-w-(--breakpoint-md) mx-auto">
   {% if content.heading %}
     <h3 class="text-lg sm:text-xl lg:text-2xl">{{ content.heading.heading|typography }}</h3>
   {% endif %}

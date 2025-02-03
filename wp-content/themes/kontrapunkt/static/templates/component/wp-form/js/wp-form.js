@@ -13,5 +13,5 @@ function updateLabel(event) {
 inputs.forEach(function(input) {
   input.addEventListener('input', updateLabel);
   input.addEventListener('focus', updateLabel);
-  input.addEventListener('blur', updateLabel);
+  input.addEventListener('blur-sm', updateLabel);
 });

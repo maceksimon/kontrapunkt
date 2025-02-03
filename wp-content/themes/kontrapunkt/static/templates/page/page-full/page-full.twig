@@ -2,9 +2,11 @@
 name: "Stránka"
 weight: 98
 #}
-<div class="sr-only">
-  {{ component_breadcrumb({
-    items: breadcrumb
-  }) }}
+<div class="component-page-full">
+  <div class="sr-only">
+    {{ component_breadcrumb({
+      items: breadcrumb
+    }) }}
+  </div>
+  {{ content.body|raw }}
 </div>
-{{ content.body|raw }}

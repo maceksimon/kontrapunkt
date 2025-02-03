@@ -15,7 +15,7 @@ name: "Kalendář"
   'heading': content.heading,
 } %}
 {% block content %}
-  <div class="max-w-screen-xl mx-auto">
+  <div class="max-w-(--breakpoint-xl) mx-auto">
     <div id="calendar" data-events='{{ content.items|json_encode(constant('JSON_HEX_APOS') b-or constant('JSON_HEX_AMP') b-or constant('JSON_HEX_QUOT'))|raw }}'></div>
   </div>
 {% endblock %}

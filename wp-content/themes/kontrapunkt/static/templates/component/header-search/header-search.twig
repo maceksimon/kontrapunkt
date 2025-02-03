@@ -15,8 +15,8 @@
     </button>
     <div class="js-search relative lg:w-0 lg:overflow-hidden transition-all ease-in-out duration-300">
       <form action="{{ content.search_url }}">
-        <input type="search" name="s" id="search" class="block w-full max-w-full lg:h-8 lg:border-none sm:text-sm rounded shadow lg:shadow-sm focus:ring-orange-400">
-        <button type="submit" class="js-search-button absolute h-full w-10 inset-y-0 right-0 px-2 flex items-center text-black focus:outline-none">
+        <input type="search" name="s" id="search" class="block w-full max-w-full lg:h-8 lg:border-none sm:text-sm rounded-sm shadow-sm lg:shadow-xs focus:ring-orange-400">
+        <button type="submit" class="js-search-button absolute h-full w-10 inset-y-0 right-0 px-2 flex items-center text-black focus:outline-hidden">
           {{ icons.get('search-sm') }}
         </button>
       </form>

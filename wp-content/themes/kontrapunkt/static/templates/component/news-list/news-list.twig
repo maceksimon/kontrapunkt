@@ -14,7 +14,7 @@ name: "Aktuality - seznam"
 } %}
 
 {% block content %}
-<div class="max-w-screen-md mx-auto">
+<div class="max-w-(--breakpoint-md) mx-auto">
   {{ component_grid_2_cols({
     items: content.items,
     inner_component: 'news-teaser',

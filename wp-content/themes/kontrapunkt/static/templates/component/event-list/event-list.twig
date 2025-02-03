@@ -15,7 +15,7 @@ name: "Event - list"
 } %}
 
 {% block content %}
-<div class="max-w-screen-md mx-auto">
+<div class="max-w-(--breakpoint-md) mx-auto">
   {{ component_list_stacked({
     inner_component: 'event-teaser',
     items: content.items,

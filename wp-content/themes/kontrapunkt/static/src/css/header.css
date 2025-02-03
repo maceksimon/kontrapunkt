@@ -1,42 +1,114 @@
-@layer components {
-  .menu-open .jumbotron-overlay {
+@utility menu-open {
+  & .jumbotron-overlay {
     @apply opacity-100 lg:opacity-50;
   }
-  .menu-open .top-menu-backdrop {
-    @apply bg-white shadow;
+  & .top-menu-backdrop {
+    @apply bg-white shadow-sm;
   }
-  .menu-open .js-top-menu {
-    @apply bg-white shadow;
+  & .js-top-menu {
+    @apply bg-white shadow-sm;
   }
-  .js-top-menu {
-    @apply overflow-hidden transition-[max-height] ease-linear duration-300 max-h-0 lg:max-h-full;
+}
+
+@utility jumbotron-overlay {
+  .menu-open & {
+    @apply opacity-100 lg:opacity-50;
   }
-  .js-top-menu.active {
+}
+
+@utility top-menu-backdrop {
+  .menu-open & {
+    @apply bg-white shadow-sm;
+  }
+}
+
+@utility js-top-menu {
+  .menu-open & {
+    @apply bg-white shadow-sm;
+  }
+  @apply overflow-hidden transition-[max-height] ease-linear duration-300 max-h-0 lg:max-h-full;
+  &.active {
     @apply max-h-screen;
   }
-  .top-menu-submenu {
-    @apply hidden lg:block;
+}
+
+@utility active {
+  &.js-top-menu {
+    @apply max-h-screen;
   }
-  .top-menu-item.active .top-menu-submenu {
+  &.top-menu-item .top-menu-submenu {
     @apply block;
   }
-  .top-menu-item.active svg {
+  &.top-menu-item svg {
     @apply transform rotate-180;
   }
-  .hamburger-icon .close {
-    @apply hidden;
-  }
-  .hamburger-icon .hamburger {
+  &.hamburger-icon .close {
     @apply block;
   }
-  .hamburger-icon.active .close {
-    @apply block;
-  }
-  .hamburger-icon.active .hamburger {
+  &.hamburger-icon .hamburger {
     @apply hidden;
   }
+}
+
+@utility top-menu-submenu {
+  @apply hidden lg:block;
+  .top-menu-item.active & {
+    @apply block;
+  }
+}
+
+@utility top-menu-item {
+  &.active .top-menu-submenu {
+    @apply block;
+  }
+  &.active svg {
+    @apply transform rotate-180;
+  }
+}
+
+@utility hamburger-icon {
+  & .close {
+    @apply hidden;
+  }
+  & .hamburger {
+    @apply block;
+  }
+  &.active .close {
+    @apply block;
+  }
+  &.active .hamburger {
+    @apply hidden;
+  }
+}
+
+@utility close {
+  .hamburger-icon & {
+    @apply hidden;
+  }
+  .hamburger-icon.active & {
+    @apply block;
+  }
+}
+
+@utility hamburger {
+  .hamburger-icon & {
+    @apply block;
+  }
+  .hamburger-icon.active & {
+    @apply hidden;
+  }
+}
+
+@utility js-search {
   /* search bar flyout */
-  .js-search.open {
+  &.open {
+    @apply w-52;
+  }
+}
+
+@utility open {
+  /* search bar flyout */
+  &.js-search {
     @apply w-52;
   }
 }

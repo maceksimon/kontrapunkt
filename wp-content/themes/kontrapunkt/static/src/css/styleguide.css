@@ -1,11 +1,21 @@
-@layer components {
-  .sidebar {
-    @apply -right-72;
-  }
-  .sidebar.active {
+@utility sidebar {
+  @apply -right-72;
+  &.active {
     @apply right-0;
   }
-  .sidebar-item.active svg {
+}
+
+@utility active {
+  &.sidebar {
+    @apply right-0;
+  }
+  &.sidebar-item svg {
+    @apply transform rotate-180;
+  }
+}
+
+@utility sidebar-item {
+  &.active svg {
     @apply transform rotate-180;
   }
 }

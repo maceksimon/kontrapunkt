@@ -14,7 +14,7 @@ name: "Galerie"
   'heading': content.heading,
 } %}
 {% block content %}
-<div class="max-w-screen-md mx-auto">
+<div class="max-w-(--breakpoint-md) mx-auto">
   {% if content.description %}
     <div class="text-lg sm:text-2xl text-gray-800 mb-8 max-w-prose">
       {{ content.description|typography }}

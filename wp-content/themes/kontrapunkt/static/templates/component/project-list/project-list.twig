@@ -16,7 +16,7 @@ name: "Projekty - seznam"
 
 {% block content %}
 {% if content.items is not empty %}
-  <div class="max-w-screen-md mx-auto space-y-12 sm:space-y-16">
+  <div class="max-w-(--breakpoint-md) mx-auto space-y-12 sm:space-y-16">
   {% for item in content.items %}
     {{ component_project_teaser(item) }}
   {% endfor %}

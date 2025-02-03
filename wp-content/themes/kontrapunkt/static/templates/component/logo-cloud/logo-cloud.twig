@@ -15,7 +15,7 @@ name: "Seznam: loga"
 } %}
 {% block content %}
 {% if content.items|length %}
-  <div class="max-w-screen-md mx-auto">
+  <div class="max-w-(--breakpoint-md) mx-auto">
     <div class="flex flex-wrap items-center gap-x-8 gap-y-10 sm:gap-x-10">
       {% for item in content.items %}
         {{ component_picture({

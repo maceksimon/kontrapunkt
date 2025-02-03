@@ -16,7 +16,7 @@ name: "Contact - list"
 
 {% block content %}
 {% if content.items is not empty %}
-  <div class="max-w-screen-md mx-auto">
+  <div class="max-w-(--breakpoint-md) mx-auto">
     <dl class="leading-7 space-y-4 text-gray-700">
       {% for item in content.items %}
         <div>

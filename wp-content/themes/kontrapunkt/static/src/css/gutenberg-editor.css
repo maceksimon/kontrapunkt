@@ -1,0 +1,47 @@
+@import './style.css';
+
+@layer components {
+ .block-editor-writing-flow {
+   @apply font-sans bg-white text-slate-800;
+ }
+
+ .editor-post-title__block .editor-post-title__input,
+ .edit-post-visual-editor,
+ .block-editor-rich-text__editable {
+   @apply font-sans;
+ }
+
+ .editor-post-title {
+   @apply max-w-full border-b border-gray-200 m-0 px-4;
+
+   .editor-post-title__input {
+     @apply text-5xl;
+   }
+ }
+
+ .editor-post-title,
+ .wp-block-paragraph,
+ .wp-block-list,
+ .edit-post-visual-editor,
+ .editor-rich-text__tinymce.mce-content-body {
+   @apply text-base leading-normal text-slate-800;
+ }
+
+ .acf-block-preview {
+   @apply font-sans antialiased;
+ }
+
+ div[class^="wp-block-acf-"],
+ div[class*=" wp-block-acf-"] {
+   @apply w-full! max-w-none!;
+ }
+
+ .acf-block-fields {
+   @apply max-w-[50rem] w-full mx-auto;
+ }
+
+ .wp-block-group,
+ .wp-block-block {
+   @apply max-w-none!;
+ }
+}

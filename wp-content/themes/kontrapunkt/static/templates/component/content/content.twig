@@ -10,7 +10,7 @@
 {% block content %}
 {% if content.prose %}
   {% if content.container is not empty %}
-    <div class="my-4 prose max-w-screen-md mx-auto">
+    <div class="my-4 prose max-w-(--breakpoint-md) mx-auto">
   {% else %}
     <div class="my-4 prose max-w-none">
   {% endif %}
