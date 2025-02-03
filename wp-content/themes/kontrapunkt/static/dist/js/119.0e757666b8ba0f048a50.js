@@ -1,2 +1,0 @@
-"use strict";(globalThis.webpackChunkstatic_base=globalThis.webpackChunkstatic_base||[]).push([[119],{119:(s,e,t)=>{t.r(e);var a=t(248);const l=document.getElementsByClassName("js-gallery");for(let s=0;s<l.length;s++)(0,a.A)(l[s],{selector:".js-lightbox"})}}]);
-//# sourceMappingURL=119.0e757666b8ba0f048a50.js.map

@@ -1,2 +1,0 @@
-(globalThis.webpackChunkstatic_base=globalThis.webpackChunkstatic_base||[]).push([[241],{241:()=>{function e(e){var t=e.target,a=t.parentNode.parentNode.querySelector(".form-label");t.value||t===document.activeElement?a.classList.add("active"):a.classList.remove("active")}document.querySelectorAll(".wpcf7-form-control").forEach((function(t){t.addEventListener("input",e),t.addEventListener("focus",e),t.addEventListener("blur",e)}))}}]);
-//# sourceMappingURL=241.343171e35b5442ed3ab0.js.map

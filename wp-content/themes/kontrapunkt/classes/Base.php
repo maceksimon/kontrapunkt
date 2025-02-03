@@ -10,11 +10,11 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 use Twig\Extension\StringLoaderExtension;
 use Twig\Extra\String\StringExtension;
+use Symfony\Bridge\Twig\Extension\DumpExtension;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Parisek\Twig\CommonExtension;
 use Parisek\Twig\AttributeExtension;
 use Parisek\Twig\TypographyExtension;
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\DomCrawler\Crawler;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Base extends Site
@@ -28,14 +28,13 @@ class Base extends Site
     add_filter('timber/context', array($this, 'timber_context'));
     add_filter('timber/twig', array($this, 'timber_twig'));
     add_filter('timber/loader/loader', array($this, 'timber_twig_loader'));
-    add_action('timber/cache/location', array($this, 'timber_cache_location'));
+    add_action('timber/twig/environment/options', array($this, 'timber_cache_location'), 10, 1);
     add_action('timber/image/new_url', array($this, 'timber_image_new_url'));
     add_action('timber/image/new_path', array($this, 'timber_image_new_path'));
     add_action('init', array($this, 'register_menus'));
     add_action('acf/init', array($this, 'register_post_types'));
     add_action('wp_enqueue_scripts', array($this, 'scripts'));
-    add_action('wp_enqueue_scripts', array($this, 'fonts'));
-    add_filter('script_loader_tag', array($this, 'script_loader_tag'), 10, 2);
+    add_action('wp_enqueue_scripts', array($this, 'fonts'), 1);
     add_action('enqueue_block_editor_assets', array($this, 'block_editor_assets'));
     add_action('enqueue_block_editor_assets', array($this, 'fonts'));
     add_filter('allowed_block_types_all', array($this, 'allowed_block_types_all'));
@@ -45,6 +44,7 @@ class Base extends Site
     add_action('template_redirect', array($this, 'template_redirect'), 0);
     add_filter('theme_page_templates', array($this, 'theme_page_templates'));
     add_action('restrict_manage_posts', array($this, 'restrict_manage_posts'));
+    add_filter('render_block_data', array($this, 'render_block_data'), 10, 3);
     add_filter('render_block', array($this, 'render_block'), 10, 2);
     add_filter('block_categories_all', array($this, 'block_categories_all'));
     add_action('admin_head', array($this, 'hide_core_update_notifications'), 1);
@@ -53,7 +53,8 @@ class Base extends Site
     add_filter('wp_get_attachment_image_attributes', array($this, 'wp_get_attachment_image_attributes'), 10, 2);
     add_filter('jpeg_quality', array($this, 'jpeg_quality'));
     add_filter('wp_editor_set_quality', array($this, 'wp_editor_set_quality'));
-    add_filter('allowed_block_types_all', array($this, 'define_block_types'));
+    add_filter('acf/format_value/type=post_object', array($this, 'fix_wrong_acf_orders_with_ids'), 10, 3);
+    add_filter('pre_get_posts', array($this, 'search_post_type_filter'));
 
     $theme = wp_get_theme();
     $this->theme_name = $theme->get('TextDomain');
@@ -228,15 +229,6 @@ class Base extends Site
   }
 
   /**
-   * Option to limit the default visual editor blocks
-   */
-  function define_block_types($allowed_blocks)
-  {
-
-    return $allowed_blocks;
-  }
-
-  /**
    * Register Twig Functions.
    */
   public function timber_twig($twig)
@@ -247,6 +239,8 @@ class Base extends Site
     $typography_settings = get_template_directory() . '/static/typography.yml';
     $twig->addExtension(new TypographyExtension($typography_settings));
     $twig->addExtension(new StringExtension());
+    $cloner = new VarCloner();
+    $twig->addExtension(new DumpExtension($cloner));
     $twig->addFilter(new TwigFilter('resizer', function ($image, ...$variants) {
       return Helpers::resizeImage($image, $variants);
     }));
@@ -346,6 +340,31 @@ class Base extends Site
       'needs_context' => true,
       'is_safe' => ['html']
     ]));
+    $twig->addFunction(new TwigFunction('merge_resizer', function (...$items) {
+
+      $images = [];
+
+      // fix if mobile image is empty
+      foreach ($items as $key => $item) {
+        if (empty($item)) {
+          unset($items[$key]);
+        }
+      }
+
+      foreach ($items as $key => $item) {
+        foreach ($item as $image) {
+          if ($key !== array_key_last($items)) {
+            if (isset($image['media'])) {
+              $images[] = $image;
+            }
+          } else {
+            $images[] = $image;
+          }
+        }
+      }
+
+      return $images;
+    }));
     $twig->addFunction(new TwigFunction('gtm4wp_the_gtm_tag', function () {
       if (function_exists('gtm4wp_the_gtm_tag')) {
         gtm4wp_the_gtm_tag();
@@ -372,9 +391,11 @@ class Base extends Site
   /**
    * Change Timber's cache folder.
    */
-  public function timber_cache_location()
+  public function timber_cache_location($options)
   {
-    return WP_CONTENT_DIR . '/cache/timber';
+    $options['cache'] = WP_CONTENT_DIR . '/cache/timber';
+
+    return $options;
   }
 
   /**
@@ -385,7 +406,7 @@ class Base extends Site
     $upload_dir = wp_upload_dir();
 
     $new_dir = str_replace($upload_dir['relative'], '/wp-content/cache/image', $upload_dir['basedir']);
-    if (!file_exists($new_dir)) {
+    if (! file_exists($new_dir)) {
       wp_mkdir_p($new_dir);
     }
 
@@ -415,7 +436,7 @@ class Base extends Site
     }
 
     $new_dir = str_replace($upload_dir['relative'], '/wp-content/cache/image', $upload_dir['basedir']);
-    if (!file_exists($new_dir)) {
+    if (! file_exists($new_dir)) {
       wp_mkdir_p($new_dir);
     }
 
@@ -437,36 +458,20 @@ class Base extends Site
    */
   public function scripts($query_args)
   {
-    wp_enqueue_style($this->theme_name, get_template_directory_uri() . '/static/dist/css/style.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/style.css')));
-    wp_enqueue_script($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')), TRUE);
-    wp_script_add_data($this->theme_name, 'defer', true);
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+      wp_enqueue_style($this->theme_name, get_template_directory_uri() . '/static/dist/css/style.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/style.css')));
+    } else {
+      wp_enqueue_style($this->theme_name, get_template_directory_uri() . '/static/dist/css/style.min.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/style.min.css')));
+    }
+    wp_enqueue_script_module($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')));
 
     wp_dequeue_script('jquery');
-  }
 
-  /**
-   * Add async/defer attributes to enqueued scripts that have the specified script_execution flag.
-   * From https://github.com/WordPress/WordPress/blob/master/wp-content/themes/twentytwenty/classes/class-twentytwenty-script-loader.php
-
-   * @link https://core.trac.wordpress.org/ticket/12009
-   * @param string $tag    The script tag.
-   * @param string $handle The script handle.
-   * @return string
-   */
-  public function script_loader_tag($tag, $handle)
-  {
-    foreach (array('async', 'defer') as $attr) {
-      if (! wp_scripts()->get_data($handle, $attr)) {
-        continue;
-      }
-      // Prevent adding attribute when already added in #12009.
-      if (! preg_match(":\s$attr(=|>|\s):", $tag)) {
-        $tag = preg_replace(':(?=></script>):', " $attr", $tag, 1);
-      }
-      // Only allow async or defer, not both.
-      break;
+    // https://wpml.org/forums/topic/how-to-remove-loading-of-blocks-styling/
+    // remove wp-content/plugins/sitepress-multilingual-cms/dist/css/blocks/styles.css
+    if (class_exists('WPML\BlockEditor\Loader')) {
+      wp_deregister_style(WPML\BlockEditor\Loader::SCRIPT_NAME);
     }
-    return $tag;
   }
 
   /**
@@ -475,7 +480,7 @@ class Base extends Site
   public function block_editor_assets()
   {
     wp_enqueue_style($this->theme_name . '-theme-gutenberg', get_template_directory_uri() . '/static/dist/css/gutenberg.css', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/css/gutenberg.css')));
-    wp_enqueue_script($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')), TRUE);
+    wp_enqueue_script_module($this->theme_name, get_template_directory_uri() . '/static/dist/js/script.js', [], filemtime(wp_normalize_path(get_template_directory() . '/static/dist/js/script.js')));
   }
 
   /**
@@ -523,14 +528,42 @@ class Base extends Site
   public function acf_gutenberg_blocks()
   {
 
-    $directory = get_template_directory() . '/templates/gutenberg';
-    $directory_iterator = new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS);
-    $flattened = new RecursiveIteratorIterator($directory_iterator);
+    $directories = [
+      get_template_directory() . '/templates/gutenberg',
+      get_template_directory() . '/static/templates/component'
+    ];
 
-    $regex_iterator = new RegexIterator($flattened, '/\.php$/');
-    foreach ($regex_iterator as $file) {
-      include $file->getPathname();
+    foreach ($directories as $directory) {
+      if (file_exists($directory)) {
+        $directory_iterator = new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS);
+        $flattened = new RecursiveIteratorIterator($directory_iterator);
+
+        $regex_iterator = new RegexIterator($flattened, '/\.php$/');
+        foreach ($regex_iterator as $file) {
+          include $file->getPathname();
+        }
+      }
     }
+  }
+
+  /**
+   * Identify if gutenberg parent block
+   * from https://github.com/WordPress/gutenberg/issues/17358#issuecomment-1698655247
+   */
+  public function render_block_data($parsed_block, $source_block, $parent_block)
+  {
+
+    $parsed_block['parent'] = null;
+
+    if (! empty($parent_block->parsed_block)) {
+      $parsed_block['parent'] = array(
+        'name' => $parent_block->name,
+        'attributes' => $parent_block->attributes,
+        'block' => $parent_block->parsed_block,
+      );
+    }
+
+    return $parsed_block;
   }
 
   /**
@@ -539,14 +572,20 @@ class Base extends Site
   public function render_block($block_content, $block)
   {
 
+    // check if block has parent
+    // assigned in render_block_data()
+    if (! empty($block['parent'])) {
+      return $block_content;
+    }
+
     // Apply filter only on core gutenberg blocks
     // Custom blocks will get filter via Twig
-    if (strpos((string) $block['blockName'], 'core/') === FALSE && !in_array($block['blockName'], ['contact-form-7/contact-form-selector'])) {
+    if (strpos((string) $block['blockName'], 'core/') === FALSE && ! in_array($block['blockName'], ['contact-form-7/contact-form-selector'])) {
       return $block_content;
     }
 
     // Skip Core columns blocks
-    if (in_array($block['blockName'], ['core/column', 'core/columns', 'core/group', 'core/spacer', 'core/block'])) {
+    if (in_array($block['blockName'], ['core/column', 'core/columns', 'core/group', 'core/spacer', 'core/block', 'core/list-item'])) {
       return $block_content;
     }
 
@@ -557,40 +596,19 @@ class Base extends Site
     }
 
     $post_type = get_post_type();
-    if ($post_type == 'post') {
-      $context = Timber::context();
-      $context['content'] = [
-        'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
-        'wrapper_classes' => 'my-3',
-        'container' => '',
-        'html' => $block_content,
-        'raw' => $raw,
-      ];
-      return Timber::compile('@component/content/content.twig', $context);
-    } else if ($block['blockName'] === 'core/list-item') {
-      // do not add margin to list items
-      $context = Timber::context();
-      $context['content'] = [
-        'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
-        'wrapper_classes' => 'container',
-        'container' => 'prose max-w-screen-md mx-auto',
-        'html' => $block_content,
-        'raw' => $raw,
-      ];
-      return Timber::compile('@component/content/content.twig', $context);
+    if (in_array($post_type, ['post', 'case_study'])) {
+      return $block_content;
     } else {
       $context = Timber::context();
       $context['content'] = [
         'name' => 'gutenberg-' . str_replace('core/', '', $block['blockName']),
-        'wrapper_classes' => 'container',
-        'container' => 'my-4 prose max-w-screen-md mx-auto',
+        'wrapper_classes' => 'px-4 mb-6',
+        'container' => 'max-w-screen-md mx-auto ',
         'html' => $block_content,
         'raw' => $raw,
       ];
       return Timber::compile('@component/content/content.twig', $context);
     }
-
-    return $block_content;
   }
 
   /**
@@ -687,25 +705,6 @@ class Base extends Site
         'graphql_field_name' => 'settings',
         'show_in_graphql' => false
       ]);
-      // $fields_builder = new FieldsBuilder('links_fields', [
-      //   'title' => 'Odkazy',
-      //   'position' => 'acf_after_title',
-      // ]);
-      // $fields_builder
-      //   ->addGroup('links', [
-      //     'label' => '',
-      //     'instructions' => '',
-      //     'required' => 0,
-      //     'layout' => 'block',
-      //   ])
-      //   ->addLink('article_list', [
-      //     'label' => 'Blog',
-      //     'required' => TRUE,
-      //     'placeholder' => 'Vyberte odkaz',
-      //   ]);
-      // $fields_builder->setLocation('options_page', '==', 'settings');
-      // acf_add_local_field_group($fields_builder->build());
-
       $fields_builder = new FieldsBuilder('footer_fields', [
         'title' => 'Patička',
         'position' => 'acf_after_title',
@@ -751,7 +750,21 @@ class Base extends Site
             'twitter' => 'Twitter/X',
           ],
         ]);
-
+      $fields_builder
+        ->addGroup( 'links', [
+          'label' => '',
+          'instructions' => '',
+          'required' => 0,
+          'layout' => 'block',
+          'wpml_cf_preferences' => 3,
+        ] )
+        ->addLink( 'article_list', [
+          'label' => 'Blog',
+          'required' => TRUE,
+          'placeholder' => 'Vyberte odkaz',
+          'instructions' => 'Odkaz na výpis článků - používá se např. pro drobečkovou navigaci',
+          'wpml_cf_preferences' => 2,
+        ] );
       $fields_builder->setLocation('options_page', '==', 'settings');
 
       acf_add_local_field_group($fields_builder->build());
@@ -855,48 +868,78 @@ class Base extends Site
   public function get_nav_menu($menu_name)
   {
 
-    $menu = new Timber\Menu($menu_name);
+    $menu = Timber::get_menu($menu_name);
 
     $items = [];
     if (isset($menu->items)) {
       foreach ($menu->items as $item) {
-        $below = [];
-        foreach ($item->children as $child) {
-
-          $attributes = [];
-          $attributes['target'] = $child->is_external() ? '_blank' : '';
-          if (isset($item->classes) && is_array($item->classes)) {
-            $attributes['class'] = reset($item->classes);
-          }
-
-          $below[] = [
-            'title' => $child->name,
-            'url' => $child->url,
-            'attributes' => $attributes,
-            'in_active_trail' => $child->current_item_ancestor,
-            'is_active' => $child->current,
-            'below' => [],
-          ];
-        }
 
         $attributes = [];
-        $attributes['target'] = $item->is_external() ? '_blank' : null;
+        $attributes['target'] = $item->target ?: null;
         if (isset($item->classes) && is_array($item->classes)) {
           $attributes['class'] = reset($item->classes);
+        }
+
+        // we cannot directly translate description, so we register it here manually
+        $description = $item->description;
+        if (is_plugin_active('sitepress-multilingual-cms/sitepress.php') && ! empty($description)) {
+          $default_language = apply_filters('wpml_default_language', null);
+          icl_register_string($menu->name . ' menu', 'Menu Item Description ' . $item->ID, $description, false, $default_language);
+          $description = icl_t($menu->name . ' menu', 'Menu Item Description ' . $item->ID, $description);
         }
 
         $items[] = [
           'title' => $item->name,
           'url' => $item->url,
+          'description' => $description,
           'attributes' => $attributes,
           'in_active_trail' => $item->current_item_ancestor,
           'is_active' => $item->current,
-          'below' => $below,
+          'below' => $this->get_nav_menu_child($item, $menu),
         ];
       }
     }
 
     return $items;
+  }
+
+  /**
+   * Generate menu child items
+   */
+  public function get_nav_menu_child($item, $menu)
+  {
+
+    $below = [];
+    if (isset($item->children)) {
+      foreach ($item->children as $child) {
+
+        $attributes = [];
+        $attributes['target'] = $child->target ?: null;
+        if (isset($child->classes) && is_array($child->classes)) {
+          $attributes['class'] = reset($child->classes);
+        }
+
+        // we cannot directly translate description, so we register it here manually
+        $description = $child->description;
+        if (is_plugin_active('sitepress-multilingual-cms/sitepress.php') && ! empty($description)) {
+          $default_language = apply_filters('wpml_default_language', null);
+          icl_register_string($menu->name . ' menu', 'Menu Item Description ' . $child->ID, $description, false, $default_language);
+          $description = icl_t($menu->name . ' menu', 'Menu Item Description ' . $child->ID, $description);
+        }
+
+        $below[] = [
+          'title' => $child->name,
+          'url' => $child->url,
+          'description' => $description,
+          'attributes' => $attributes,
+          'in_active_trail' => $child->current_item_ancestor,
+          'is_active' => $child->current,
+          'below' => $this->get_nav_menu_child($child, $menu),
+        ];
+      }
+    }
+
+    return $below;
   }
 
   /**
@@ -931,33 +974,6 @@ class Base extends Site
   }
 
   /**
-   * Generate language switcher array if using Polylang plugin
-   */
-  public function get_pll_languages()
-  {
-
-    $languages = pll_the_languages(array(
-      'dropdown' => 0,
-      'display_names_as' => 'slug',
-      'post_id' => get_the_ID(),
-      'echo' => 0,
-      'raw' => 1,
-    ));
-
-    $items = [];
-    foreach ($languages as $language) {
-      $items[] = [
-        'id' => $language['slug'],
-        'title' => $language['name'],
-        'url' => $language['url'],
-        'is_active' => (bool)$language['current_lang'],
-      ];
-    }
-
-    return $items;
-  }
-
-  /**
    * Add default CSS classes to image
    */
   public function wp_get_attachment_image_attributes($attr, $attachment)
@@ -984,5 +1000,68 @@ class Base extends Site
   public function wp_editor_set_quality($quality)
   {
     return 100;
+  }
+
+  /**
+   * Fix wrong order in ACF gallery, relationship, post_object fields with WPML
+   * from https://www.pixelbar.be/blog/fix-wrong-order-in-acf-gallery-and-relationship-fields-with-wpml/
+   */
+  public function fix_wrong_acf_orders_with_ids($value, $field_id, $field)
+  {
+
+    if (! is_plugin_active('sitepress-multilingual-cms/sitepress.php')) {
+      return $value;
+    }
+
+    if (! is_array($value)) {
+      return $value;
+    }
+
+    $wpml_value = array();
+    foreach ($value as $key => $v) {
+      $id = apply_filters('wpml_object_id', $v, 'post', true);
+      if (is_int($id)) {
+        $wpml_value[$key] = $id;
+      }
+    }
+
+    return $wpml_value;
+  }
+
+  public function search_post_type_filter($query)
+  {
+
+    if ($query->is_search && ! is_admin()) {
+      $query->set('post_type', array('post'));
+    }
+
+    return $query;
+  }
+
+  /**
+   * Generate language switcher array if using Polylang plugin
+   */
+  public function get_pll_languages()
+  {
+
+    $languages = pll_the_languages(array(
+      'dropdown' => 0,
+      'display_names_as' => 'slug',
+      'post_id' => get_the_ID(),
+      'echo' => 0,
+      'raw' => 1,
+    ));
+
+    $items = [];
+    foreach ($languages as $language) {
+      $items[] = [
+        'id' => $language['slug'],
+        'title' => $language['name'],
+        'url' => $language['url'],
+        'is_active' => (bool)$language['current_lang'],
+      ];
+    }
+
+    return $items;
   }
 }

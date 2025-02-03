@@ -1,11 +1,18 @@
 <?php
-function block_newsletter_content($content) {
-  $content['form'] = [
-    'action' => constant('ECOMAIL_SUBSCRIBE_URL'),
-    'target' => '_blank',
-  ];
+// Define the constant if it's not already defined
+if (!defined('ECOMAIL_SUBSCRIBE_URL')) {
+    define('ECOMAIL_SUBSCRIBE_URL', '');
+}
 
-  return $content;
+function block_newsletter_content($content) {
+    $subscribe_url = get_option('newsletter_subscribe_url', '');
+
+    $content['form'] = [
+        'action' => $subscribe_url,
+        'target' => '_blank',
+    ];
+
+    return $content;
 }
 
 add_filter('block_newsletter_content', 'block_newsletter_content');

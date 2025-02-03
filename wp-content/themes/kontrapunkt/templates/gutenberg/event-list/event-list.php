@@ -34,10 +34,11 @@ function block_event_list_content($content)
     ],
     'paged' => $paged,
   ];
-  $posts = new Timber\PostQuery($query);
+  $wp_query = new WP_Query($query);
+  $posts = new Timber\PostQuery($wp_query);
 
   $content['items'] = [];
-  foreach ($posts->get_posts() as $key => $item) {
+  foreach ($posts as $key => $item) {
     // Build links array for social/web links
     $links = [];
 

@@ -155,7 +155,7 @@ In functions.php add:
 function timber_context()
 {
     $context = Timber::get_context();
-    $post = Timber::query_post();
+    $post = Timber::get_post();
     $context['post'] = $post;
     $context['pll_e'] = TimberHelper::function_wrapper('pll_e');
     $context['pll__'] = TimberHelper::function_wrapper('pll__');

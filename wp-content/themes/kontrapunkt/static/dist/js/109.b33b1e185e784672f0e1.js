@@ -1,2 +1,0 @@
-"use strict";(globalThis.webpackChunkstatic_base=globalThis.webpackChunkstatic_base||[]).push([[109],{109:(e,s,t)=>{t.r(s);var n=t(236),i=t(636);new n.A(".component-slider .swiper-container",{modules:[i.Vx],slidesPerView:3,spaceBetween:20,watchOverflow:!0,navigation:{nextEl:".component-slider .custom-button-next",prevEl:".component-slider .custom-button-prev"},breakpoints:{250:{slidesPerView:1,spaceBetween:24},768:{slidesPerView:2,spaceBetween:24},1024:{slidesPerView:3,spaceBetween:24}}})}}]);
-//# sourceMappingURL=109.b33b1e185e784672f0e1.js.map

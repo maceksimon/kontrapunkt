@@ -24,10 +24,12 @@ function block_calendar_content($content) {
       ],
     ],
   ];
-  $posts = new Timber\PostQuery($query);
+
+  $wp_query = new WP_Query($query);
+  $posts = new Timber\PostQuery($wp_query);
 
   $content['items'] = [];
-  foreach ($posts->get_posts() as $item) {
+  foreach ($posts as $key => $item) {
     $date_start = get_field('date_start', $item->ID);
     $date_end = get_field('date_end', $item->ID);
     $time_start = get_field('time_start', $item->ID);

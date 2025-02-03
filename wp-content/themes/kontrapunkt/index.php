@@ -11,7 +11,7 @@ $context['template'] = 'page-full';
 $templates = ['@wordpress/layout/page.twig'];
 
 if (is_front_page()) {
-  $post = Timber::query_post();
+  $post = Timber::get_post();
   $context['content'] = [
     'title' => $post->ID,
     'title' => $post->title(),
@@ -20,7 +20,7 @@ if (is_front_page()) {
   $context['template'] = 'homepage';
 }
 elseif(is_singular('post')) {
-  $post = Timber::query_post();
+  $post = Timber::get_post();
   $context['content'] = [
     'id' => $post->ID,
     'title' => $post->title(),
@@ -29,7 +29,7 @@ elseif(is_singular('post')) {
   $context['template'] = 'article-full';
 }
 elseif(is_singular('event')) {
-  $post = Timber::query_post();
+  $post = Timber::get_post();
 
   if ($web_link = get_field('web_link', $post->ID)) {
     $links[] = [
@@ -103,7 +103,7 @@ elseif(is_author()) {
   array_unshift($templates, '@wordpress/author/author.twig');
 }
 elseif(is_singular('page')) {
-  $post = Timber::query_post();
+  $post = Timber::get_post();
   $context['content'] = [
     'id' => $post->ID,
     'title' => $post->title(),
