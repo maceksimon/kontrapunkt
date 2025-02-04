@@ -2,24 +2,26 @@
 name: "Program - Detail"
 weight: 20
 #}
-<div class="sr-only">
-  {{ component_breadcrumb({
-    items: breadcrumb
+<div class="component-page-full">
+  <div class="sr-only">
+    {{ component_breadcrumb({
+      items: breadcrumb
+    }) }}
+  </div>
+  {% if not content.header_disabled %}
+  {{ component_event_header({
+    title: content.title,
+    location: content.location,
+    perex: content.perex,
+    contact_list: content.contact_list,
+    image: content.image,
+    date_start: content.date_start,
+    date_end: content.date_end,
+    time_start: content.time_start,
+    time_end: content.time_end,
+    additional_showtimes: content.additional_showtimes,
+    links: content.links,
   }) }}
+  {% endif %}
+  {{ content.body|raw }}
 </div>
-{% if not content.header_disabled %}
-{{ component_event_header({
-  title: content.title,
-  location: content.location,
-  perex: content.perex,
-  contact_list: content.contact_list,
-  image: content.image,
-  date_start: content.date_start,
-  date_end: content.date_end,
-  time_start: content.time_start,
-  time_end: content.time_end,
-  additional_showtimes: content.additional_showtimes,
-  links: content.links,
-}) }}
-{% endif %}
-{{ content.body|raw }}
