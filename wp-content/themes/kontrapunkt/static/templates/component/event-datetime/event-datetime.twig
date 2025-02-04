@@ -14,11 +14,13 @@ name: "Event Datetime"
 {% block content %}
 <div class="space-y-2 text-base">
   {% if content.date_start and not content.date_end %}
-    {{ __('from', 'kontrapunkt') }}:
-    <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
-    {% if content.time_start is not empty %}
-      - <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
-    {% endif %}
+    <div class="flex flex-wrap gap-2 shrink-0 items-center">
+      {{ __('from', 'kontrapunkt') }}:
+      <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
+      {% if content.time_start is not empty %}
+        - <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
+      {% endif %}
+    </div>
   {% endif %}
   {% if content.date_start and content.date_end %}
     <div class="flex flex-wrap gap-2 shrink-0 items-center">
