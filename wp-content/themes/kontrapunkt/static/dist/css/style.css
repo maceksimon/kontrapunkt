@@ -2573,22 +2573,6 @@
     border-left-style: var(--tw-border-style);
     border-left-width: 2px;
   }
-  .btn-primary {
-    border-color: #efb603;
-    background-color: #ffcc02;
-    color: #432005;
-    &:hover {
-      @media (hover: hover) {
-        background-color: #efb603;
-      }
-    }
-    &:focus {
-      --tw-ring-color: #ffe343;
-    }
-    &:disabled {
-      opacity: 50%;
-    }
-  }
   .btn-secondary {
     border-color: oklch(0.488 0.243 264.376);
     background-color: var(--color-white);
@@ -2633,6 +2617,21 @@
   }
   .border-secondary-700 {
     border-color: oklch(0.488 0.243 264.376);
+  }
+  .btn-primary {
+    background-color: #ffcc02;
+    color: #432005;
+    &:hover {
+      @media (hover: hover) {
+        background-color: #efb603;
+      }
+    }
+    &:focus {
+      --tw-ring-color: #ffe343;
+    }
+    &:disabled {
+      opacity: 50%;
+    }
   }
   .menu-open {
     & .jumbotron-overlay {
@@ -4796,7 +4795,6 @@
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
-    border-color: #efb603;
     background-color: #ffcc02;
     color: #432005;
     &:hover {

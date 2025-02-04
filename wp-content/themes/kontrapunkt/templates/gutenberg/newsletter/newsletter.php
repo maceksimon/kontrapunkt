@@ -10,6 +10,7 @@ function block_newsletter_content($content) {
     $content['form'] = [
         'action' => $subscribe_url,
         'target' => '_blank',
+        'privacy_policy_url' => get_permalink(3),
     ];
 
     return $content;

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kontrapunkt\n"
-"POT-Creation-Date: 2025-01-31 22:48+0100\n"
+"POT-Creation-Date: 2025-02-04 21:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Petr Parimucha\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Telefonní číslo"
 msgstr ""
 
-#: component/contact/contact.twig:48 component/newsletter/newsletter.twig:36
+#: component/contact/contact.twig:48 component/newsletter/newsletter.twig:38
 msgid "E-mail"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr "Bez názvu"
 msgid "from"
 msgstr "od"
 
-#: component/event-datetime/event-datetime.twig:38
+#: component/event-datetime/event-datetime.twig:40
 msgid "to"
 msgstr "do"
 
@@ -118,9 +118,17 @@ msgstr ""
 msgid "Žádná zadaná loga"
 msgstr ""
 
-#: component/newsletter/newsletter.twig:40
+#: component/newsletter/newsletter.twig:42
 msgid "Subscribe"
 msgstr "Přihlásit k odběru"
+
+#: component/newsletter/newsletter.twig:46
+msgid "By subscribing, you agree to our"
+msgstr "Odesláním formuláře souhlasíte s podmínkami"
+
+#: component/newsletter/newsletter.twig:47
+msgid "Privacy Policy"
+msgstr "ochrany osobních údajů"
 
 #: component/opening-hours/opening-hours.twig:34
 msgid "Zavřeno"

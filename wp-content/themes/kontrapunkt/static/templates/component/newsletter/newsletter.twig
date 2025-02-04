@@ -42,6 +42,10 @@ name: "Newsletter"
         {{ __('Subscribe', 'kontrapunkt') }}
       </button>
     </div>
+    <div class="prose mt-4">
+      {{ __('By subscribing, you agree to our', 'kontrapunkt') }}
+      <a href="{{ content.form.privacy_policy_url }}">{{ __('Privacy Policy', 'kontrapunkt') }}</a>.
+    </div>
   </form>
 </div>
 {% endblock %}
