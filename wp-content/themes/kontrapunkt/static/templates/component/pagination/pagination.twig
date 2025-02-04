@@ -36,7 +36,7 @@ name: "Pagination"
       <li>
         <a class="inline-flex items-center px-2 py-2 text-sm font-medium text-gray-900 {% if not content.items.previous %} opacity-50 {% else %} hover:text-primary {% endif %}" href="{{ content.items.previous }}" aria-label="Předchozí">
           <div class="h-5 w-5" aria-hidden="true">
-            {{ icons.get('angle-left') }}
+            {{ icons.get('arrow-left') }}
           </div>
           <span class="sr-only">{{ __('Předchozí', 'kontrapunkt') }}</span>
         </a>
@@ -54,7 +54,7 @@ name: "Pagination"
       <li>
         <a class="inline-flex items-center px-2 py-2 text-sm font-medium text-gray-900 {% if not content.items.next %} opacity-50 {% else %} hover:text-primary {% endif %}" href="{{ content.items.next }}" aria-label="Další">
           <div class="h-5 w-5" aria-hidden="true">
-            {{ icons.get('angle-right') }}
+            {{ icons.get('arrow-right') }}
           </div>
           <span class="sr-only">{{ __('Další', 'kontrapunkt') }}</span>
         </a>
