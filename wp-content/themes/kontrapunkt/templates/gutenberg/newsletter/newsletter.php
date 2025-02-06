@@ -5,7 +5,7 @@ if (!defined('ECOMAIL_SUBSCRIBE_URL')) {
 }
 
 function block_newsletter_content($content) {
-    $subscribe_url = get_option('newsletter_subscribe_url', '');
+    $subscribe_url = ECOMAIL_SUBSCRIBE_URL;
 
     $content['form'] = [
         'action' => $subscribe_url,
