@@ -19,6 +19,13 @@ name: "Event Datetime"
       <div class="text-gray-900 leading-tight">{{ content.date_start|date('j. n. Y') }}</div>
       {% if content.time_start is not empty %}
         - <div class="text-gray-900 leading-tight">{{ content.time_start|date('H:i') }}</div>
+        {% if content.additional_showtimes %}
+          {% for showtime in content.additional_showtimes %}
+            {% if showtime.time_start is not empty %}
+              / <div class="text-gray-900 leading-tight">{{ showtime.time_start|date('H:i') }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       {% endif %}
     </div>
   {% endif %}
