@@ -580,7 +580,7 @@ class Base extends Site
 
     // Apply filter only on core gutenberg blocks
     // Custom blocks will get filter via Twig
-    if (strpos((string) $block['blockName'], 'core/') === FALSE && ! in_array($block['blockName'], ['contact-form-7/contact-form-selector'])) {
+    if (strpos((string) $block['blockName'], 'core/') === FALSE && ! in_array($block['blockName'], ['contact-form-7/contact-form-selector', 'wpforms/form-selector'])) {
       return $block_content;
     }
 
@@ -591,7 +591,7 @@ class Base extends Site
 
     // Check if we need raw output
     $raw = FALSE;
-    if (in_array($block['blockName'], ['core/shortcode', 'contact-form-7/contact-form-selector'])) {
+    if (in_array($block['blockName'], ['core/shortcode', 'contact-form-7/contact-form-selector', 'wpforms/form-selector'])) {
       $raw = TRUE;
     }
 
