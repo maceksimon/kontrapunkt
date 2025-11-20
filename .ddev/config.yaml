@@ -15,7 +15,7 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 hooks:
   post-import-db:
-    - exec: wp search-replace 'wordpress-1209068-4940149.cloudwaysapps.com' 'kontrapunkt.ddev.site' --skip-columns=guid
+    - exec: wp search-replace 'kontrapunkt.cz' 'kontrapunkt.ddev.site' --skip-columns=guid
     - exec: wp plugin deactivate breeze
   post-start:
     - exec: composer install --working-dir='wp-content/themes/kontrapunkt'
